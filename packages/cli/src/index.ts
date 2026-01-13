@@ -7,8 +7,13 @@ import gradient from 'gradient-string'
 import { runPrompts } from './prompts.js'
 import { generateProject } from './generate.js'
 import { DEFAULT_CONFIG } from 'kofi-stack-types'
+import { readFileSync } from 'fs'
+import { fileURLToPath } from 'url'
+import { dirname, join } from 'path'
 
-const VERSION = '2.0.0'
+const __dirname = dirname(fileURLToPath(import.meta.url))
+const pkg = JSON.parse(readFileSync(join(__dirname, '../package.json'), 'utf-8'))
+const VERSION = pkg.version
 
 const kofiGradient = gradient(['#FF6B6B', '#4ECDC4', '#FFE66D'])
 
