@@ -74,6 +74,41 @@ export async function generateProject(config: ProjectConfig): Promise<void> {
       spinner.warn('Failed to install shadcn/ui components. Run pnpm dlx shadcn@latest add --all manually.')
     }
 
+    // Ask user if they want to set up Convex now
+    console.log()
+    const setupConvex = await p.confirm({
+      message: 'Would you like to set up Convex now?',
+      initialValue: true,
+    })
+
+    if (p.isCancel(setupConvex)) {
+      p.cancel('Setup cancelled')
+      process.exit(0)
+    }
+
+    if (setupConvex) {
+      console.log()
+      p.log.info('Starting Convex setup...')
+      p.log.message(pc.dim('This will open your browser to authenticate with Convex'))
+      console.log()
+
+      try {
+        // Run dev:setup which runs "convex dev --configure --until-success"
+        await execa('pnpm', ['dev:setup'], {
+          cwd: config.targetDir,
+          stdio: 'inherit',
+        })
+        console.log()
+        p.log.success('Convex configured successfully!')
+      } catch {
+        console.log()
+        p.log.warn('Convex setup was interrupted. Run pnpm dev:setup to try again.')
+      }
+    } else {
+      console.log()
+      p.log.info(`Run ${pc.cyan('pnpm dev:setup')} when you're ready to configure Convex`)
+    }
+
   } catch (error) {
     spinner.fail('An error occurred during project generation')
     throw error
