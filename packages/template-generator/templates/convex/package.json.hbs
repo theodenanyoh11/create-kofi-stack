@@ -1,0 +1,26 @@
+{{#if (eq structure 'monorepo')}}{
+  "name": "@repo/backend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./convex/_generated/api.js",
+  "types": "./convex/_generated/api.d.ts",
+  "exports": {
+    ".": {
+      "import": "./convex/_generated/api.js",
+      "types": "./convex/_generated/api.d.ts"
+    }
+  },
+  "scripts": {
+    "dev": "convex dev",
+    "deploy": "convex deploy"
+  },
+  "dependencies": {
+    "convex": "^1.25.0",
+    "@convex-dev/auth": "^0.0.90",
+    "@auth/core": "^0.37.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}{{/if}}

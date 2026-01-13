@@ -1,0 +1,52 @@
+# Convex
+CONVEX_DEPLOYMENT=
+NEXT_PUBLIC_CONVEX_URL=
+
+# Auth - GitHub OAuth
+AUTH_GITHUB_ID=
+AUTH_GITHUB_SECRET=
+
+# Auth - Google OAuth
+AUTH_GOOGLE_ID=
+AUTH_GOOGLE_SECRET=
+
+# Better Auth Secret (generate with: openssl rand -base64 32)
+BETTER_AUTH_SECRET=
+{{#if (eq integrations.analytics 'posthog')}}
+
+# PostHog
+NEXT_PUBLIC_POSTHOG_KEY=
+NEXT_PUBLIC_POSTHOG_HOST=https://app.posthog.com
+{{/if}}
+{{#if (eq integrations.uploads 'uploadthing')}}
+
+# UploadThing
+UPLOADTHING_TOKEN=
+{{/if}}
+{{#if (eq integrations.uploads 's3')}}
+
+# AWS S3
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_REGION=
+AWS_S3_BUCKET=
+{{/if}}
+{{#if (eq integrations.uploads 'vercel-blob')}}
+
+# Vercel Blob
+BLOB_READ_WRITE_TOKEN=
+{{/if}}
+{{#if (includes addons 'rate-limiting')}}
+
+# Arcjet
+ARCJET_KEY=
+{{/if}}
+{{#if (includes addons 'monitoring')}}
+
+# Sentry
+SENTRY_DSN=
+SENTRY_AUTH_TOKEN=
+{{/if}}
+
+# Email (Resend)
+RESEND_API_KEY=

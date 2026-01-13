@@ -1,0 +1,60 @@
+{
+  "name": "create-kofi-stack",
+  "version": "2.0.5",
+  "description": "Scaffold opinionated full-stack projects with Next.js, Convex, Better-Auth, and more",
+  "type": "module",
+  "bin": {
+    "create-kofi-stack": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --dts",
+    "dev": "tsup src/index.ts --format esm --watch",
+    "start": "node dist/index.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "kofi-stack-template-generator": "^2.0.3",
+    "kofi-stack-types": "^2.0.3",
+    "@clack/prompts": "^0.7.0",
+    "commander": "^12.0.0",
+    "execa": "^8.0.0",
+    "fs-extra": "^11.2.0",
+    "gradient-string": "^2.0.2",
+    "ora": "^8.0.0",
+    "picocolors": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/gradient-string": "^1.1.6",
+    "@types/node": "^20.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "cli",
+    "nextjs",
+    "convex",
+    "better-auth",
+    "shadcn",
+    "tailwind",
+    "scaffold",
+    "boilerplate",
+    "starter"
+  ],
+  "author": "theodenanyoh",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theodenanyoh11/create-kofi-stack.git"
+  },
+  "bugs": {
+    "url": "https://github.com/theodenanyoh11/create-kofi-stack/issues"
+  },
+  "homepage": "https://github.com/theodenanyoh11/create-kofi-stack#readme"
+}
