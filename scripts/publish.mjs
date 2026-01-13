@@ -16,7 +16,7 @@ import { fileURLToPath } from 'url'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const rootDir = resolve(__dirname, '..')
 
-const VERSION = '2.0.5'
+const VERSION = '2.0.6'
 
 const packages = [
   { name: 'kofi-stack-types', path: 'packages/types' },

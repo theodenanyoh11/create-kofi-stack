@@ -256,30 +256,29 @@ function startDevServers() {
   if (!localEnv.CONVEX_DEPLOYMENT) {
     console.log('⚠️  Convex not configured. Run: pnpm dev:setup\\n')
     console.log('Starting Next.js only...\\n')
-    spawn('pnpm', ['${isMonorepo ? 'dev:turbo' : 'dev:next'}'], {
+    spawn('pnpm', ['${isMonorepo ? 'dev:web' : 'dev:next'}'], {
       cwd: rootDir, stdio: 'inherit', shell: true
     })
     return
   }
 
   console.log('🚀 Starting development servers...\\n')
-
-  const nextProcess = spawn('pnpm', ['${isMonorepo ? 'dev:turbo' : 'dev:next'}'], {
+  spawn('pnpm', ['${isMonorepo ? 'dev:all' : 'dev:next'}'], {
     cwd: rootDir, stdio: 'inherit', shell: true
-  })
+  })${isMonorepo ? '' : `
 
   const convexProcess = spawn('npx', ['convex', 'dev'], {
     cwd: webAppDir, stdio: 'inherit', shell: true
   })
 
-  const cleanup = () => {
-    nextProcess.kill()
+  process.on('SIGINT', () => {
     convexProcess.kill()
     process.exit(0)
-  }
-
-  process.on('SIGINT', cleanup)
-  process.on('SIGTERM', cleanup)
+  })
+  process.on('SIGTERM', () => {
+    convexProcess.kill()
+    process.exit(0)
+  })`}
 }
 
 async function main() {
