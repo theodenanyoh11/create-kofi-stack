@@ -93,7 +93,7 @@ export async function generateProject(config: ProjectConfig): Promise<void> {
       console.log()
 
       try {
-        // Run dev:setup which runs "convex dev --configure --until-success"
+        // Run dev:setup - works for both monorepo and standalone
         await execa('pnpm', ['dev:setup'], {
           cwd: config.targetDir,
           stdio: 'inherit',
@@ -108,6 +108,31 @@ export async function generateProject(config: ProjectConfig): Promise<void> {
       console.log()
       p.log.info(`Run ${pc.cyan('pnpm dev:setup')} when you're ready to configure Convex`)
     }
+
+    // Ask user if they want to open in IDE
+    console.log()
+    const openInIDE = await p.confirm({
+      message: 'Would you like to open the project in VS Code?',
+      initialValue: true,
+    })
+
+    if (!p.isCancel(openInIDE) && openInIDE) {
+      try {
+        await execa('code', [config.targetDir], { stdio: 'pipe' })
+        p.log.success('Opened in VS Code')
+      } catch {
+        p.log.warn('Could not open VS Code. Make sure "code" command is in your PATH.')
+      }
+    }
+
+    // Final success message with cd command
+    console.log()
+    p.log.success(`Project ${pc.cyan(config.projectName)} created successfully!`)
+    console.log()
+    p.log.message(`${pc.dim('To get started:')}`)
+    p.log.message(`  ${pc.cyan(`cd ${config.projectName}`)}`)
+    p.log.message(`  ${pc.cyan('pnpm dev')}`)
+    console.log()
 
   } catch (error) {
     spinner.fail('An error occurred during project generation')

@@ -62,9 +62,6 @@ program
 
       // Generate the project
       await generateProject(config)
-
-      // Display success message
-      displaySuccessMessage(config.projectName)
     } catch (error) {
       if (error instanceof Error && error.message === 'cancelled') {
         p.cancel('Operation cancelled')
@@ -74,27 +71,5 @@ program
       process.exit(1)
     }
   })
-
-function displaySuccessMessage(projectName: string) {
-  console.log()
-  p.outro(pc.green('Project created successfully!'))
-
-  console.log()
-  console.log(pc.bold('Next steps:'))
-  console.log()
-  console.log(`  ${pc.cyan('cd')} ${projectName}`)
-  console.log(`  ${pc.cyan('pnpm')} dev`)
-  console.log()
-  console.log(pc.dim('This will automatically:'))
-  console.log(pc.dim('  - Install dependencies'))
-  console.log(pc.dim('  - Guide you through Convex setup'))
-  console.log(pc.dim('  - Start Next.js and Convex dev servers'))
-  console.log()
-  console.log(pc.bold('Documentation:'))
-  console.log(`  ${pc.dim('-')} Convex: ${pc.cyan('https://docs.convex.dev')}`)
-  console.log(`  ${pc.dim('-')} Better-Auth: ${pc.cyan('https://www.better-auth.com')}`)
-  console.log(`  ${pc.dim('-')} shadcn/ui: ${pc.cyan('https://ui.shadcn.com')}`)
-  console.log()
-}
 
 program.parse()

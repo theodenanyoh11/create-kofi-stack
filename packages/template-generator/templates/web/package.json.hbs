@@ -6,15 +6,15 @@
   "scripts": {
     "dev": "{{#if (eq structure 'monorepo')}}next dev --turbopack{{else}}node scripts/dev.mjs{{/if}}",
     "dev:next": "next dev --turbopack",
-    "build": "next build",
+{{#unless (eq structure 'monorepo')}}    "dev:setup": "npx convex dev --configure --until-success",
+{{/unless}}    "build": "next build",
     "start": "next start",
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:e2e": "playwright test",
-    "setup:convex": "node scripts/setup-convex.mjs"
+    "test:e2e": "playwright test"
   },
   "dependencies": {
 {{#if (eq structure 'monorepo')}}    "@repo/backend": "workspace:*",
