@@ -1,0 +1,18 @@
+import type { Metadata } from 'next'
+import config from '@/payload.config'
+import { RootLayout } from '@payloadcms/next/layouts'
+import { importMap } from './importMap.js'
+import './custom.scss'
+
+export const metadata: Metadata = {
+  title: 'Admin Panel',
+}
+
+type LayoutArgs = {
+  children: React.ReactNode
+}
+
+const Layout = ({ children }: LayoutArgs) =>
+  RootLayout({ children, config, importMap })
+
+export default Layout
