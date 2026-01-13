@@ -7,7 +7,12 @@ import { execa } from 'execa'
 import type { ProjectConfig, VirtualFileTree, VirtualFile, VirtualDirectory, VirtualNode } from 'kofi-stack-types'
 import { generateVirtualProject } from 'kofi-stack-template-generator'
 
-export async function generateProject(config: ProjectConfig): Promise<void> {
+interface GenerateOptions {
+  skipPrompts?: boolean
+}
+
+export async function generateProject(config: ProjectConfig, options: GenerateOptions = {}): Promise<void> {
+  const { skipPrompts = false } = options
   const spinner = ora()
 
   // Check if directory already exists
@@ -74,55 +79,61 @@ export async function generateProject(config: ProjectConfig): Promise<void> {
       spinner.warn('Failed to install shadcn/ui components. Run pnpm dlx shadcn@latest add --all manually.')
     }
 
-    // Ask user if they want to set up Convex now
-    console.log()
-    const setupConvex = await p.confirm({
-      message: 'Would you like to set up Convex now?',
-      initialValue: true,
-    })
-
-    if (p.isCancel(setupConvex)) {
-      p.cancel('Setup cancelled')
-      process.exit(0)
-    }
-
-    if (setupConvex) {
+    // Ask user if they want to set up Convex now (skip if -y flag)
+    if (!skipPrompts) {
       console.log()
-      p.log.info('Starting Convex setup...')
-      p.log.message(pc.dim('This will open your browser to authenticate with Convex'))
-      console.log()
+      const setupConvex = await p.confirm({
+        message: 'Would you like to set up Convex now?',
+        initialValue: true,
+      })
 
-      try {
-        // Run dev:setup - works for both monorepo and standalone
-        await execa('pnpm', ['dev:setup'], {
-          cwd: config.targetDir,
-          stdio: 'inherit',
-        })
+      if (p.isCancel(setupConvex)) {
+        p.cancel('Setup cancelled')
+        process.exit(0)
+      }
+
+      if (setupConvex) {
         console.log()
-        p.log.success('Convex configured successfully!')
-      } catch {
+        p.log.info('Starting Convex setup...')
+        p.log.message(pc.dim('This will open your browser to authenticate with Convex'))
         console.log()
-        p.log.warn('Convex setup was interrupted. Run pnpm dev:setup to try again.')
+
+        try {
+          // Run dev:setup - works for both monorepo and standalone
+          await execa('pnpm', ['dev:setup'], {
+            cwd: config.targetDir,
+            stdio: 'inherit',
+          })
+          console.log()
+          p.log.success('Convex configured successfully!')
+        } catch {
+          console.log()
+          p.log.warn('Convex setup was interrupted. Run pnpm dev:setup to try again.')
+        }
+      } else {
+        console.log()
+        p.log.info(`Run ${pc.cyan('pnpm dev:setup')} when you're ready to configure Convex`)
+      }
+
+      // Ask user if they want to open in IDE
+      console.log()
+      const openInIDE = await p.confirm({
+        message: 'Would you like to open the project in VS Code?',
+        initialValue: true,
+      })
+
+      if (!p.isCancel(openInIDE) && openInIDE) {
+        try {
+          await execa('code', [config.targetDir], { stdio: 'pipe' })
+          p.log.success('Opened in VS Code')
+        } catch {
+          p.log.warn('Could not open VS Code. Make sure "code" command is in your PATH.')
+        }
       }
     } else {
+      // When using -y flag, just show instructions
       console.log()
-      p.log.info(`Run ${pc.cyan('pnpm dev:setup')} when you're ready to configure Convex`)
-    }
-
-    // Ask user if they want to open in IDE
-    console.log()
-    const openInIDE = await p.confirm({
-      message: 'Would you like to open the project in VS Code?',
-      initialValue: true,
-    })
-
-    if (!p.isCancel(openInIDE) && openInIDE) {
-      try {
-        await execa('code', [config.targetDir], { stdio: 'pipe' })
-        p.log.success('Opened in VS Code')
-      } catch {
-        p.log.warn('Could not open VS Code. Make sure "code" command is in your PATH.')
-      }
+      p.log.info(`Run ${pc.cyan('pnpm dev:setup')} to configure Convex`)
     }
 
     // Final success message with cd command

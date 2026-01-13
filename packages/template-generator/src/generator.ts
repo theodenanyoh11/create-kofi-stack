@@ -91,7 +91,10 @@ function processTemplatesFromPrefix(
     } else {
       // Process as template
       const processedContent = processTemplateString(content, config)
-      vfs.writeFile(finalPath, processedContent)
+      // Skip writing empty files (can happen with conditional templates)
+      if (processedContent.trim()) {
+        vfs.writeFile(finalPath, processedContent)
+      }
     }
   }
 }

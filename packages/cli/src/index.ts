@@ -61,7 +61,7 @@ program
       const config = await runPrompts(projectName, options)
 
       // Generate the project
-      await generateProject(config)
+      await generateProject(config, { skipPrompts: options.yes })
     } catch (error) {
       if (error instanceof Error && error.message === 'cancelled') {
         p.cancel('Operation cancelled')
