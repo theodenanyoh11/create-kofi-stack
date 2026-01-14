@@ -202,6 +202,18 @@ export async function generateProject(config: ProjectConfig, options: GenerateOp
           stdio: 'pipe',
         })
         spinner.succeed('shadcn/ui initialized')
+
+        // Fix tsconfig.json paths that shadcn may have modified
+        const tsconfigPath = path.join(shadcnDir, 'tsconfig.json')
+        if (await fs.pathExists(tsconfigPath)) {
+          const tsconfig = await fs.readJson(tsconfigPath)
+          // Ensure paths only has @/* -> ./src/* (no packages/ui aliases)
+          tsconfig.compilerOptions = tsconfig.compilerOptions || {}
+          tsconfig.compilerOptions.paths = {
+            '@/*': ['./src/*']
+          }
+          await fs.writeJson(tsconfigPath, tsconfig, { spaces: 2 })
+        }
       } catch {
         spinner.warn('Failed to initialize shadcn. Run manually in apps/web: pnpm dlx shadcn@latest init')
       }
