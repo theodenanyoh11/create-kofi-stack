@@ -133,11 +133,11 @@ export async function generateProject(config: ProjectConfig, options: GenerateOp
     }
 
     // Determine shadcn installation directory
-    // For monorepo: install in packages/ui (shared component library)
+    // For monorepo: install in apps/web (where tailwind config lives)
     // For standalone: install in project root
     const shadcnDir =
       config.structure === 'monorepo'
-        ? path.join(config.targetDir, 'packages/ui')
+        ? path.join(config.targetDir, 'apps/web')
         : config.targetDir
 
     // Build preset URL from user configuration
