@@ -1,13 +1,11 @@
 import { query } from './_generated/server'
-import { auth } from './auth'
+import { authComponent } from './auth'
 
 // Get current user from Better Auth session
 export const current = query({
   args: {},
   handler: async (ctx) => {
-    const session = await auth.getSession(ctx)
-    if (!session) return null
-    return session.user
+    return authComponent.getAuthUser(ctx)
   },
 })
 
@@ -15,8 +13,6 @@ export const current = query({
 export const viewer = query({
   args: {},
   handler: async (ctx) => {
-    const session = await auth.getSession(ctx)
-    if (!session) return null
-    return session.user
+    return authComponent.getAuthUser(ctx)
   },
 })
