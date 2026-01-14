@@ -1,33 +1,16 @@
 'use client'
 
-import { useConvexAuth, useQuery } from 'convex/react'
-import { useAuthActions } from '@convex-dev/auth/react'
-import { api } from '{{#if (eq structure 'monorepo')}}@repo/backend/convex/_generated/api{{else}}../../convex/_generated/api{{/if}}'
+import { createAuthClient } from 'better-auth/react'
+import { convexClient } from '@convex-dev/better-auth/client/plugins'
 
-export function useAuth() {
-  const { isAuthenticated, isLoading } = useConvexAuth()
-  const { signIn, signOut } = useAuthActions()
-  const user = useQuery(api.users.viewer)
+export const authClient = createAuthClient({
+  plugins: [convexClient()],
+})
 
-  return {
-    isAuthenticated,
-    isLoading,
-    user,
-    signIn: (provider: 'github' | 'google') => {
-      void signIn(provider)
-    },
-    signInWithPassword: async (email: string, password: string, flow: 'signIn' | 'signUp' = 'signIn', name?: string) => {
-      const formData = new FormData()
-      formData.append('email', email)
-      formData.append('password', password)
-      formData.append('flow', flow)
-      if (name) {
-        formData.append('name', name)
-      }
-      await signIn('password', formData)
-    },
-    signOut: () => {
-      void signOut()
-    },
-  }
-}
+export const {
+  signIn,
+  signUp,
+  signOut,
+  useSession,
+  getSession,
+} = authClient

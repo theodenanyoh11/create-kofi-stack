@@ -6,13 +6,16 @@ import type {
   AnalyticsProviderSchema,
   UploadsProviderSchema,
   PaymentProviderSchema,
+  // shadcn v4 schemas
+  ComponentLibrarySchema,
+  ShadcnStyleSchema,
   BaseColorSchema,
   ThemeColorSchema,
-  MenuAccentSchema,
   IconLibrarySchema,
-  FontFamilySchema,
-  BorderRadiusSchema,
-  SpacingScaleSchema,
+  FontSchema,
+  MenuAccentSchema,
+  MenuColorSchema,
+  RadiusSchema,
   PackageManagerSchema,
   AddonSchema,
   DesignSystemConfigSchema,
@@ -29,13 +32,18 @@ export type AuthProvider = z.infer<typeof AuthProviderSchema>
 export type AnalyticsProvider = z.infer<typeof AnalyticsProviderSchema>
 export type UploadsProvider = z.infer<typeof UploadsProviderSchema>
 export type PaymentProvider = z.infer<typeof PaymentProviderSchema>
+
+// shadcn v4 types
+export type ComponentLibrary = z.infer<typeof ComponentLibrarySchema>
+export type ShadcnStyle = z.infer<typeof ShadcnStyleSchema>
 export type BaseColor = z.infer<typeof BaseColorSchema>
 export type ThemeColor = z.infer<typeof ThemeColorSchema>
-export type MenuAccent = z.infer<typeof MenuAccentSchema>
 export type IconLibrary = z.infer<typeof IconLibrarySchema>
-export type FontFamily = z.infer<typeof FontFamilySchema>
-export type BorderRadius = z.infer<typeof BorderRadiusSchema>
-export type SpacingScale = z.infer<typeof SpacingScaleSchema>
+export type Font = z.infer<typeof FontSchema>
+export type MenuAccent = z.infer<typeof MenuAccentSchema>
+export type MenuColor = z.infer<typeof MenuColorSchema>
+export type Radius = z.infer<typeof RadiusSchema>
+
 export type PackageManager = z.infer<typeof PackageManagerSchema>
 export type Addon = z.infer<typeof AddonSchema>
 export type DesignSystemConfig = z.infer<typeof DesignSystemConfigSchema>

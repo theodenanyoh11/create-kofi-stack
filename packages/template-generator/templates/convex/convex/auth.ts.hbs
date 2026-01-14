@@ -1,34 +1,40 @@
-import GitHub from '@auth/core/providers/github'
-import Google from '@auth/core/providers/google'
-import { Password } from '@convex-dev/auth/providers/Password'
-import { convexAuth } from '@convex-dev/auth/server'
+import { createClient, type GenericCtx } from '@convex-dev/better-auth'
+import { convex } from '@convex-dev/better-auth/plugins'
+import { betterAuth } from 'better-auth/minimal'
+import { components } from './_generated/api'
+import type { DataModel } from './_generated/dataModel'
+import { query } from './_generated/server'
+import authConfig from './auth.config'
 
-export const { auth, signIn, signOut, store, isAuthenticated } = convexAuth({
-  providers: [
-    GitHub,
-    Google,
-    Password,
-  ],
+const siteUrl = process.env.SITE_URL!
+
+export const authComponent = createClient<DataModel>(components.betterAuth)
+
+export const createAuth = (ctx: GenericCtx<DataModel>) => {
+  return betterAuth({
+    baseURL: siteUrl,
+    database: authComponent.adapter(ctx),
+    emailAndPassword: {
+      enabled: true,
+      requireEmailVerification: false,
+    },
+    socialProviders: {
+      github: {
+        clientId: process.env.GITHUB_CLIENT_ID!,
+        clientSecret: process.env.GITHUB_CLIENT_SECRET!,
+      },
+      google: {
+        clientId: process.env.GOOGLE_CLIENT_ID!,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      },
+    },
+    plugins: [convex({ authConfig })],
+  })
+}
+
+export const getCurrentUser = query({
+  args: {},
+  handler: async (ctx) => {
+    return authComponent.getAuthUser(ctx)
+  },
 })
-
-// Email Verification Setup (Optional)
-// ------------------------------------
-// By default, email/password auth works without email verification.
-// To require email verification, configure the Password provider with ResendOTP:
-//
-// 1. Install the Resend component: npm install @convex-dev/resend
-// 2. Update the Password provider:
-//
-// import { ResendOTP } from '@convex-dev/auth/providers/ResendOTP'
-// import { Resend } from '@convex-dev/resend'
-//
-// const resend = new Resend()
-//
-// Password({
-//   verify: ResendOTP({
-//     resend,
-//     from: process.env.RESEND_FROM_EMAIL!,
-//   }),
-// })
-//
-// See: https://labs.convex.dev/auth/config/passwords

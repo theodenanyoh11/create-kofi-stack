@@ -33,40 +33,66 @@ export const UploadsProviderSchema = z.enum([
 // Payment providers
 export const PaymentProviderSchema = z.enum(['none', 'stripe', 'polar'])
 
+// ============================================
+// shadcn UI v4 Design System Options
+// ============================================
 
-// Base color
-export const BaseColorSchema = z.enum(['neutral', 'gray', 'zinc', 'slate', 'stone'])
+// Component library (base or radix primitives)
+export const ComponentLibrarySchema = z.enum(['base', 'radix'])
 
-// Theme color
+// Style presets (shadcn v4)
+export const ShadcnStyleSchema = z.enum(['vega', 'nova', 'maia', 'lyra', 'mira'])
+
+// Base color (background/surface colors)
+export const BaseColorSchema = z.enum(['neutral', 'stone', 'zinc', 'gray'])
+
+// Theme color (accent/primary color)
 export const ThemeColorSchema = z.enum([
-  'zinc',
-  'slate',
-  'stone',
-  'gray',
   'neutral',
+  'amber',
+  'blue',
+  'cyan',
+  'emerald',
+  'fuchsia',
+  'green',
+  'indigo',
+  'lime',
+  'orange',
+  'pink',
+  'purple',
   'red',
   'rose',
-  'orange',
-  'green',
-  'blue',
-  'yellow',
+  'sky',
+  'teal',
   'violet',
+  'yellow',
+])
+
+// Icon library
+export const IconLibrarySchema = z.enum(['lucide', 'tabler', 'hugeicons', 'phosphor'])
+
+// Font
+export const FontSchema = z.enum([
+  'inter',
+  'noto-sans',
+  'nunito-sans',
+  'figtree',
+  'roboto',
+  'raleway',
+  'dm-sans',
+  'public-sans',
+  'outfit',
+  'jetbrains-mono',
 ])
 
 // Menu accent
-export const MenuAccentSchema = z.enum(['none', 'muted', 'primary'])
+export const MenuAccentSchema = z.enum(['subtle', 'bold'])
 
-// Icon library
-export const IconLibrarySchema = z.enum(['lucide', 'hugeicons'])
-
-// Font family
-export const FontFamilySchema = z.enum(['geist', 'inter', 'system'])
+// Menu color
+export const MenuColorSchema = z.enum(['default', 'inverted'])
 
 // Border radius
-export const BorderRadiusSchema = z.enum(['0', '0.3', '0.5', '0.75', '1.0'])
-
-// Spacing scale
-export const SpacingScaleSchema = z.enum(['default', 'compact', 'comfortable'])
+export const RadiusSchema = z.enum(['default', 'none', 'small', 'medium', 'large'])
 
 // Package manager
 export const PackageManagerSchema = z.enum(['pnpm', 'npm', 'bun'])
@@ -82,16 +108,17 @@ export const AddonSchema = z.enum([
   'monitoring',
 ])
 
-// Design system configuration
+// Design system configuration (shadcn v4)
 export const DesignSystemConfigSchema = z.object({
+  componentLibrary: ComponentLibrarySchema,
+  style: ShadcnStyleSchema,
   baseColor: BaseColorSchema,
   themeColor: ThemeColorSchema,
-  menuAccent: MenuAccentSchema,
   iconLibrary: IconLibrarySchema,
-  headingFont: FontFamilySchema,
-  bodyFont: FontFamilySchema,
-  borderRadius: BorderRadiusSchema,
-  spacingScale: SpacingScaleSchema,
+  font: FontSchema,
+  menuAccent: MenuAccentSchema,
+  menuColor: MenuColorSchema,
+  radius: RadiusSchema,
 })
 
 // Auth configuration
@@ -138,18 +165,23 @@ export const CLIInputSchema = z.object({
   projectName: z.string().optional(),
   structure: ProjectStructureSchema.optional(),
   marketingSite: MarketingSiteSchema.optional(),
+  // shadcn v4 options
+  componentLibrary: ComponentLibrarySchema.optional(),
+  style: ShadcnStyleSchema.optional(),
   baseColor: BaseColorSchema.optional(),
   themeColor: ThemeColorSchema.optional(),
-  menuAccent: MenuAccentSchema.optional(),
   iconLibrary: IconLibrarySchema.optional(),
-  headingFont: FontFamilySchema.optional(),
-  bodyFont: FontFamilySchema.optional(),
-  borderRadius: BorderRadiusSchema.optional(),
-  spacingScale: SpacingScaleSchema.optional(),
+  font: FontSchema.optional(),
+  menuAccent: MenuAccentSchema.optional(),
+  menuColor: MenuColorSchema.optional(),
+  radius: RadiusSchema.optional(),
+  // Auth
   authProviders: z.array(AuthProviderSchema).optional(),
   organizations: z.boolean().optional(),
+  // Integrations
   analytics: AnalyticsProviderSchema.optional(),
   uploads: UploadsProviderSchema.optional(),
+  payments: PaymentProviderSchema.optional(),
   addons: z.array(AddonSchema).optional(),
   git: z.boolean().optional(),
   packageManager: PackageManagerSchema.optional(),
@@ -164,14 +196,15 @@ export const DEFAULT_CONFIG: z.infer<typeof ProjectConfigSchema> = {
   structure: 'standalone',
   marketingSite: 'none',
   shadcn: {
+    componentLibrary: 'base',
+    style: 'nova',
     baseColor: 'neutral',
-    themeColor: 'zinc',
-    menuAccent: 'muted',
-    iconLibrary: 'lucide',
-    headingFont: 'geist',
-    bodyFont: 'geist',
-    borderRadius: '0.5',
-    spacingScale: 'default',
+    themeColor: 'neutral',
+    iconLibrary: 'hugeicons',
+    font: 'inter',
+    menuAccent: 'subtle',
+    menuColor: 'default',
+    radius: 'default',
   },
   auth: {
     providers: ['github', 'google'],

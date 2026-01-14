@@ -22,6 +22,26 @@ function generateSecret(): string {
   }
 }
 
+/**
+ * Build the shadcn v4 preset URL based on user configuration
+ */
+function buildShadcnPresetUrl(config: ProjectConfig): string {
+  const { shadcn } = config
+  const params = new URLSearchParams({
+    base: shadcn.componentLibrary,
+    style: shadcn.style,
+    baseColor: shadcn.baseColor,
+    theme: shadcn.themeColor,
+    iconLibrary: shadcn.iconLibrary,
+    font: shadcn.font,
+    menuAccent: shadcn.menuAccent,
+    menuColor: shadcn.menuColor,
+    radius: shadcn.radius,
+    template: 'next',
+  })
+  return `https://ui.shadcn.com/init?${params.toString()}`
+}
+
 async function updateEnvWithSecrets(envPath: string, secrets: Record<string, string>): Promise<void> {
   if (!await fs.pathExists(envPath)) {
     return
@@ -112,21 +132,39 @@ export async function generateProject(config: ProjectConfig, options: GenerateOp
       spinner.warn('Failed to install dependencies. Run pnpm install manually.')
     }
 
-    // Run shadcn add --all in the web app directory
+    // Determine shadcn installation directory
+    // For monorepo: install in packages/ui (shared component library)
+    // For standalone: install in project root
     const shadcnDir =
       config.structure === 'monorepo'
-        ? path.join(config.targetDir, 'apps/web')
+        ? path.join(config.targetDir, 'packages/ui')
         : config.targetDir
 
+    // Build preset URL from user configuration
+    const presetUrl = buildShadcnPresetUrl(config)
+
+    // Initialize shadcn with preset
+    spinner.start('Initializing shadcn/ui...')
+    try {
+      await execa('pnpm', ['dlx', 'shadcn@latest', 'init', '--yes', '--preset', presetUrl], {
+        cwd: shadcnDir,
+        stdio: 'pipe',
+      })
+      spinner.succeed('shadcn/ui initialized')
+    } catch {
+      spinner.warn(`Failed to initialize shadcn. Run manually:\npnpm dlx shadcn@latest init --preset "${presetUrl}"`)
+    }
+
+    // Install all components
     spinner.start('Installing shadcn/ui components...')
     try {
-      await execa('pnpm', ['dlx', 'shadcn@latest', 'add', '--all', '-y'], {
+      await execa('pnpm', ['dlx', 'shadcn@latest', 'add', '--all', '--yes'], {
         cwd: shadcnDir,
         stdio: 'pipe',
       })
       spinner.succeed('shadcn/ui components installed')
     } catch {
-      spinner.warn('Failed to install shadcn/ui components. Run pnpm dlx shadcn@latest add --all manually.')
+      spinner.warn('Failed to install shadcn/ui components. Run: pnpm dlx shadcn@latest add --all')
     }
 
     // Ask user if they want to set up Convex now (skip if -y flag)

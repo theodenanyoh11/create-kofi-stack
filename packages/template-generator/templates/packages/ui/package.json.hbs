@@ -15,7 +15,10 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@hugeicons/react": "^0.3.0",
+    {{#if (eq shadcn.iconLibrary "hugeicons")}}"@hugeicons/react": "^0.3.0",{{/if}}
+    {{#if (eq shadcn.iconLibrary "lucide")}}"lucide-react": "^0.469.0",{{/if}}
+    {{#if (eq shadcn.iconLibrary "tabler")}}"@tabler/icons-react": "^3.31.0",{{/if}}
+    {{#if (eq shadcn.iconLibrary "phosphor")}}"@phosphor-icons/react": "^2.1.7",{{/if}}
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "tailwind-merge": "^2.5.0"

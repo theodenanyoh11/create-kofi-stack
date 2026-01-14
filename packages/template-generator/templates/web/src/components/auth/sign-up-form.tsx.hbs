@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { useAuthActions } from '@convex-dev/auth/react'
+import { signUp, signIn } from '@/lib/auth'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -12,7 +12,6 @@ import { Separator } from '@/components/ui/separator'
 
 export function SignUpForm() {
   const router = useRouter()
-  const { signIn } = useAuthActions()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -31,14 +30,17 @@ export function SignUpForm() {
     }
 
     try {
-      const formData = new FormData()
-      formData.append('name', name)
-      formData.append('email', email)
-      formData.append('password', password)
-      formData.append('flow', 'signUp')
+      const result = await signUp.email({
+        email,
+        password,
+        name,
+      })
 
-      await signIn('password', formData)
-      router.push('/')
+      if (result.error) {
+        setError(result.error.message || 'Failed to create account')
+      } else {
+        router.push('/')
+      }
     } catch (err) {
       setError('Failed to create account. Email may already be in use.')
     } finally {
@@ -46,8 +48,11 @@ export function SignUpForm() {
     }
   }
 
-  const handleSocialSignIn = (provider: 'github' | 'google') => {
-    void signIn(provider)
+  const handleSocialSignIn = async (provider: 'github' | 'google') => {
+    await signIn.social({
+      provider,
+      callbackURL: '/',
+    })
   }
 
   return (
