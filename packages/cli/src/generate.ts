@@ -5,7 +5,7 @@ import fs from 'fs-extra'
 import path from 'path'
 import { execSync } from 'child_process'
 import { execa } from 'execa'
-import type { ProjectConfig, VirtualFileTree, VirtualFile, VirtualDirectory, VirtualNode } from 'kofi-stack-types'
+import type { ProjectConfig, VirtualNode } from 'kofi-stack-types'
 import { generateVirtualProject } from 'kofi-stack-template-generator'
 
 interface GenerateOptions {
@@ -23,7 +23,7 @@ function generateSecret(): string {
 }
 
 /**
- * Build the shadcn v4 preset URL based on user configuration
+ * Build the shadcn preset URL based on user configuration
  */
 function buildShadcnPresetUrl(config: ProjectConfig): string {
   const { shadcn } = config
@@ -74,22 +74,78 @@ export async function generateProject(config: ProjectConfig, options: GenerateOp
   console.log()
 
   try {
-    // Generate virtual file tree
-    spinner.start('Generating project files...')
-    const result = await generateVirtualProject(config)
+    // Build shadcn preset URL from user configuration
+    const presetUrl = buildShadcnPresetUrl(config)
 
-    if (!result.success) {
-      spinner.fail('Failed to generate project')
-      console.error(pc.red('Errors:'), result.errors?.join('\n'))
-      process.exit(1)
+    // For standalone: Use shadcn create to scaffold the base project
+    // For monorepo: We need a different approach
+    if (config.structure === 'standalone') {
+      // Step 1: Create base project with shadcn create --preset
+      // Note: shadcn create may fail at dependency install due to pnpm-workspace.yaml issue
+      // but the project structure will be created successfully
+      spinner.start('Creating project with shadcn/ui...')
+      try {
+        await execa('pnpm', ['dlx', 'shadcn@latest', 'create', config.projectName, '--template', 'next', '--preset', presetUrl, '--src-dir'], {
+          cwd: path.dirname(config.targetDir),
+          stdio: 'pipe',
+        })
+        spinner.succeed('Base project created with shadcn/ui')
+      } catch {
+        // shadcn create often fails at pnpm add step due to workspace detection
+        // but the project structure is usually created, so we continue
+        if (await fs.pathExists(config.targetDir)) {
+          spinner.succeed('Base project created with shadcn/ui')
+        } else {
+          spinner.fail('Failed to create project with shadcn')
+          throw new Error('shadcn create failed and project directory was not created')
+        }
+      }
+
+      // Step 2: Remove pnpm-workspace.yaml if it was created (causes issues)
+      const workspaceFile = path.join(config.targetDir, 'pnpm-workspace.yaml')
+      if (await fs.pathExists(workspaceFile)) {
+        await fs.remove(workspaceFile)
+      }
+
+      // Step 3: Generate and overlay our custom files (Convex, auth, etc.)
+      spinner.start('Adding Convex and authentication...')
+      const result = await generateVirtualProject(config)
+
+      if (!result.success) {
+        spinner.fail('Failed to generate project files')
+        console.error(pc.red('Errors:'), result.errors?.join('\n'))
+        process.exit(1)
+      }
+
+      // Write our files on top, skipping files shadcn already created
+      await writeNodeToDisk(result.tree.root, config.targetDir, {
+        skipExisting: ['src/app/globals.css', 'tailwind.config.ts', 'components.json', 'next.config.ts', 'postcss.config.mjs']
+      })
+      spinner.succeed('Convex and authentication added')
+
+      // Step 4: Merge package.json dependencies
+      spinner.start('Merging dependencies...')
+      await mergePackageJson(config.targetDir, result.tree.root)
+      spinner.succeed('Dependencies merged')
+
+    } else {
+      // Monorepo: Generate our structure first, then init shadcn in apps/web
+      spinner.start('Generating project files...')
+      const result = await generateVirtualProject(config)
+
+      if (!result.success) {
+        spinner.fail('Failed to generate project')
+        console.error(pc.red('Errors:'), result.errors?.join('\n'))
+        process.exit(1)
+      }
+
+      spinner.succeed('Project files generated')
+
+      // Write virtual file tree to disk
+      spinner.start('Writing files to disk...')
+      await writeNodeToDisk(result.tree.root, config.targetDir)
+      spinner.succeed('Files written to disk')
     }
-
-    spinner.succeed('Project files generated')
-
-    // Write virtual file tree to disk
-    spinner.start('Writing files to disk...')
-    await writeNodeToDisk(result.tree.root, config.targetDir)
-    spinner.succeed('Files written to disk')
 
     // Generate and update secrets in .env.local files
     spinner.start('Generating secrets...')
@@ -123,7 +179,7 @@ export async function generateProject(config: ProjectConfig, options: GenerateOp
       spinner.warn('Failed to initialize git repository')
     }
 
-    // Install dependencies
+    // Install dependencies (for standalone, reinstall to get our added deps)
     spinner.start('Installing dependencies...')
     try {
       await execa('pnpm', ['install'], { cwd: config.targetDir, stdio: 'pipe' })
@@ -132,30 +188,26 @@ export async function generateProject(config: ProjectConfig, options: GenerateOp
       spinner.warn('Failed to install dependencies. Run pnpm install manually.')
     }
 
-    // Determine shadcn installation directory
-    // For monorepo: install in apps/web (where tailwind config lives)
-    // For standalone: install in project root
-    const shadcnDir =
-      config.structure === 'monorepo'
-        ? path.join(config.targetDir, 'apps/web')
-        : config.targetDir
+    // Install shadcn components
+    const shadcnDir = config.structure === 'monorepo'
+      ? path.join(config.targetDir, 'apps/web')
+      : config.targetDir
 
-    // Build preset URL from user configuration
-    const presetUrl = buildShadcnPresetUrl(config)
-
-    // Initialize shadcn with preset
-    spinner.start('Initializing shadcn/ui...')
-    try {
-      await execa('pnpm', ['dlx', 'shadcn@latest', 'init', '--yes', '--preset', presetUrl], {
-        cwd: shadcnDir,
-        stdio: 'pipe',
-      })
-      spinner.succeed('shadcn/ui initialized')
-    } catch {
-      spinner.warn(`Failed to initialize shadcn. Run manually:\npnpm dlx shadcn@latest init --preset "${presetUrl}"`)
+    // For monorepo, we need to init shadcn first
+    if (config.structure === 'monorepo') {
+      spinner.start('Initializing shadcn/ui in apps/web...')
+      try {
+        await execa('pnpm', ['dlx', 'shadcn@latest', 'init', '--defaults', '--force'], {
+          cwd: shadcnDir,
+          stdio: 'pipe',
+        })
+        spinner.succeed('shadcn/ui initialized')
+      } catch {
+        spinner.warn('Failed to initialize shadcn. Run manually in apps/web: pnpm dlx shadcn@latest init')
+      }
     }
 
-    // Install all components
+    // Install all shadcn components
     spinner.start('Installing shadcn/ui components...')
     try {
       await execa('pnpm', ['dlx', 'shadcn@latest', 'add', '--all', '--yes'], {
@@ -364,8 +416,21 @@ async function setupPayload(config: ProjectConfig): Promise<void> {
   p.log.success('Payload CMS configured successfully!')
 }
 
-async function writeNodeToDisk(node: VirtualNode, targetDir: string): Promise<void> {
+interface WriteOptions {
+  skipExisting?: string[]
+  basePath?: string
+}
+
+async function writeNodeToDisk(node: VirtualNode, targetDir: string, options: WriteOptions = {}): Promise<void> {
+  const { skipExisting = [], basePath = '' } = options
+
   if (node.type === 'file') {
+    // Check if this file should be skipped
+    const relativePath = basePath ? `${basePath}/${node.name}` : node.name
+    if (skipExisting.includes(relativePath)) {
+      return
+    }
+
     // Write file
     const filePath = path.join(targetDir, node.name)
     await fs.ensureDir(path.dirname(filePath))
@@ -378,7 +443,14 @@ async function writeNodeToDisk(node: VirtualNode, targetDir: string): Promise<vo
     // Create directory and write children
     await fs.ensureDir(targetDir)
     for (const child of node.children) {
+      const childRelativePath = basePath ? `${basePath}/${child.name}` : child.name
+
       if (child.type === 'file') {
+        // Check if this file should be skipped
+        if (skipExisting.includes(childRelativePath)) {
+          continue
+        }
+
         const filePath = path.join(targetDir, child.name)
         await fs.ensureDir(path.dirname(filePath))
         if (Buffer.isBuffer(child.content)) {
@@ -388,8 +460,55 @@ async function writeNodeToDisk(node: VirtualNode, targetDir: string): Promise<vo
         }
       } else {
         // Recurse into subdirectory
-        await writeNodeToDisk(child, path.join(targetDir, child.name))
+        await writeNodeToDisk(child, path.join(targetDir, child.name), {
+          skipExisting,
+          basePath: childRelativePath
+        })
       }
     }
   }
+}
+
+/**
+ * Merge our generated package.json dependencies into the shadcn-created package.json
+ */
+async function mergePackageJson(targetDir: string, virtualRoot: VirtualNode): Promise<void> {
+  const packageJsonPath = path.join(targetDir, 'package.json')
+
+  // Read existing package.json (created by shadcn)
+  const existingPkg = await fs.readJson(packageJsonPath)
+
+  // Find our generated package.json in the virtual tree
+  let ourPkgContent: string | undefined
+  if (virtualRoot.type === 'directory') {
+    const pkgFile = virtualRoot.children.find(c => c.name === 'package.json')
+    if (pkgFile?.type === 'file' && typeof pkgFile.content === 'string') {
+      ourPkgContent = pkgFile.content
+    }
+  }
+
+  if (!ourPkgContent) return
+
+  const ourPkg = JSON.parse(ourPkgContent)
+
+  // Merge dependencies
+  existingPkg.dependencies = {
+    ...existingPkg.dependencies,
+    ...ourPkg.dependencies,
+  }
+
+  // Merge devDependencies
+  existingPkg.devDependencies = {
+    ...existingPkg.devDependencies,
+    ...ourPkg.devDependencies,
+  }
+
+  // Merge scripts (our scripts take precedence)
+  existingPkg.scripts = {
+    ...existingPkg.scripts,
+    ...ourPkg.scripts,
+  }
+
+  // Write merged package.json
+  await fs.writeJson(packageJsonPath, existingPkg, { spaces: 2 })
 }
