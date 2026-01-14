@@ -16,12 +16,22 @@ export async function proxy(request: NextRequest) {
     return NextResponse.next()
   }
 
-  // Check authentication
-  const authenticated = await isAuthenticated()
+  // Skip auth check if Convex URL isn't configured yet
+  if (!process.env.NEXT_PUBLIC_CONVEX_URL) {
+    return NextResponse.next()
+  }
 
-  // Redirect unauthenticated users to /sign-up
-  if (!authenticated) {
-    return NextResponse.redirect(new URL('/sign-up', request.url))
+  // Check authentication
+  try {
+    const authenticated = await isAuthenticated()
+
+    // Redirect unauthenticated users to /sign-up
+    if (!authenticated) {
+      return NextResponse.redirect(new URL('/sign-up', request.url))
+    }
+  } catch {
+    // If auth check fails (e.g., Convex not running), allow request through
+    return NextResponse.next()
   }
 
   return NextResponse.next()
