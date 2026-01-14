@@ -12,11 +12,27 @@ AUTH_GOOGLE_SECRET=
 
 # Better Auth Secret (generate with: openssl rand -base64 32)
 BETTER_AUTH_SECRET=
+
+# Email (Resend) - https://resend.com
+RESEND_API_KEY=
+RESEND_FROM_EMAIL=
 {{#if (eq integrations.analytics 'posthog')}}
 
 # PostHog
 NEXT_PUBLIC_POSTHOG_KEY=
 NEXT_PUBLIC_POSTHOG_HOST=https://app.posthog.com
+{{/if}}
+{{#if (eq integrations.uploads 'convex-fs')}}
+
+# Convex FS - Built-in file storage (no additional config needed)
+{{/if}}
+{{#if (eq integrations.uploads 'r2')}}
+
+# Cloudflare R2
+R2_ACCESS_KEY_ID=
+R2_SECRET_ACCESS_KEY=
+R2_BUCKET=
+R2_ENDPOINT=
 {{/if}}
 {{#if (eq integrations.uploads 'uploadthing')}}
 
@@ -36,10 +52,23 @@ AWS_S3_BUCKET=
 # Vercel Blob
 BLOB_READ_WRITE_TOKEN=
 {{/if}}
+{{#if (eq integrations.payments 'stripe')}}
+
+# Stripe
+STRIPE_SECRET_KEY=
+STRIPE_WEBHOOK_SECRET=
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=
+{{/if}}
+{{#if (eq integrations.payments 'polar')}}
+
+# Polar
+POLAR_ACCESS_TOKEN=
+POLAR_WEBHOOK_SECRET=
+POLAR_ORGANIZATION_ID=
+{{/if}}
 {{#if (includes addons 'rate-limiting')}}
 
-# Arcjet
-ARCJET_KEY=
+# Convex Rate Limiter - No additional config needed (uses Convex backend)
 {{/if}}
 {{#if (includes addons 'monitoring')}}
 
@@ -47,6 +76,3 @@ ARCJET_KEY=
 SENTRY_DSN=
 SENTRY_AUTH_TOKEN=
 {{/if}}
-
-# Email (Resend)
-RESEND_API_KEY=

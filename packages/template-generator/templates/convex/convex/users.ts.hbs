@@ -11,3 +11,15 @@ export const current = query({
     return user
   },
 })
+
+// Alias for current user - used by dashboard components
+export const viewer = query({
+  args: {},
+  handler: async (ctx) => {
+    const userId = await auth.getUserId(ctx)
+    if (!userId) return null
+
+    const user = await ctx.db.get(userId)
+    return user
+  },
+})

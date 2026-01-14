@@ -47,8 +47,9 @@ program
   .option('--monorepo', 'Create monorepo with Turborepo')
   .option('--marketing <type>', 'Marketing site type: none, nextjs, payload')
   .option('--analytics <type>', 'Analytics: none, posthog, vercel')
-  .option('--uploads <type>', 'Upload provider: none, uploadthing, s3, vercel-blob')
-  .option('--rate-limiting', 'Add rate limiting with Arcjet')
+  .option('--uploads <type>', 'Storage: convex-fs, r2, uploadthing, s3, vercel-blob, none')
+  .option('--payments <type>', 'Payments: none, stripe, polar')
+  .option('--rate-limiting', 'Add rate limiting with Convex Rate Limiter')
   .option('--monitoring', 'Add monitoring with Sentry')
   .option('-y, --yes', 'Skip prompts and use defaults')
   .action(async (projectName, options) => {

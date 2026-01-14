@@ -19,7 +19,13 @@
   "dependencies": {
     "convex": "^1.25.0",
     "@convex-dev/auth": "^0.0.90",
-    "@auth/core": "^0.37.0"
+    "@auth/core": "^0.37.0",
+    "@convex-dev/resend": "^0.1.0"{{#if (eq integrations.uploads 'convex-fs')}},
+    "@convex-dev/convex-fs": "^0.1.0"{{/if}}{{#if (eq integrations.uploads 'r2')}},
+    "@convex-dev/cloudflare-r2": "^0.1.0"{{/if}}{{#if (eq integrations.payments 'stripe')}},
+    "@convex-dev/stripe": "^0.1.0"{{/if}}{{#if (eq integrations.payments 'polar')}},
+    "@convex-dev/polar": "^0.1.0"{{/if}}{{#if (includes addons 'rate-limiting')}},
+    "@convex-dev/rate-limiter": "^0.1.0"{{/if}}
   },
   "devDependencies": {
     "typescript": "^5.0.0"

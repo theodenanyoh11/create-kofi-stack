@@ -208,6 +208,7 @@ function generateDevScript(
 ): void {
   const isMonorepo = config.structure === 'monorepo'
   const webAppDir = isMonorepo ? 'apps/web' : '.'
+  const backendDir = isMonorepo ? 'packages/backend' : '.'
 
   const devScript = `#!/usr/bin/env node
 /**
@@ -215,13 +216,14 @@ function generateDevScript(
  */
 
 import { spawn, execSync } from 'child_process'
-import { existsSync, readFileSync } from 'fs'
+import { existsSync, readFileSync, writeFileSync } from 'fs'
 import { resolve, dirname } from 'path'
 import { fileURLToPath } from 'url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const rootDir = resolve(__dirname, '..')
 const webAppDir = resolve(rootDir, '${webAppDir}')
+const backendDir = resolve(rootDir, '${backendDir}')
 
 function loadEnvFile(dir) {
   const envPath = resolve(dir, '.env.local')
@@ -246,6 +248,33 @@ function loadEnvFile(dir) {
   return env
 }
 
+function syncEnvToWebApp() {
+  // In monorepo, Convex creates .env.local in backend package
+  // Web app needs NEXT_PUBLIC_CONVEX_URL to connect to Convex
+  const backendEnv = loadEnvFile(backendDir)
+  const webEnvPath = resolve(webAppDir, '.env.local')
+
+  if (backendEnv.NEXT_PUBLIC_CONVEX_URL) {
+    const webEnv = loadEnvFile(webAppDir)
+
+    // Only sync if web app doesn't have the URL or it's different
+    if (webEnv.NEXT_PUBLIC_CONVEX_URL !== backendEnv.NEXT_PUBLIC_CONVEX_URL) {
+      let content = ''
+      if (existsSync(webEnvPath)) {
+        content = readFileSync(webEnvPath, 'utf-8')
+        // Remove existing NEXT_PUBLIC_CONVEX_URL line if present
+        content = content.split('\\n').filter(line => !line.startsWith('NEXT_PUBLIC_CONVEX_URL=')).join('\\n')
+        if (content && !content.endsWith('\\n')) content += '\\n'
+      }
+      content += \`NEXT_PUBLIC_CONVEX_URL=\${backendEnv.NEXT_PUBLIC_CONVEX_URL}\\n\`
+      writeFileSync(webEnvPath, content)
+      console.log('✓ Synced NEXT_PUBLIC_CONVEX_URL to web app\\n')
+    }
+  }
+
+  return backendEnv
+}
+
 async function checkAndInstall() {
   if (!existsSync(resolve(rootDir, 'node_modules'))) {
     console.log('📦 Installing dependencies...\\n')
@@ -254,9 +283,9 @@ async function checkAndInstall() {
 }
 
 function startDevServers() {
-  const localEnv = loadEnvFile(webAppDir)
+  ${isMonorepo ? 'const backendEnv = syncEnvToWebApp()' : 'const backendEnv = loadEnvFile(webAppDir)'}
 
-  if (!localEnv.CONVEX_DEPLOYMENT) {
+  if (!backendEnv.CONVEX_DEPLOYMENT) {
     console.log('⚠️  Convex not configured. Run: pnpm dev:setup\\n')
     console.log('Starting Next.js only...\\n')
     spawn('pnpm', ['${isMonorepo ? 'dev:web' : 'dev:next'}'], {

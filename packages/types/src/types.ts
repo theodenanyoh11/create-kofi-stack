@@ -5,6 +5,7 @@ import type {
   AuthProviderSchema,
   AnalyticsProviderSchema,
   UploadsProviderSchema,
+  PaymentProviderSchema,
   BaseColorSchema,
   ThemeColorSchema,
   MenuAccentSchema,
@@ -27,6 +28,7 @@ export type MarketingSite = z.infer<typeof MarketingSiteSchema>
 export type AuthProvider = z.infer<typeof AuthProviderSchema>
 export type AnalyticsProvider = z.infer<typeof AnalyticsProviderSchema>
 export type UploadsProvider = z.infer<typeof UploadsProviderSchema>
+export type PaymentProvider = z.infer<typeof PaymentProviderSchema>
 export type BaseColor = z.infer<typeof BaseColorSchema>
 export type ThemeColor = z.infer<typeof ThemeColorSchema>
 export type MenuAccent = z.infer<typeof MenuAccentSchema>

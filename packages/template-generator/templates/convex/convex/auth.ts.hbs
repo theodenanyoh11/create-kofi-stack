@@ -1,7 +1,34 @@
 import GitHub from '@auth/core/providers/github'
 import Google from '@auth/core/providers/google'
+import { Password } from '@convex-dev/auth/providers/Password'
 import { convexAuth } from '@convex-dev/auth/server'
 
 export const { auth, signIn, signOut, store, isAuthenticated } = convexAuth({
-  providers: [GitHub, Google],
+  providers: [
+    GitHub,
+    Google,
+    Password,
+  ],
 })
+
+// Email Verification Setup (Optional)
+// ------------------------------------
+// By default, email/password auth works without email verification.
+// To require email verification, configure the Password provider with ResendOTP:
+//
+// 1. Install the Resend component: npm install @convex-dev/resend
+// 2. Update the Password provider:
+//
+// import { ResendOTP } from '@convex-dev/auth/providers/ResendOTP'
+// import { Resend } from '@convex-dev/resend'
+//
+// const resend = new Resend()
+//
+// Password({
+//   verify: ResendOTP({
+//     resend,
+//     from: process.env.RESEND_FROM_EMAIL!,
+//   }),
+// })
+//
+// See: https://labs.convex.dev/auth/config/passwords

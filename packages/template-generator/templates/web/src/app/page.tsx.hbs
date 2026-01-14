@@ -1,61 +1,115 @@
 'use client'
 
-import { useAuth } from '@/lib/auth'
+import { useQuery } from 'convex/react'
+import { api } from '{{#if (eq structure 'monorepo')}}@repo/backend/convex/_generated/api{{else}}../convex/_generated/api{{/if}}'
+import { DashboardLayout } from '@/components/dashboard/dashboard-layout'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Skeleton } from '@/components/ui/skeleton'
 
 export default function HomePage() {
-  const { isAuthenticated, isLoading, signIn, signOut, user } = useAuth()
+  const user = useQuery(api.users.viewer)
 
-  if (isLoading) {
+  if (user === undefined) {
     return (
-      <main className="min-h-screen flex items-center justify-center">
-        <div className="animate-pulse">Loading...</div>
-      </main>
+      <DashboardLayout title="Dashboard">
+        <div className="space-y-6">
+          <Skeleton className="h-8 w-64" />
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <Skeleton className="h-32" />
+            <Skeleton className="h-32" />
+            <Skeleton className="h-32" />
+          </div>
+        </div>
+      </DashboardLayout>
     )
   }
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center p-8">
-      <div className="max-w-2xl text-center space-y-8">
-        <h1 className="text-4xl font-bold">{{projectName}}</h1>
-        <p className="text-xl text-muted-foreground">
-          Built with Next.js, Convex, Better-Auth, and shadcn/ui
-        </p>
+    <DashboardLayout title="Dashboard">
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight">
+            Welcome back{user?.name ? `, ${user.name}` : ''}!
+          </h1>
+          <p className="text-muted-foreground">
+            Here's what's happening with your project today.
+          </p>
+        </div>
 
-        {isAuthenticated ? (
-          <div className="space-y-4">
-            <p className="text-lg">
-              Welcome, <span className="font-semibold">{user?.name || user?.email}</span>!
-            </p>
-            <button
-              onClick={() => signOut()}
-              className="px-6 py-2 bg-secondary text-secondary-foreground rounded-lg hover:opacity-90 transition"
-            >
-              Sign Out
-            </button>
-          </div>
-        ) : (
-          <div className="space-y-4">
-            <p className="text-muted-foreground">
-              Sign in to get started
-            </p>
-            <div className="flex gap-4 justify-center">
-              <button
-                onClick={() => signIn('github')}
-                className="px-6 py-2 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition"
-              >
-                Sign in with GitHub
-              </button>
-              <button
-                onClick={() => signIn('google')}
-                className="px-6 py-2 bg-secondary text-secondary-foreground rounded-lg hover:opacity-90 transition"
-              >
-                Sign in with Google
-              </button>
-            </div>
-          </div>
-        )}
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <Card>
+            <CardHeader>
+              <CardTitle>Getting Started</CardTitle>
+              <CardDescription>Quick start guide for your app</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
+                <li>Customize your dashboard layout</li>
+                <li>Add new pages to the sidebar</li>
+                <li>Connect your data sources</li>
+              </ul>
+            </CardContent>
+          </Card>
 
-        <div className="pt-8 border-t border-border">
+          <Card>
+            <CardHeader>
+              <CardTitle>Documentation</CardTitle>
+              <CardDescription>Learn how to build with Kofi Stack</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
+                <li>
+                  <a
+                    href="https://docs.convex.dev"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline"
+                  >
+                    Convex Documentation
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://ui.shadcn.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline"
+                  >
+                    shadcn/ui Components
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://nextjs.org/docs"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline"
+                  >
+                    Next.js Documentation
+                  </a>
+                </li>
+              </ul>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Your Stack</CardTitle>
+              <CardDescription>Technologies powering your app</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
+                <li>Next.js 15 with App Router</li>
+                <li>Convex for backend & database</li>
+                <li>Convex Auth for authentication</li>
+                <li>shadcn/ui components</li>
+                <li>Tailwind CSS for styling</li>
+              </ul>
+            </CardContent>
+          </Card>
+        </div>
+
+        <div className="pt-4 border-t">
           <p className="text-sm text-muted-foreground">
             Created with{' '}
             <a
@@ -69,6 +123,6 @@ export default function HomePage() {
           </p>
         </div>
       </div>
-    </main>
+    </DashboardLayout>
   )
 }

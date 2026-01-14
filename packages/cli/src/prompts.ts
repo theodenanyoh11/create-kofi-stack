@@ -10,6 +10,7 @@ interface CLIOptions {
   marketing?: string
   analytics?: string
   uploads?: string
+  payments?: string
   rateLimiting?: boolean
   monitoring?: boolean
   yes?: boolean
@@ -48,7 +49,8 @@ export async function runPrompts(
       marketingSite: validateMarketingSite(options.marketing) || 'none',
       integrations: {
         analytics: validateAnalytics(options.analytics) || 'none',
-        uploads: validateUploads(options.uploads) || 'none',
+        uploads: validateUploads(options.uploads) || 'convex-fs',
+        payments: validatePayments(options.payments) || 'none',
       },
       addons: [
         ...(options.rateLimiting ? ['rate-limiting' as const] : []),
@@ -142,17 +144,31 @@ export async function runPrompts(
   if (p.isCancel(analytics)) throw new Error('cancelled')
 
   const uploads = (await p.select({
-    message: 'File uploads provider?',
+    message: 'File storage provider?',
     options: [
-      { value: 'none', label: 'None', hint: 'Skip file uploads' },
+      { value: 'convex-fs', label: 'Convex FS', hint: 'Built-in Convex storage (Recommended)' },
+      { value: 'r2', label: 'Cloudflare R2', hint: 'S3-compatible edge storage' },
       { value: 'uploadthing', label: 'UploadThing', hint: 'Easy file uploads' },
       { value: 's3', label: 'AWS S3', hint: 'S3-compatible storage' },
       { value: 'vercel-blob', label: 'Vercel Blob', hint: 'Vercel storage' },
+      { value: 'none', label: 'None', hint: 'Skip file storage' },
     ],
-    initialValue: 'none',
-  })) as 'none' | 'uploadthing' | 's3' | 'vercel-blob'
+    initialValue: 'convex-fs',
+  })) as 'none' | 'convex-fs' | 'r2' | 'uploadthing' | 's3' | 'vercel-blob'
 
   if (p.isCancel(uploads)) throw new Error('cancelled')
+
+  const payments = (await p.select({
+    message: 'Payment provider?',
+    options: [
+      { value: 'none', label: 'None', hint: 'Skip payments' },
+      { value: 'stripe', label: 'Stripe', hint: 'Full payment platform' },
+      { value: 'polar', label: 'Polar', hint: 'Open source monetization' },
+    ],
+    initialValue: 'none',
+  })) as 'none' | 'stripe' | 'polar'
+
+  if (p.isCancel(payments)) throw new Error('cancelled')
 
   const addonsSelected = (await p.multiselect({
     message: 'Additional features?',
@@ -160,7 +176,7 @@ export async function runPrompts(
       {
         value: 'rate-limiting',
         label: 'Rate Limiting',
-        hint: 'Arcjet protection',
+        hint: 'Convex Rate Limiter (Recommended)',
       },
       {
         value: 'monitoring',
@@ -182,7 +198,8 @@ export async function runPrompts(
       structure === 'monorepo' ? `${pc.cyan('Marketing:')} ${marketingSite}` : null,
       `${pc.cyan('Base Color:')} ${baseColor}`,
       `${pc.cyan('Analytics:')} ${analytics}`,
-      `${pc.cyan('Uploads:')} ${uploads}`,
+      `${pc.cyan('Storage:')} ${uploads}`,
+      `${pc.cyan('Payments:')} ${payments}`,
       addonsSelected.length > 0
         ? `${pc.cyan('Addons:')} ${addonsSelected.join(', ')}`
         : null,
@@ -221,6 +238,7 @@ export async function runPrompts(
     integrations: {
       analytics,
       uploads,
+      payments,
     },
     addons: addonsSelected,
     packageManager: 'pnpm',
@@ -243,10 +261,18 @@ function validateAnalytics(value?: string): 'none' | 'posthog' | 'vercel' | unde
   return undefined
 }
 
-function validateUploads(value?: string): 'none' | 'uploadthing' | 's3' | 'vercel-blob' | undefined {
+function validateUploads(value?: string): 'none' | 'convex-fs' | 'r2' | 'uploadthing' | 's3' | 'vercel-blob' | undefined {
   if (!value) return undefined
-  if (['none', 'uploadthing', 's3', 'vercel-blob'].includes(value)) {
-    return value as 'none' | 'uploadthing' | 's3' | 'vercel-blob'
+  if (['none', 'convex-fs', 'r2', 'uploadthing', 's3', 'vercel-blob'].includes(value)) {
+    return value as 'none' | 'convex-fs' | 'r2' | 'uploadthing' | 's3' | 'vercel-blob'
+  }
+  return undefined
+}
+
+function validatePayments(value?: string): 'none' | 'stripe' | 'polar' | undefined {
+  if (!value) return undefined
+  if (['none', 'stripe', 'polar'].includes(value)) {
+    return value as 'none' | 'stripe' | 'polar'
   }
   return undefined
 }

@@ -20,13 +20,18 @@ export const AuthProviderSchema = z.enum([
 // Analytics providers
 export const AnalyticsProviderSchema = z.enum(['none', 'posthog', 'vercel'])
 
-// Upload providers
+// Upload/Storage providers
 export const UploadsProviderSchema = z.enum([
   'none',
+  'convex-fs',
+  'r2',
   'uploadthing',
   's3',
   'vercel-blob',
 ])
+
+// Payment providers
+export const PaymentProviderSchema = z.enum(['none', 'stripe', 'polar'])
 
 
 // Base color
@@ -99,6 +104,7 @@ export const AuthConfigSchema = z.object({
 export const IntegrationsConfigSchema = z.object({
   analytics: AnalyticsProviderSchema,
   uploads: UploadsProviderSchema,
+  payments: PaymentProviderSchema,
 })
 
 // Complete project configuration
@@ -174,6 +180,7 @@ export const DEFAULT_CONFIG: z.infer<typeof ProjectConfigSchema> = {
   integrations: {
     analytics: 'none',
     uploads: 'none',
+    payments: 'none',
   },
   addons: [],
   packageManager: 'pnpm',
