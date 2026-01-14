@@ -1,0 +1,18 @@
+# Convex - These values are synced from packages/backend/.env.local after running convex dev
+# Copy NEXT_PUBLIC_CONVEX_URL from packages/backend/.env.local after Convex setup
+NEXT_PUBLIC_CONVEX_URL=
+
+# Site URL for auth
+NEXT_PUBLIC_CONVEX_SITE_URL=http://localhost:3000
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+{{#if (eq integrations.analytics 'posthog')}}
+
+# PostHog
+NEXT_PUBLIC_POSTHOG_KEY=
+NEXT_PUBLIC_POSTHOG_HOST=https://app.posthog.com
+{{/if}}
+{{#if (eq integrations.payments 'stripe')}}
+
+# Stripe
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=
+{{/if}}
