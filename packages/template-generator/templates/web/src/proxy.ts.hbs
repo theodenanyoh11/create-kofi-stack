@@ -1,21 +1,27 @@
 import {
-  convexAuthNextjsProxy,
+  convexAuthNextjsMiddleware,
   createRouteMatcher,
-  nextjsProxyRedirect,
+  nextjsMiddlewareRedirect,
 } from '@convex-dev/auth/nextjs/server'
 
 const isPublicRoute = createRouteMatcher(['/sign-in', '/sign-up'])
 
-export default convexAuthNextjsProxy(async (request, { convexAuth }) => {
+// Next.js 16 uses proxy.ts (renamed from middleware.ts)
+// @convex-dev/auth still uses "middleware" naming in exports
+export default convexAuthNextjsMiddleware(async (request, { convexAuth }) => {
   const isAuthenticated = await convexAuth.isAuthenticated()
 
   // Redirect unauthenticated users to /sign-up
   if (!isPublicRoute(request) && !isAuthenticated) {
-    return nextjsProxyRedirect(request, '/sign-up')
+    return nextjsMiddlewareRedirect(request, '/sign-up')
   }
 
   // Redirect authenticated users from auth pages to / (dashboard)
   if (isPublicRoute(request) && isAuthenticated) {
-    return nextjsProxyRedirect(request, '/')
+    return nextjsMiddlewareRedirect(request, '/')
   }
 })
+
+export const config = {
+  matcher: ['/((?!.*\\..*|_next).*)', '/', '/(api|trpc)(.*)'],
+}
