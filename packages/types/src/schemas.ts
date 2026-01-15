@@ -20,7 +20,7 @@ export const AuthProviderSchema = z.enum([
 // Analytics providers
 export const AnalyticsProviderSchema = z.enum(['none', 'posthog', 'vercel'])
 
-// Upload/Storage providers
+// Upload/Storage providers (for web app - Convex-based)
 export const UploadsProviderSchema = z.enum([
   'none',
   'convex-fs',
@@ -28,6 +28,15 @@ export const UploadsProviderSchema = z.enum([
   'uploadthing',
   's3',
   'vercel-blob',
+])
+
+// Payload CMS Storage providers
+export const PayloadStorageProviderSchema = z.enum([
+  'local',
+  's3',
+  'vercel-blob',
+  'gcs',
+  'r2',
 ])
 
 // Payment providers
@@ -132,6 +141,7 @@ export const IntegrationsConfigSchema = z.object({
   analytics: AnalyticsProviderSchema,
   uploads: UploadsProviderSchema,
   payments: PaymentProviderSchema,
+  payloadStorage: PayloadStorageProviderSchema.optional(),
 })
 
 // Complete project configuration
@@ -182,6 +192,7 @@ export const CLIInputSchema = z.object({
   analytics: AnalyticsProviderSchema.optional(),
   uploads: UploadsProviderSchema.optional(),
   payments: PaymentProviderSchema.optional(),
+  payloadStorage: PayloadStorageProviderSchema.optional(),
   addons: z.array(AddonSchema).optional(),
   git: z.boolean().optional(),
   packageManager: PackageManagerSchema.optional(),

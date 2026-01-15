@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack -p 3001",
+    "dev": "next dev -p 3001",
     "build": "next build",
     "start": "next start",
     "lint": "biome check .",
@@ -20,8 +20,21 @@
     "@payloadcms/db-postgres": "^3.0.0",
     "@payloadcms/next": "^3.0.0",
     "@payloadcms/richtext-lexical": "^3.0.0",
-    "@payloadcms/storage-s3": "^3.0.0",
+    "@payloadcms/email-resend": "^3.0.0",
     "@payloadcms/plugin-seo": "^3.0.0",
+{{#if (eq integrations.payloadStorage 's3')}}
+    "@payloadcms/storage-s3": "^3.0.0",
+{{/if}}
+{{#if (eq integrations.payloadStorage 'r2')}}
+    "@payloadcms/storage-s3": "^3.0.0",
+{{/if}}
+{{#if (eq integrations.payloadStorage 'vercel-blob')}}
+    "@payloadcms/storage-vercel-blob": "^3.0.0",
+{{/if}}
+{{#if (eq integrations.payloadStorage 'gcs')}}
+    "@payloadcms/storage-gcs": "^3.0.0",
+{{/if}}
+    "sharp": "^0.33.0",
     "@repo/ui": "workspace:*"
   },
   "devDependencies": {

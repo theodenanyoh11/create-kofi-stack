@@ -5,6 +5,7 @@ import type {
   AuthProviderSchema,
   AnalyticsProviderSchema,
   UploadsProviderSchema,
+  PayloadStorageProviderSchema,
   PaymentProviderSchema,
   // shadcn v4 schemas
   ComponentLibrarySchema,
@@ -31,6 +32,7 @@ export type MarketingSite = z.infer<typeof MarketingSiteSchema>
 export type AuthProvider = z.infer<typeof AuthProviderSchema>
 export type AnalyticsProvider = z.infer<typeof AnalyticsProviderSchema>
 export type UploadsProvider = z.infer<typeof UploadsProviderSchema>
+export type PayloadStorageProvider = z.infer<typeof PayloadStorageProviderSchema>
 export type PaymentProvider = z.infer<typeof PaymentProviderSchema>
 
 // shadcn v4 types

@@ -23,20 +23,32 @@ function generateSecret(): string {
 }
 
 /**
- * Build the shadcn preset URL based on user configuration
+ * Get the shadcn base color from user configuration
+ * Maps our config values to shadcn's accepted values
+ */
+function getShadcnBaseColor(config: ProjectConfig): string {
+  // shadcn accepts: neutral, gray, zinc, stone, slate
+  const baseColor = config.shadcn?.baseColor || 'neutral'
+  const validColors = ['neutral', 'gray', 'zinc', 'stone', 'slate']
+  return validColors.includes(baseColor) ? baseColor : 'neutral'
+}
+
+/**
+ * Build shadcn preset URL with all user configuration options
+ * Used with `shadcn create --preset <url>` for standalone projects
  */
 function buildShadcnPresetUrl(config: ProjectConfig): string {
-  const { shadcn } = config
+  const shadcn = config.shadcn || {}
   const params = new URLSearchParams({
-    base: shadcn.componentLibrary,
-    style: shadcn.style,
-    baseColor: shadcn.baseColor,
-    theme: shadcn.themeColor,
-    iconLibrary: shadcn.iconLibrary,
-    font: shadcn.font,
-    menuAccent: shadcn.menuAccent,
-    menuColor: shadcn.menuColor,
-    radius: shadcn.radius,
+    base: shadcn.componentLibrary || 'base',
+    style: shadcn.style || 'nova',
+    baseColor: shadcn.baseColor || 'neutral',
+    theme: shadcn.themeColor || 'neutral',
+    iconLibrary: shadcn.iconLibrary || 'hugeicons',
+    font: shadcn.font || 'inter',
+    menuAccent: shadcn.menuAccent || 'subtle',
+    menuColor: shadcn.menuColor || 'default',
+    radius: shadcn.radius || 'default',
     template: 'next',
   })
   return `https://ui.shadcn.com/init?${params.toString()}`
@@ -74,18 +86,20 @@ export async function generateProject(config: ProjectConfig, options: GenerateOp
   console.log()
 
   try {
-    // Build shadcn preset URL from user configuration
+    // Get shadcn base color from user configuration (for monorepo init)
+    const baseColor = getShadcnBaseColor(config)
+    // Build full preset URL (for standalone create)
     const presetUrl = buildShadcnPresetUrl(config)
 
     // For standalone: Use shadcn create to scaffold the base project
     // For monorepo: We need a different approach
     if (config.structure === 'standalone') {
-      // Step 1: Create base project with shadcn create --preset
+      // Step 1: Create base project with shadcn create using preset URL
       // Note: shadcn create may fail at dependency install due to pnpm-workspace.yaml issue
       // but the project structure will be created successfully
       spinner.start('Creating project with shadcn/ui...')
       try {
-        await execa('pnpm', ['dlx', 'shadcn@latest', 'create', config.projectName, '--template', 'next', '--preset', presetUrl, '--src-dir'], {
+        await execa('pnpm', ['dlx', 'shadcn@latest', 'create', config.projectName, '--preset', presetUrl], {
           cwd: path.dirname(config.targetDir),
           stdio: 'pipe',
         })
@@ -197,7 +211,7 @@ export async function generateProject(config: ProjectConfig, options: GenerateOp
     if (config.structure === 'monorepo') {
       spinner.start('Initializing shadcn/ui in apps/web...')
       try {
-        await execa('pnpm', ['dlx', 'shadcn@latest', 'init', '--defaults', '--force'], {
+        await execa('pnpm', ['dlx', 'shadcn@latest', 'init', '--yes', '--force', '--base-color', baseColor], {
           cwd: shadcnDir,
           stdio: 'pipe',
         })
@@ -214,8 +228,41 @@ export async function generateProject(config: ProjectConfig, options: GenerateOp
           }
           await fs.writeJson(tsconfigPath, tsconfig, { spaces: 2 })
         }
-      } catch {
+      } catch (error: any) {
         spinner.warn('Failed to initialize shadcn. Run manually in apps/web: pnpm dlx shadcn@latest init')
+        if (error.stderr) {
+          console.log(pc.dim(`  Error: ${error.stderr}`))
+        }
+      }
+
+      // Initialize shadcn in marketing app (Next.js or Payload frontend)
+      if (config.marketingSite === 'nextjs' || config.marketingSite === 'payload') {
+        const marketingDir = path.join(config.targetDir, 'apps/marketing')
+        spinner.start('Initializing shadcn/ui in apps/marketing...')
+        try {
+          await execa('pnpm', ['dlx', 'shadcn@latest', 'init', '--yes', '--force', '--base-color', baseColor], {
+            cwd: marketingDir,
+            stdio: 'pipe',
+          })
+          spinner.succeed('shadcn/ui initialized in marketing app')
+
+          // Fix tsconfig.json paths
+          const marketingTsconfigPath = path.join(marketingDir, 'tsconfig.json')
+          if (await fs.pathExists(marketingTsconfigPath)) {
+            const tsconfig = await fs.readJson(marketingTsconfigPath)
+            tsconfig.compilerOptions = tsconfig.compilerOptions || {}
+            tsconfig.compilerOptions.paths = {
+              '@payload-config': ['./src/payload.config.ts'],
+              '@/*': ['./src/*']
+            }
+            await fs.writeJson(marketingTsconfigPath, tsconfig, { spaces: 2 })
+          }
+        } catch (error: any) {
+          spinner.warn('Failed to initialize shadcn in marketing app. Run manually: pnpm dlx shadcn@latest init')
+          if (error.stderr) {
+            console.log(pc.dim(`  Error: ${error.stderr}`))
+          }
+        }
       }
     }
 
@@ -361,11 +408,20 @@ async function setupResend(config: ProjectConfig, backendEnvPath: string): Promi
 
   if (p.isCancel(apiKey)) return
 
-  // Update .env.local with Resend credentials
+  // Update backend .env.local with Resend credentials
   await updateEnvWithSecrets(backendEnvPath, {
     RESEND_API_KEY: apiKey as string,
     RESEND_FROM_EMAIL: fromEmail as string,
   })
+
+  // If Payload CMS is selected, also copy Resend credentials to marketing app
+  if (config.marketingSite === 'payload') {
+    const marketingEnvPath = path.join(config.targetDir, 'apps/marketing/.env.local')
+    await updateEnvWithSecrets(marketingEnvPath, {
+      RESEND_API_KEY: apiKey as string,
+      RESEND_FROM_EMAIL: fromEmail as string,
+    })
+  }
 
   p.log.success('Resend configured successfully!')
 }

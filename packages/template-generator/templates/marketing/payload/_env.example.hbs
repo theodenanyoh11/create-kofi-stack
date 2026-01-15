@@ -10,9 +10,37 @@ CRON_SECRET=""  # Generate with: openssl rand -base64 32
 # Draft Previews
 PREVIEW_SECRET=""  # Generate with: openssl rand -base64 32
 
-# S3 Storage (Supabase Storage)
+# Email (Resend)
+RESEND_API_KEY=""
+RESEND_FROM_EMAIL="noreply@yourdomain.com"
+
+{{#if (eq integrations.payloadStorage 's3')}}
+# S3 Storage
 S3_BUCKET="media"
 S3_ACCESS_KEY_ID=""
 S3_SECRET_ACCESS_KEY=""
-S3_REGION="auto"
-S3_ENDPOINT="https://[PROJECT].supabase.co/storage/v1/s3"
+S3_REGION="us-east-1"
+S3_ENDPOINT=""  # Optional: For S3-compatible services
+{{/if}}
+{{#if (eq integrations.payloadStorage 'r2')}}
+# Cloudflare R2 Storage
+R2_BUCKET=""
+R2_ACCESS_KEY_ID=""
+R2_SECRET_ACCESS_KEY=""
+R2_ENDPOINT="https://[ACCOUNT_ID].r2.cloudflarestorage.com"
+{{/if}}
+{{#if (eq integrations.payloadStorage 'vercel-blob')}}
+# Vercel Blob Storage
+BLOB_READ_WRITE_TOKEN=""
+{{/if}}
+{{#if (eq integrations.payloadStorage 'gcs')}}
+# Google Cloud Storage
+GCS_BUCKET=""
+GCS_PROJECT_ID=""
+GCS_CREDENTIALS="{}"  # JSON service account key
+{{/if}}
+{{#if (eq integrations.payloadStorage 'local')}}
+# Local Storage
+# Files are stored in the /media directory by default
+# No additional configuration required
+{{/if}}

@@ -16,6 +16,7 @@ import type {
   Radius,
   AnalyticsProvider,
   UploadsProvider,
+  PayloadStorageProvider,
   PaymentProvider,
   Addon,
 } from 'kofi-stack-types'
@@ -307,12 +308,31 @@ export async function runPrompts(
     { value: 'none', label: 'None', hint: 'Skip file storage' },
   ]
   const uploads = (await p.select({
-    message: 'File storage provider?',
+    message: 'Web app file storage?',
     options: uploadsOptions,
     initialValue: 'convex-fs' as UploadsProvider,
   })) as UploadsProvider
 
   if (p.isCancel(uploads)) throw new Error('cancelled')
+
+  // Payload CMS storage (only if Payload is selected)
+  let payloadStorage: PayloadStorageProvider | undefined = undefined
+  if (marketingSite === 'payload') {
+    const payloadStorageOptions: { value: PayloadStorageProvider; label: string; hint: string }[] = [
+      { value: 'local', label: 'Local Filesystem', hint: 'Store files on server (Recommended for dev)' },
+      { value: 's3', label: 'AWS S3', hint: 'S3-compatible storage' },
+      { value: 'r2', label: 'Cloudflare R2', hint: 'S3-compatible edge storage' },
+      { value: 'vercel-blob', label: 'Vercel Blob', hint: 'Vercel storage' },
+      { value: 'gcs', label: 'Google Cloud Storage', hint: 'GCS bucket storage' },
+    ]
+    payloadStorage = (await p.select({
+      message: 'Payload CMS file storage?',
+      options: payloadStorageOptions,
+      initialValue: 'local' as PayloadStorageProvider,
+    })) as PayloadStorageProvider
+
+    if (p.isCancel(payloadStorage)) throw new Error('cancelled')
+  }
 
   const paymentsOptions: { value: PaymentProvider; label: string; hint: string }[] = [
     { value: 'none', label: 'None', hint: 'Skip payments' },
@@ -358,7 +378,8 @@ export async function runPrompts(
       '',
       pc.dim('─── Integrations ───'),
       `${pc.cyan('Analytics:')} ${analytics}`,
-      `${pc.cyan('Storage:')} ${uploads}`,
+      `${pc.cyan('Web Storage:')} ${uploads}`,
+      payloadStorage ? `${pc.cyan('Payload Storage:')} ${payloadStorage}` : null,
       `${pc.cyan('Payments:')} ${payments}`,
       addonsSelected.length > 0
         ? `${pc.cyan('Addons:')} ${addonsSelected.join(', ')}`
@@ -400,6 +421,7 @@ export async function runPrompts(
       analytics,
       uploads,
       payments,
+      payloadStorage,
     },
     addons: addonsSelected,
     packageManager: 'pnpm',

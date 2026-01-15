@@ -1,9 +1,9 @@
 # Convex - These values are synced from packages/backend/.env.local after running convex dev
-# Copy NEXT_PUBLIC_CONVEX_URL from packages/backend/.env.local after Convex setup
+# NEXT_PUBLIC_CONVEX_URL and NEXT_PUBLIC_CONVEX_SITE_URL are auto-synced by dev script
 NEXT_PUBLIC_CONVEX_URL=
+NEXT_PUBLIC_CONVEX_SITE_URL=
 
-# Site URL for auth
-NEXT_PUBLIC_CONVEX_SITE_URL=http://localhost:3000
+# Site URL for auth (your frontend URL)
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 {{#if (eq integrations.analytics 'posthog')}}
 

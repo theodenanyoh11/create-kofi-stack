@@ -5,6 +5,7 @@ export {
   AuthProviderSchema,
   AnalyticsProviderSchema,
   UploadsProviderSchema,
+  PayloadStorageProviderSchema,
   PaymentProviderSchema,
   // shadcn v4 schemas
   ComponentLibrarySchema,
@@ -34,6 +35,7 @@ export type {
   AuthProvider,
   AnalyticsProvider,
   UploadsProvider,
+  PayloadStorageProvider,
   PaymentProvider,
   // shadcn v4 types
   ComponentLibrary,
