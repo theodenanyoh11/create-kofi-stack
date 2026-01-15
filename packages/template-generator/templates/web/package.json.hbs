@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "{{#if (eq structure 'monorepo')}}next dev --turbopack{{else}}node scripts/dev.mjs{{/if}}",
+    "dev": "{{#if (eq structure 'monorepo')}}next dev --turbopack --port 3001{{else}}node scripts/dev.mjs{{/if}}",
     "dev:next": "next dev --turbopack",
 {{#unless (eq structure 'monorepo')}}    "dev:setup": "npx convex dev --configure --until-success",
 {{/unless}}    "build": "next build",

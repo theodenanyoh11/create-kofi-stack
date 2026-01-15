@@ -1,9 +1,10 @@
 {
-  "name": "@repo/marketing",
+  "name": "@repo/design-system",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "next dev --turbopack --port 3000",
+    "dev": "next dev --turbopack --port 3002",
     "build": "next build",
     "start": "next start",
     "lint": "biome check .",
@@ -11,11 +12,16 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@repo/ui": "workspace:*",
     "next": "^16.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "@repo/ui": "workspace:*"
-  },
+    "next-themes": "^0.4.6",
+{{#if (eq shadcn.iconLibrary "hugeicons")}}    "@hugeicons/react": "^0.3.0"
+{{/if}}{{#if (eq shadcn.iconLibrary "lucide")}}    "lucide-react": "^0.469.0"
+{{/if}}{{#if (eq shadcn.iconLibrary "tabler")}}    "@tabler/icons-react": "^3.31.0"
+{{/if}}{{#if (eq shadcn.iconLibrary "phosphor")}}    "@phosphor-icons/react": "^2.1.7"
+{{/if}}  },
   "devDependencies": {
     "@repo/config-typescript": "workspace:*",
     "@types/node": "^20.0.0",

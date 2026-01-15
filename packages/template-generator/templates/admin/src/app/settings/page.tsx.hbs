@@ -1,0 +1,74 @@
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@repo/ui/components/card'
+import { Button } from '@repo/ui/components/button'
+import { Input } from '@repo/ui/components/input'
+import { Label } from '@repo/ui/components/label'
+
+export default function SettingsPage() {
+  return (
+    <div className="space-y-8">
+      <div>
+        <h1 className="text-3xl font-bold tracking-tight">Settings</h1>
+        <p className="text-muted-foreground">
+          Configure application settings and preferences.
+        </p>
+      </div>
+
+      <div className="grid gap-6">
+        <Card>
+          <CardHeader>
+            <CardTitle>General Settings</CardTitle>
+            <CardDescription>Basic application configuration</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="app-name">Application Name</Label>
+              <Input id="app-name" defaultValue="{{projectName}}" />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="support-email">Support Email</Label>
+              <Input id="support-email" type="email" placeholder="support@example.com" />
+            </div>
+            <Button>Save Changes</Button>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Security</CardTitle>
+            <CardDescription>Security and authentication settings</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="font-medium">Two-Factor Authentication</p>
+                <p className="text-sm text-muted-foreground">
+                  Require 2FA for all admin users
+                </p>
+              </div>
+              <Button variant="outline">Configure</Button>
+            </div>
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="font-medium">Session Timeout</p>
+                <p className="text-sm text-muted-foreground">
+                  Auto logout after inactivity
+                </p>
+              </div>
+              <Button variant="outline">Configure</Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="border-destructive">
+          <CardHeader>
+            <CardTitle className="text-destructive">Danger Zone</CardTitle>
+            <CardDescription>Irreversible actions</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Button variant="destructive">Delete All Data</Button>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  )
+}

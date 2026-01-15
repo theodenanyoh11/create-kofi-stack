@@ -1,0 +1,117 @@
+'use client'
+
+import { cn } from '@repo/ui/lib/utils'
+import { useState } from 'react'
+
+interface ColorSwatchProps {
+  name: string
+  variable: string
+  className: string
+  textClassName?: string
+}
+
+function ColorSwatch({ name, variable, className, textClassName }: ColorSwatchProps) {
+  const [copied, setCopied] = useState(false)
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(variable)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
+  return (
+    <button type="button" onClick={copyToClipboard} className="group text-left w-full">
+      <div
+        className={cn(
+          'h-20 rounded-lg border flex items-end justify-between p-3 transition-all group-hover:scale-[1.02] group-hover:shadow-md',
+          className
+        )}
+      >
+        <span className={cn('text-xs font-medium', textClassName)}>
+          {copied ? 'Copied!' : name}
+        </span>
+      </div>
+      <p className="mt-2 text-xs text-muted-foreground font-mono">{variable}</p>
+    </button>
+  )
+}
+
+interface ColorGroupProps {
+  title: string
+  colors: ColorSwatchProps[]
+}
+
+function ColorGroup({ title, colors }: ColorGroupProps) {
+  return (
+    <div className="space-y-4">
+      <h3 className="text-lg font-semibold">{title}</h3>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        {colors.map((color) => (
+          <ColorSwatch key={color.variable} {...color} />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+export function ColorPalette() {
+  const colorGroups: ColorGroupProps[] = [
+    {
+      title: 'Base Colors',
+      colors: [
+        { name: 'Background', variable: 'bg-background', className: 'bg-background', textClassName: 'text-foreground' },
+        { name: 'Foreground', variable: 'bg-foreground', className: 'bg-foreground', textClassName: 'text-background' },
+        { name: 'Card', variable: 'bg-card', className: 'bg-card', textClassName: 'text-card-foreground' },
+        { name: 'Popover', variable: 'bg-popover', className: 'bg-popover', textClassName: 'text-popover-foreground' },
+      ],
+    },
+    {
+      title: 'Brand Colors',
+      colors: [
+        { name: 'Primary', variable: 'bg-primary', className: 'bg-primary', textClassName: 'text-primary-foreground' },
+        { name: 'Primary FG', variable: 'bg-primary-foreground', className: 'bg-primary-foreground', textClassName: 'text-primary' },
+        { name: 'Secondary', variable: 'bg-secondary', className: 'bg-secondary', textClassName: 'text-secondary-foreground' },
+        { name: 'Secondary FG', variable: 'bg-secondary-foreground', className: 'bg-secondary-foreground', textClassName: 'text-secondary' },
+        { name: 'Accent', variable: 'bg-accent', className: 'bg-accent', textClassName: 'text-accent-foreground' },
+      ],
+    },
+    {
+      title: 'Semantic Colors',
+      colors: [
+        { name: 'Muted', variable: 'bg-muted', className: 'bg-muted', textClassName: 'text-muted-foreground' },
+        { name: 'Muted FG', variable: 'bg-muted-foreground', className: 'bg-muted-foreground', textClassName: 'text-muted' },
+        { name: 'Destructive', variable: 'bg-destructive', className: 'bg-destructive', textClassName: 'text-destructive-foreground' },
+        { name: 'Border', variable: 'bg-border', className: 'bg-border', textClassName: 'text-foreground' },
+        { name: 'Ring', variable: 'bg-ring', className: 'bg-ring', textClassName: 'text-background' },
+      ],
+    },
+    {
+      title: 'Chart Colors',
+      colors: [
+        { name: 'Chart 1', variable: 'bg-chart-1', className: 'bg-chart-1', textClassName: 'text-white' },
+        { name: 'Chart 2', variable: 'bg-chart-2', className: 'bg-chart-2', textClassName: 'text-white' },
+        { name: 'Chart 3', variable: 'bg-chart-3', className: 'bg-chart-3', textClassName: 'text-white' },
+        { name: 'Chart 4', variable: 'bg-chart-4', className: 'bg-chart-4', textClassName: 'text-foreground' },
+        { name: 'Chart 5', variable: 'bg-chart-5', className: 'bg-chart-5', textClassName: 'text-foreground' },
+      ],
+    },
+    {
+      title: 'Sidebar Colors',
+      colors: [
+        { name: 'Sidebar', variable: 'bg-sidebar', className: 'bg-sidebar', textClassName: 'text-sidebar-foreground' },
+        { name: 'Sidebar FG', variable: 'bg-sidebar-foreground', className: 'bg-sidebar-foreground', textClassName: 'text-sidebar' },
+        { name: 'Sidebar Primary', variable: 'bg-sidebar-primary', className: 'bg-sidebar-primary', textClassName: 'text-sidebar-primary-foreground' },
+        { name: 'Sidebar Accent', variable: 'bg-sidebar-accent', className: 'bg-sidebar-accent', textClassName: 'text-sidebar-accent-foreground' },
+        { name: 'Sidebar Border', variable: 'bg-sidebar-border', className: 'bg-sidebar-border', textClassName: 'text-sidebar-foreground' },
+      ],
+    },
+  ]
+
+  return (
+    <div className="space-y-12">
+      {colorGroups.map((group) => (
+        <ColorGroup key={group.title} {...group} />
+      ))}
+    </div>
+  )
+}

@@ -1,0 +1,110 @@
+import { Button } from '@repo/ui/components/button'
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@repo/ui/components/card'
+import { Input } from '@repo/ui/components/input'
+import { Label } from '@repo/ui/components/label'
+import { Badge } from '@repo/ui/components/badge'
+import { Separator } from '@repo/ui/components/separator'
+
+export default function ComponentsPage() {
+  return (
+    <div className="container mx-auto max-w-6xl px-6 py-10 space-y-12">
+      <div className="space-y-4">
+        <h1 className="text-4xl font-bold tracking-tight">Components</h1>
+        <p className="text-xl text-muted-foreground">
+          UI components from the shared @repo/ui package.
+        </p>
+      </div>
+
+      <section className="space-y-6">
+        <h2 className="text-2xl font-semibold border-b pb-2">Buttons</h2>
+        <div className="flex flex-wrap gap-4">
+          <Button>Default</Button>
+          <Button variant="secondary">Secondary</Button>
+          <Button variant="destructive">Destructive</Button>
+          <Button variant="outline">Outline</Button>
+          <Button variant="ghost">Ghost</Button>
+          <Button variant="link">Link</Button>
+        </div>
+        <div className="flex flex-wrap gap-4">
+          <Button size="sm">Small</Button>
+          <Button size="default">Default</Button>
+          <Button size="lg">Large</Button>
+        </div>
+      </section>
+
+      <Separator />
+
+      <section className="space-y-6">
+        <h2 className="text-2xl font-semibold border-b pb-2">Cards</h2>
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <Card>
+            <CardHeader>
+              <CardTitle>Card Title</CardTitle>
+              <CardDescription>Card description goes here.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p>Card content with some example text.</p>
+            </CardContent>
+            <CardFooter>
+              <Button size="sm">Action</Button>
+            </CardFooter>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Another Card</CardTitle>
+              <CardDescription>Different content example.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p>More card content here.</p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Third Card</CardTitle>
+              <CardDescription>Yet another card example.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p>Additional content for this card.</p>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      <Separator />
+
+      <section className="space-y-6">
+        <h2 className="text-2xl font-semibold border-b pb-2">Form Elements</h2>
+        <div className="grid gap-6 md:grid-cols-2">
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="email">Email</Label>
+              <Input id="email" type="email" placeholder="Enter your email" />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="password">Password</Label>
+              <Input id="password" type="password" placeholder="Enter password" />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="disabled">Disabled Input</Label>
+              <Input id="disabled" disabled placeholder="Disabled input" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Separator />
+
+      <section className="space-y-6">
+        <h2 className="text-2xl font-semibold border-b pb-2">Badges</h2>
+        <div className="flex flex-wrap gap-4">
+          <Badge>Default</Badge>
+          <Badge variant="secondary">Secondary</Badge>
+          <Badge variant="destructive">Destructive</Badge>
+          <Badge variant="outline">Outline</Badge>
+        </div>
+      </section>
+    </div>
+  )
+}

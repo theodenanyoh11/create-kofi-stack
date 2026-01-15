@@ -1,0 +1,34 @@
+import { ColorPalette } from '@/components/color-palette'
+
+export default function ColorsPage() {
+  return (
+    <div className="container mx-auto max-w-6xl px-6 py-10 space-y-8">
+      <div className="space-y-4">
+        <h1 className="text-4xl font-bold tracking-tight">Color Palette</h1>
+        <p className="text-xl text-muted-foreground">
+          The color system for {{projectName}}. Click any swatch to copy the Tailwind class.
+        </p>
+      </div>
+
+      <div className="rounded-lg border bg-card p-6">
+        <h2 className="text-lg font-semibold mb-4">Usage</h2>
+        <p className="text-muted-foreground mb-4">
+          Colors are defined as CSS variables and mapped to Tailwind utility classes.
+          Use semantic color names for consistency across themes.
+        </p>
+        <div className="grid gap-4 md:grid-cols-2">
+          <div className="rounded-md bg-muted p-4">
+            <p className="text-sm font-mono text-muted-foreground mb-2">Background</p>
+            <code className="text-sm">className=&quot;bg-primary text-primary-foreground&quot;</code>
+          </div>
+          <div className="rounded-md bg-muted p-4">
+            <p className="text-sm font-mono text-muted-foreground mb-2">Text</p>
+            <code className="text-sm">className=&quot;text-muted-foreground&quot;</code>
+          </div>
+        </div>
+      </div>
+
+      <ColorPalette />
+    </div>
+  )
+}

@@ -1,0 +1,140 @@
+import { Button } from '@repo/ui/components/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@repo/ui/components/card'
+
+export default function BlocksPage() {
+  return (
+    <div className="container mx-auto max-w-6xl px-6 py-10 space-y-16">
+      <div className="space-y-4">
+        <h1 className="text-4xl font-bold tracking-tight">Blocks</h1>
+        <p className="text-xl text-muted-foreground">
+          Pre-built marketing and application blocks.
+        </p>
+      </div>
+
+      {/* Hero Block */}
+      <section className="space-y-4">
+        <h2 className="text-2xl font-semibold border-b pb-2">Hero Section</h2>
+        <div className="rounded-lg border bg-gradient-to-b from-background to-muted p-12 text-center">
+          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+            Build something amazing
+          </h1>
+          <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
+            Start your next project with our powerful starter kit. Built with
+            the latest technologies and best practices.
+          </p>
+          <div className="mt-8 flex justify-center gap-4">
+            <Button size="lg">Get Started</Button>
+            <Button size="lg" variant="outline">Learn More</Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Block */}
+      <section className="space-y-4">
+        <h2 className="text-2xl font-semibold border-b pb-2">Features Grid</h2>
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <Card>
+            <CardHeader>
+              <CardTitle>Fast Development</CardTitle>
+              <CardDescription>
+                Get started quickly with pre-built components and templates.
+              </CardDescription>
+            </CardHeader>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>Type Safe</CardTitle>
+              <CardDescription>
+                Full TypeScript support with strict type checking enabled.
+              </CardDescription>
+            </CardHeader>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>Modern Stack</CardTitle>
+              <CardDescription>
+                Built with Next.js 16, React 19, and Tailwind CSS v4.
+              </CardDescription>
+            </CardHeader>
+          </Card>
+        </div>
+      </section>
+
+      {/* CTA Block */}
+      <section className="space-y-4">
+        <h2 className="text-2xl font-semibold border-b pb-2">Call to Action</h2>
+        <div className="rounded-lg border bg-primary p-12 text-center text-primary-foreground">
+          <h2 className="text-3xl font-bold">Ready to get started?</h2>
+          <p className="mt-4 text-lg opacity-90">
+            Join thousands of developers building with our platform.
+          </p>
+          <div className="mt-8">
+            <Button size="lg" variant="secondary">
+              Start Free Trial
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Block */}
+      <section className="space-y-4">
+        <h2 className="text-2xl font-semibold border-b pb-2">Pricing Cards</h2>
+        <div className="grid gap-6 md:grid-cols-3">
+          <Card>
+            <CardHeader>
+              <CardTitle>Starter</CardTitle>
+              <CardDescription>For individuals and small projects</CardDescription>
+              <div className="mt-4">
+                <span className="text-4xl font-bold">$0</span>
+                <span className="text-muted-foreground">/month</span>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-2 text-sm">
+                <li>Up to 3 projects</li>
+                <li>Basic analytics</li>
+                <li>Community support</li>
+              </ul>
+              <Button className="mt-6 w-full" variant="outline">Get Started</Button>
+            </CardContent>
+          </Card>
+          <Card className="border-primary">
+            <CardHeader>
+              <CardTitle>Pro</CardTitle>
+              <CardDescription>For growing teams</CardDescription>
+              <div className="mt-4">
+                <span className="text-4xl font-bold">$29</span>
+                <span className="text-muted-foreground">/month</span>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-2 text-sm">
+                <li>Unlimited projects</li>
+                <li>Advanced analytics</li>
+                <li>Priority support</li>
+              </ul>
+              <Button className="mt-6 w-full">Subscribe</Button>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>Enterprise</CardTitle>
+              <CardDescription>For large organizations</CardDescription>
+              <div className="mt-4">
+                <span className="text-4xl font-bold">Custom</span>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-2 text-sm">
+                <li>Custom limits</li>
+                <li>Dedicated support</li>
+                <li>SLA guarantee</li>
+              </ul>
+              <Button className="mt-6 w-full" variant="outline">Contact Sales</Button>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+    </div>
+  )
+}

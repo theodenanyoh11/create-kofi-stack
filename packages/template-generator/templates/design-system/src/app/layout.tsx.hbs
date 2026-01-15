@@ -1,0 +1,46 @@
+import type { Metadata } from 'next'
+import { ThemeProvider } from 'next-themes'
+import './globals.css'
+
+export const metadata: Metadata = {
+  title: '{{projectName}} Design System',
+  description: 'Design system documentation and component showcase',
+}
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body className="min-h-screen bg-background font-sans antialiased">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="relative flex min-h-screen flex-col">
+            <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+              <div className="container flex h-14 items-center">
+                <div className="mr-4 flex">
+                  <a href="/" className="mr-6 flex items-center space-x-2">
+                    <span className="font-bold">{{projectName}} Design System</span>
+                  </a>
+                  <nav className="flex items-center space-x-6 text-sm font-medium">
+                    <a href="/colors" className="transition-colors hover:text-foreground/80 text-foreground/60">Colors</a>
+                    <a href="/typography" className="transition-colors hover:text-foreground/80 text-foreground/60">Typography</a>
+                    <a href="/components" className="transition-colors hover:text-foreground/80 text-foreground/60">Components</a>
+                    <a href="/blocks" className="transition-colors hover:text-foreground/80 text-foreground/60">Blocks</a>
+                  </nav>
+                </div>
+              </div>
+            </header>
+            <main className="flex-1">{children}</main>
+          </div>
+        </ThemeProvider>
+      </body>
+    </html>
+  )
+}

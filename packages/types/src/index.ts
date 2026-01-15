@@ -20,6 +20,7 @@ export {
   // Config schemas
   PackageManagerSchema,
   AddonSchema,
+  OptionalAppSchema,
   DesignSystemConfigSchema,
   AuthConfigSchema,
   IntegrationsConfigSchema,
@@ -50,6 +51,7 @@ export type {
   // Config types
   PackageManager,
   Addon,
+  OptionalApp,
   DesignSystemConfig,
   AuthConfig,
   IntegrationsConfig,

@@ -19,6 +19,7 @@ import type {
   PayloadStorageProvider,
   PaymentProvider,
   Addon,
+  OptionalApp,
 } from 'kofi-stack-types'
 import { DEFAULT_CONFIG } from 'kofi-stack-types'
 
@@ -74,6 +75,7 @@ export async function runPrompts(
         ...(options.rateLimiting ? ['rate-limiting' as const] : []),
         ...(options.monitoring ? ['monitoring' as const] : []),
       ],
+      optionalApps: [],
     }
   }
 
@@ -134,6 +136,36 @@ export async function runPrompts(
     })) as MarketingSite
 
     if (p.isCancel(marketingSite)) throw new Error('cancelled')
+  }
+
+  // Optional apps prompt (monorepo only)
+  let optionalApps: OptionalApp[] = []
+  if (structure === 'monorepo') {
+    const optionalAppsOptions: { value: OptionalApp; label: string; hint: string }[] = [
+      {
+        value: 'design-system',
+        label: 'Design System',
+        hint: 'Color palette, typography, components showcase (port 3002)',
+      },
+      {
+        value: 'mobile',
+        label: 'Mobile App',
+        hint: 'Expo React Native app scaffold',
+      },
+      {
+        value: 'admin',
+        label: 'Admin Dashboard',
+        hint: 'User management, analytics, settings (port 3003)',
+      },
+    ]
+
+    optionalApps = (await p.multiselect({
+      message: 'Optional apps to include?',
+      options: optionalAppsOptions,
+      required: false,
+    })) as OptionalApp[]
+
+    if (p.isCancel(optionalApps)) throw new Error('cancelled')
   }
 
   // ============================================
@@ -366,6 +398,7 @@ export async function runPrompts(
       `${pc.cyan('Project:')} ${name}`,
       `${pc.cyan('Structure:')} ${structure}`,
       structure === 'monorepo' ? `${pc.cyan('Marketing:')} ${marketingSite}` : null,
+      optionalApps.length > 0 ? `${pc.cyan('Optional Apps:')} ${optionalApps.join(', ')}` : null,
       '',
       pc.dim('─── Design System ───'),
       `${pc.cyan('Component Library:')} ${componentLibrary}`,
@@ -424,6 +457,7 @@ export async function runPrompts(
       payloadStorage,
     },
     addons: addonsSelected,
+    optionalApps,
     packageManager: 'pnpm',
   }
 }

@@ -117,6 +117,9 @@ export const AddonSchema = z.enum([
   'monitoring',
 ])
 
+// Optional apps (monorepo only)
+export const OptionalAppSchema = z.enum(['design-system', 'mobile', 'admin'])
+
 // Design system configuration (shadcn v4)
 export const DesignSystemConfigSchema = z.object({
   componentLibrary: ComponentLibrarySchema,
@@ -165,6 +168,9 @@ export const ProjectConfigSchema = z.object({
 
   // Addons
   addons: z.array(AddonSchema),
+
+  // Optional apps (monorepo only)
+  optionalApps: z.array(OptionalAppSchema),
 
   // Setup options
   packageManager: PackageManagerSchema,
@@ -227,5 +233,6 @@ export const DEFAULT_CONFIG: z.infer<typeof ProjectConfigSchema> = {
     payments: 'none',
   },
   addons: [],
+  optionalApps: [],
   packageManager: 'pnpm',
 }

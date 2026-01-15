@@ -37,6 +37,17 @@ export async function generateVirtualProject(
       } else if (config.marketingSite === 'nextjs') {
         await processMarketingTemplates(vfs, config)
       }
+
+      // Optional apps (monorepo only)
+      if (config.optionalApps?.includes('design-system')) {
+        await processDesignSystemTemplates(vfs, config)
+      }
+      if (config.optionalApps?.includes('mobile')) {
+        await processMobileTemplates(vfs, config)
+      }
+      if (config.optionalApps?.includes('admin')) {
+        await processAdminTemplates(vfs, config)
+      }
     }
 
     await processIntegrationTemplates(vfs, config)
@@ -154,6 +165,27 @@ async function processMarketingTemplates(
   processTemplatesFromPrefix(vfs, 'marketing/nextjs/', '/apps/marketing', config)
 }
 
+async function processDesignSystemTemplates(
+  vfs: VirtualFileSystem,
+  config: ProjectConfig
+): Promise<void> {
+  processTemplatesFromPrefix(vfs, 'design-system/', '/apps/design-system', config)
+}
+
+async function processMobileTemplates(
+  vfs: VirtualFileSystem,
+  config: ProjectConfig
+): Promise<void> {
+  processTemplatesFromPrefix(vfs, 'mobile/', '/apps/mobile', config)
+}
+
+async function processAdminTemplates(
+  vfs: VirtualFileSystem,
+  config: ProjectConfig
+): Promise<void> {
+  processTemplatesFromPrefix(vfs, 'admin/', '/apps/admin', config)
+}
+
 async function processIntegrationTemplates(
   vfs: VirtualFileSystem,
   config: ProjectConfig
@@ -210,6 +242,11 @@ function generateDevScript(
   const webAppDir = isMonorepo ? 'apps/web' : '.'
   const backendDir = isMonorepo ? 'packages/backend' : '.'
 
+  // Build dynamic ports array based on config
+  const ports = [3000, 3001] // marketing, web
+  if (config.optionalApps?.includes('design-system')) ports.push(3002)
+  if (config.optionalApps?.includes('admin')) ports.push(3003)
+
   const devScript = `#!/usr/bin/env node
 /**
  * Dev Script - Starts Next.js and Convex dev servers
@@ -224,6 +261,26 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const rootDir = resolve(__dirname, '..')
 const webAppDir = resolve(rootDir, '${webAppDir}')
 const backendDir = resolve(rootDir, '${backendDir}')
+
+// Kill process on a given port
+function killPort(port) {
+  try {
+    const platform = process.platform
+    if (platform === 'darwin' || platform === 'linux') {
+      execSync(\`lsof -ti:\${port} | xargs kill -9 2>/dev/null || true\`, { stdio: 'ignore' })
+    } else if (platform === 'win32') {
+      execSync(\`for /f "tokens=5" %a in ('netstat -ano ^| findstr :\${port} ^| findstr LISTENING') do taskkill /F /PID %a 2>nul\`, { stdio: 'ignore', shell: 'cmd' })
+    }
+  } catch (e) {
+    // Port not in use or already free
+  }
+}
+
+// Free up app ports before starting
+const APP_PORTS = [${ports.join(', ')}]
+console.log('Freeing ports...')
+APP_PORTS.forEach(killPort)
+console.log('')
 
 function loadEnvFile(dir) {
   const envPath = resolve(dir, '.env.local')

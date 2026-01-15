@@ -1,0 +1,51 @@
+'use client'
+
+import { cn } from '@repo/ui/lib/utils'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+
+const navigation = [
+  { name: 'Dashboard', href: '/' },
+  { name: 'Users', href: '/users' },
+  { name: 'Analytics', href: '/analytics' },
+  { name: 'Settings', href: '/settings' },
+]
+
+export function AdminSidebar() {
+  const pathname = usePathname()
+
+  return (
+    <div className="flex h-screen w-64 flex-col border-r bg-card">
+      <div className="flex h-14 items-center border-b px-6">
+        <Link href="/" className="flex items-center gap-2 font-semibold">
+          <span>{{projectName}} Admin</span>
+        </Link>
+      </div>
+      <nav className="flex-1 space-y-1 p-4">
+        {navigation.map((item) => (
+          <Link
+            key={item.name}
+            href={item.href}
+            className={cn(
+              'flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors',
+              pathname === item.href
+                ? 'bg-primary text-primary-foreground'
+                : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+            )}
+          >
+            {item.name}
+          </Link>
+        ))}
+      </nav>
+      <div className="border-t p-4">
+        <Link
+          href="http://localhost:3001"
+          target="_blank"
+          className="flex items-center rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
+        >
+          Back to App
+        </Link>
+      </div>
+    </div>
+  )
+}

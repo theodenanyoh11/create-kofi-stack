@@ -1,0 +1,65 @@
+import { Card, CardDescription, CardHeader, CardTitle } from '@repo/ui/components/card'
+import { Separator } from '@repo/ui/components/separator'
+
+export default function Home() {
+  return (
+    <main className="container mx-auto max-w-4xl px-6 py-16">
+      <header className="mb-12 text-center">
+        <h1 className="text-4xl font-bold tracking-tight text-foreground">
+          Design System & Blocks
+        </h1>
+        <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+          Explore the component library and design tokens for {{projectName}}.
+        </p>
+      </header>
+
+      <Separator className="mb-12" />
+
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <a href="/colors" className="group">
+          <Card className="h-full transition-all hover:border-primary/50 hover:shadow-md">
+            <CardHeader>
+              <CardTitle className="text-xl">Colors</CardTitle>
+              <CardDescription className="text-base">
+                View the color palette and brand colors.
+              </CardDescription>
+            </CardHeader>
+          </Card>
+        </a>
+
+        <a href="/typography" className="group">
+          <Card className="h-full transition-all hover:border-primary/50 hover:shadow-md">
+            <CardHeader>
+              <CardTitle className="text-xl">Typography</CardTitle>
+              <CardDescription className="text-base">
+                Typography scale and font styles.
+              </CardDescription>
+            </CardHeader>
+          </Card>
+        </a>
+
+        <a href="/components" className="group">
+          <Card className="h-full transition-all hover:border-primary/50 hover:shadow-md">
+            <CardHeader>
+              <CardTitle className="text-xl">Components</CardTitle>
+              <CardDescription className="text-base">
+                View all shadcn UI components.
+              </CardDescription>
+            </CardHeader>
+          </Card>
+        </a>
+
+        <a href="/blocks" className="group">
+          <Card className="h-full transition-all hover:border-primary/50 hover:shadow-md">
+            <CardHeader>
+              <CardTitle className="text-xl">Blocks</CardTitle>
+              <CardDescription className="text-base">
+                Pre-built marketing blocks.
+              </CardDescription>
+            </CardHeader>
+          </Card>
+        </a>
+      </div>
+    </main>
+  )
+}

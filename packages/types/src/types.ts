@@ -19,6 +19,7 @@ import type {
   RadiusSchema,
   PackageManagerSchema,
   AddonSchema,
+  OptionalAppSchema,
   DesignSystemConfigSchema,
   AuthConfigSchema,
   IntegrationsConfigSchema,
@@ -48,6 +49,7 @@ export type Radius = z.infer<typeof RadiusSchema>
 
 export type PackageManager = z.infer<typeof PackageManagerSchema>
 export type Addon = z.infer<typeof AddonSchema>
+export type OptionalApp = z.infer<typeof OptionalAppSchema>
 export type DesignSystemConfig = z.infer<typeof DesignSystemConfigSchema>
 export type AuthConfig = z.infer<typeof AuthConfigSchema>
 export type IntegrationsConfig = z.infer<typeof IntegrationsConfigSchema>
