@@ -1,6 +1,6 @@
 {
   "name": "create-kofi-stack",
-  "version": "2.1.36",
+  "version": "2.1.37",
   "description": "Scaffold opinionated full-stack projects with Next.js, Convex, Better-Auth, and more",
   "type": "module",
   "bin": {
