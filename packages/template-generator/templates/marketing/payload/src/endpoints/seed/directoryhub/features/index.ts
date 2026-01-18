@@ -1,0 +1,6 @@
+export { templatesPage } from "./templates"
+export { monetizationPage } from "./monetization"
+export { seoPage } from "./seo"
+export { dashboardPage } from "./dashboard"
+export { automationPage } from "./automation"
+export { customFieldsPage } from "./custom-fields"

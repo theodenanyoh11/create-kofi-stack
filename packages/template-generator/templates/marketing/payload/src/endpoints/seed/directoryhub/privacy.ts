@@ -1,0 +1,457 @@
+import type { Page } from "@/payload-types"
+
+export const directoryHubPrivacy = (): Partial<Page> => {
+	return {
+		slug: "privacy",
+		_status: "published",
+		hero: {
+			type: "lowImpact",
+			richText: {
+				root: {
+					type: "root",
+					children: [
+						{
+							type: "heading",
+							children: [
+								{
+									type: "text",
+									detail: 0,
+									format: 0,
+									mode: "normal",
+									style: "",
+									text: "Privacy Policy",
+									version: 1,
+								},
+							],
+							direction: "ltr" as const,
+							format: "" as const,
+							indent: 0,
+							tag: "h1",
+							version: 1,
+						},
+						{
+							type: "paragraph",
+							children: [
+								{
+									type: "text",
+									detail: 0,
+									format: 0,
+									mode: "normal",
+									style: "",
+									text: "Last updated: December 2024",
+									version: 1,
+								},
+							],
+							direction: "ltr" as const,
+							format: "" as const,
+							indent: 0,
+							textFormat: 0,
+							version: 1,
+						},
+					],
+					direction: "ltr" as const,
+					format: "" as const,
+					indent: 0,
+					version: 1,
+				},
+			},
+			links: [],
+		},
+		layout: [
+			{
+				blockType: "content",
+				columns: [
+					{
+						size: "full",
+						richText: {
+							root: {
+								type: "root",
+								children: [
+									// Introduction
+									{
+										type: "heading",
+										children: [
+											{
+												type: "text",
+												detail: 0,
+												format: 0,
+												mode: "normal",
+												style: "",
+												text: "1. Introduction",
+												version: 1,
+											},
+										],
+										direction: "ltr" as const,
+										format: "" as const,
+										indent: 0,
+										tag: "h2",
+										version: 1,
+									},
+									{
+										type: "paragraph",
+										children: [
+											{
+												type: "text",
+												detail: 0,
+												format: 0,
+												mode: "normal",
+												style: "",
+												text: 'DirectoryHub ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our platform and services.',
+												version: 1,
+											},
+										],
+										direction: "ltr" as const,
+										format: "" as const,
+										indent: 0,
+										textFormat: 0,
+										version: 1,
+									},
+									// Information We Collect
+									{
+										type: "heading",
+										children: [
+											{
+												type: "text",
+												detail: 0,
+												format: 0,
+												mode: "normal",
+												style: "",
+												text: "2. Information We Collect",
+												version: 1,
+											},
+										],
+										direction: "ltr" as const,
+										format: "" as const,
+										indent: 0,
+										tag: "h2",
+										version: 1,
+									},
+									{
+										type: "heading",
+										children: [
+											{
+												type: "text",
+												detail: 0,
+												format: 0,
+												mode: "normal",
+												style: "",
+												text: "Personal Information",
+												version: 1,
+											},
+										],
+										direction: "ltr" as const,
+										format: "" as const,
+										indent: 0,
+										tag: "h3",
+										version: 1,
+									},
+									{
+										type: "paragraph",
+										children: [
+											{
+												type: "text",
+												detail: 0,
+												format: 0,
+												mode: "normal",
+												style: "",
+												text: "We may collect personal information that you voluntarily provide when you register for an account, subscribe to our services, or contact us. This may include: name, email address, billing information, company name, and other contact details.",
+												version: 1,
+											},
+										],
+										direction: "ltr" as const,
+										format: "" as const,
+										indent: 0,
+										textFormat: 0,
+										version: 1,
+									},
+									{
+										type: "heading",
+										children: [
+											{
+												type: "text",
+												detail: 0,
+												format: 0,
+												mode: "normal",
+												style: "",
+												text: "Automatically Collected Information",
+												version: 1,
+											},
+										],
+										direction: "ltr" as const,
+										format: "" as const,
+										indent: 0,
+										tag: "h3",
+										version: 1,
+									},
+									{
+										type: "paragraph",
+										children: [
+											{
+												type: "text",
+												detail: 0,
+												format: 0,
+												mode: "normal",
+												style: "",
+												text: "When you access our platform, we automatically collect certain information including: IP address, browser type, operating system, referring URLs, pages viewed, and access times.",
+												version: 1,
+											},
+										],
+										direction: "ltr" as const,
+										format: "" as const,
+										indent: 0,
+										textFormat: 0,
+										version: 1,
+									},
+									// How We Use Your Information
+									{
+										type: "heading",
+										children: [
+											{
+												type: "text",
+												detail: 0,
+												format: 0,
+												mode: "normal",
+												style: "",
+												text: "3. How We Use Your Information",
+												version: 1,
+											},
+										],
+										direction: "ltr" as const,
+										format: "" as const,
+										indent: 0,
+										tag: "h2",
+										version: 1,
+									},
+									{
+										type: "paragraph",
+										children: [
+											{
+												type: "text",
+												detail: 0,
+												format: 0,
+												mode: "normal",
+												style: "",
+												text: "We use the information we collect to: provide and maintain our services, process transactions and send related information, send promotional communications (with your consent), respond to your inquiries and provide customer support, monitor and analyze usage patterns, and improve our platform.",
+												version: 1,
+											},
+										],
+										direction: "ltr" as const,
+										format: "" as const,
+										indent: 0,
+										textFormat: 0,
+										version: 1,
+									},
+									// Cookies and Tracking
+									{
+										type: "heading",
+										children: [
+											{
+												type: "text",
+												detail: 0,
+												format: 0,
+												mode: "normal",
+												style: "",
+												text: "4. Cookies and Tracking Technologies",
+												version: 1,
+											},
+										],
+										direction: "ltr" as const,
+										format: "" as const,
+										indent: 0,
+										tag: "h2",
+										version: 1,
+									},
+									{
+										type: "paragraph",
+										children: [
+											{
+												type: "text",
+												detail: 0,
+												format: 0,
+												mode: "normal",
+												style: "",
+												text: "We use cookies and similar tracking technologies to track activity on our platform and hold certain information. Cookies are files with a small amount of data that may include an anonymous unique identifier. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent.",
+												version: 1,
+											},
+										],
+										direction: "ltr" as const,
+										format: "" as const,
+										indent: 0,
+										textFormat: 0,
+										version: 1,
+									},
+									// Third-Party Services
+									{
+										type: "heading",
+										children: [
+											{
+												type: "text",
+												detail: 0,
+												format: 0,
+												mode: "normal",
+												style: "",
+												text: "5. Third-Party Services",
+												version: 1,
+											},
+										],
+										direction: "ltr" as const,
+										format: "" as const,
+										indent: 0,
+										tag: "h2",
+										version: 1,
+									},
+									{
+										type: "paragraph",
+										children: [
+											{
+												type: "text",
+												detail: 0,
+												format: 0,
+												mode: "normal",
+												style: "",
+												text: "We may employ third-party companies and individuals to facilitate our service, provide service-related services, or assist us in analyzing how our service is used. These third parties have access to your personal information only to perform these tasks on our behalf and are obligated not to disclose or use it for any other purpose.",
+												version: 1,
+											},
+										],
+										direction: "ltr" as const,
+										format: "" as const,
+										indent: 0,
+										textFormat: 0,
+										version: 1,
+									},
+									// Data Security
+									{
+										type: "heading",
+										children: [
+											{
+												type: "text",
+												detail: 0,
+												format: 0,
+												mode: "normal",
+												style: "",
+												text: "6. Data Security",
+												version: 1,
+											},
+										],
+										direction: "ltr" as const,
+										format: "" as const,
+										indent: 0,
+										tag: "h2",
+										version: 1,
+									},
+									{
+										type: "paragraph",
+										children: [
+											{
+												type: "text",
+												detail: 0,
+												format: 0,
+												mode: "normal",
+												style: "",
+												text: "We implement appropriate technical and organizational security measures to protect your personal information. However, no method of transmission over the Internet or electronic storage is 100% secure, and we cannot guarantee absolute security.",
+												version: 1,
+											},
+										],
+										direction: "ltr" as const,
+										format: "" as const,
+										indent: 0,
+										textFormat: 0,
+										version: 1,
+									},
+									// Your Rights
+									{
+										type: "heading",
+										children: [
+											{
+												type: "text",
+												detail: 0,
+												format: 0,
+												mode: "normal",
+												style: "",
+												text: "7. Your Rights",
+												version: 1,
+											},
+										],
+										direction: "ltr" as const,
+										format: "" as const,
+										indent: 0,
+										tag: "h2",
+										version: 1,
+									},
+									{
+										type: "paragraph",
+										children: [
+											{
+												type: "text",
+												detail: 0,
+												format: 0,
+												mode: "normal",
+												style: "",
+												text: "Depending on your location, you may have certain rights regarding your personal information, including: the right to access your personal data, the right to correct inaccurate data, the right to delete your data, the right to restrict processing, the right to data portability, and the right to object to processing.",
+												version: 1,
+											},
+										],
+										direction: "ltr" as const,
+										format: "" as const,
+										indent: 0,
+										textFormat: 0,
+										version: 1,
+									},
+									// Contact Us
+									{
+										type: "heading",
+										children: [
+											{
+												type: "text",
+												detail: 0,
+												format: 0,
+												mode: "normal",
+												style: "",
+												text: "8. Contact Us",
+												version: 1,
+											},
+										],
+										direction: "ltr" as const,
+										format: "" as const,
+										indent: 0,
+										tag: "h2",
+										version: 1,
+									},
+									{
+										type: "paragraph",
+										children: [
+											{
+												type: "text",
+												detail: 0,
+												format: 0,
+												mode: "normal",
+												style: "",
+												text: "If you have any questions about this Privacy Policy, please contact us at privacy@directoryhub.com.",
+												version: 1,
+											},
+										],
+										direction: "ltr" as const,
+										format: "" as const,
+										indent: 0,
+										textFormat: 0,
+										version: 1,
+									},
+								],
+								direction: "ltr" as const,
+								format: "" as const,
+								indent: 0,
+								version: 1,
+							},
+						},
+					},
+				],
+			},
+		],
+		meta: {
+			description:
+				"Read DirectoryHub's Privacy Policy to understand how we collect, use, and protect your personal information.",
+			title: "Privacy Policy",
+		},
+		title: "Privacy Policy",
+	}
+}

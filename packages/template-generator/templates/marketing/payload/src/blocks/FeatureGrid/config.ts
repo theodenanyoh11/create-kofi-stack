@@ -1,0 +1,109 @@
+import type { Block } from "payload"
+
+import {
+	AlignFeature,
+	BlockquoteFeature,
+	ChecklistFeature,
+	EXPERIMENTAL_TableFeature,
+	FixedToolbarFeature,
+	IndentFeature,
+	InlineCodeFeature,
+	InlineToolbarFeature,
+	OrderedListFeature,
+	RelationshipFeature,
+	StrikethroughFeature,
+	SubscriptFeature,
+	SuperscriptFeature,
+	UnorderedListFeature,
+	UploadFeature,
+	lexicalEditor,
+} from "@payloadcms/richtext-lexical"
+
+export const FeatureGrid: Block = {
+	slug: "featureGrid",
+	interfaceName: "FeatureGridBlock",
+	fields: [
+		{
+			name: "heading",
+			type: "text",
+			label: "Section Heading",
+		},
+		{
+			name: "subheading",
+			type: "textarea",
+			label: "Section Subheading",
+		},
+		{
+			name: "columns",
+			type: "select",
+			defaultValue: "3",
+			options: [
+				{ label: "2 Columns", value: "2" },
+				{ label: "3 Columns", value: "3" },
+				{ label: "4 Columns", value: "4" },
+			],
+		},
+		{
+			name: "features",
+			type: "array",
+			label: "Features",
+			minRows: 1,
+			maxRows: 12,
+			fields: [
+				{
+					name: "icon",
+					type: "select",
+					options: [
+						{ label: "Rocket", value: "rocket" },
+						{ label: "Zap", value: "zap" },
+						{ label: "Building", value: "building" },
+						{ label: "Target", value: "target" },
+						{ label: "Layout", value: "layout" },
+						{ label: "Star", value: "star" },
+						{ label: "DollarSign", value: "dollarSign" },
+						{ label: "Search", value: "search" },
+						{ label: "Users", value: "users" },
+						{ label: "Globe", value: "globe" },
+						{ label: "Shield", value: "shield" },
+						{ label: "Settings", value: "settings" },
+					],
+				},
+				{
+					name: "title",
+					type: "text",
+					required: true,
+				},
+				{
+					name: "description",
+					type: "richText",
+					editor: lexicalEditor({
+						features: ({ rootFeatures }) => {
+							return [
+								...rootFeatures,
+								FixedToolbarFeature(),
+								InlineToolbarFeature(),
+								StrikethroughFeature(),
+								SubscriptFeature(),
+								SuperscriptFeature(),
+								InlineCodeFeature(),
+								BlockquoteFeature(),
+								UnorderedListFeature(),
+								OrderedListFeature(),
+								ChecklistFeature(),
+								AlignFeature(),
+								IndentFeature(),
+								RelationshipFeature(),
+								UploadFeature(),
+								EXPERIMENTAL_TableFeature(),
+							]
+						},
+					}),
+				},
+			],
+		},
+	],
+	labels: {
+		plural: "Feature Grids",
+		singular: "Feature Grid",
+	},
+}
