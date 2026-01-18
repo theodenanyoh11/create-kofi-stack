@@ -16,7 +16,7 @@ import { fileURLToPath } from 'url'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const rootDir = resolve(__dirname, '..')
 
-const VERSION = '2.1.39'
+const VERSION = '2.1.40'
 
 const packages = [
   { name: 'kofi-stack-types', path: 'packages/types' },
@@ -31,10 +31,10 @@ function updatePackageJson(pkgPath, updates) {
   // Update version
   pkg.version = VERSION
 
-  // Update workspace dependencies to real versions
+  // Update workspace dependencies and kofi-stack-* dependencies to current version
   if (pkg.dependencies) {
     for (const [dep, version] of Object.entries(pkg.dependencies)) {
-      if (version === 'workspace:*') {
+      if (version === 'workspace:*' || dep.startsWith('kofi-stack-')) {
         pkg.dependencies[dep] = `^${VERSION}`
       }
     }

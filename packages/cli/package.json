@@ -1,6 +1,6 @@
 {
   "name": "create-kofi-stack",
-  "version": "2.1.39",
+  "version": "2.1.40",
   "description": "Scaffold opinionated full-stack projects with Next.js, Convex, Better-Auth, and more",
   "type": "module",
   "bin": {
@@ -16,8 +16,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "kofi-stack-template-generator": "^2.1.28",
-    "kofi-stack-types": "^2.2.0",
+    "kofi-stack-template-generator": "^2.1.40",
+    "kofi-stack-types": "^2.1.40",
     "@clack/prompts": "^0.7.0",
     "commander": "^12.0.0",
     "execa": "^8.0.0",
