@@ -1,6 +1,6 @@
 {
   "name": "kofi-stack-template-generator",
-  "version": "2.1.41",
+  "version": "2.1.42",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -17,7 +17,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "kofi-stack-types": "^2.1.41",
+    "kofi-stack-types": "^2.1.42",
     "handlebars": "^4.7.8",
     "memfs": "^4.9.0"
   },
