@@ -451,6 +451,9 @@ export const seedDirectoryHub = async ({
 	await Promise.all([
 		payload.updateGlobal({
 			slug: "header",
+			context: {
+				disableRevalidate: true,
+			},
 			data: {
 				navItems: [
 					{
@@ -640,6 +643,9 @@ export const seedDirectoryHub = async ({
 		}),
 		payload.updateGlobal({
 			slug: "footer",
+			context: {
+				disableRevalidate: true,
+			},
 			data: {
 				columns: [
 					{
