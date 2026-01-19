@@ -69,23 +69,23 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 export const metadata: Metadata = {
 	metadataBase: new URL(getServerSideURL()),
 	title: {
-		default: "DirectoryHub - Build Directories That Generate Real Business",
-		template: "%s | DirectoryHub",
+		default: "SaaSify - The Modern Platform for Growing Teams",
+		template: "%s | SaaSify",
 	},
 	description:
-		"Launch a profitable directory business in minutes. The no-code platform to build, manage, and monetize niche directory websites.",
+		"Streamline workflows, boost productivity, and scale your business with one powerful platform.",
 	keywords: [
-		"directory builder",
-		"no-code directory",
-		"directory website",
-		"niche directory",
-		"business directory software",
-		"directory platform",
-		"monetize directory",
+		"SaaS platform",
+		"team productivity",
+		"workflow automation",
+		"business software",
+		"collaboration tools",
+		"project management",
+		"team collaboration",
 	],
-	authors: [{ name: "DirectoryHub", url: getServerSideURL() }],
-	creator: "DirectoryHub",
-	publisher: "DirectoryHub",
+	authors: [{ name: "SaaSify", url: getServerSideURL() }],
+	creator: "SaaSify",
+	publisher: "SaaSify",
 	robots: {
 		index: true,
 		follow: true,
@@ -100,11 +100,11 @@ export const metadata: Metadata = {
 	openGraph: mergeOpenGraph(),
 	twitter: {
 		card: "summary_large_image",
-		creator: "@directoryhub",
-		site: "@directoryhub",
-		title: "DirectoryHub - Build Directories That Generate Real Business",
+		creator: "@saasify",
+		site: "@saasify",
+		title: "SaaSify - The Modern Platform for Growing Teams",
 		description:
-			"Launch a profitable directory business in minutes. The no-code platform to build, manage, and monetize niche directory websites.",
+			"Streamline workflows, boost productivity, and scale your business with one powerful platform.",
 	},
 	verification: {
 		// Add your verification codes here when available

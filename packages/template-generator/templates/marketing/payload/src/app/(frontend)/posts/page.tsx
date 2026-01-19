@@ -42,8 +42,8 @@ export default async function Page() {
 
 export function generateMetadata(): Metadata {
 	return {
-		title: "Blog — DirectoryHub Resources & Guides",
+		title: "Blog — SaaSify Resources & Guides",
 		description:
-			"Learn how to build, grow, and monetize directory websites. Tips, strategies, and success stories from the DirectoryHub team.",
+			"Tips, strategies, and insights for growing teams. Learn how to boost productivity and scale your business with SaaSify.",
 	}
 }

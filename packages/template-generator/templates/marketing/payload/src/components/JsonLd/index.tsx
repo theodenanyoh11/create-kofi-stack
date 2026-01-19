@@ -10,23 +10,23 @@ export const OrganizationSchema: React.FC = () => {
 	const schema = {
 		"@context": "https://schema.org",
 		"@type": "Organization",
-		name: "DirectoryHub",
-		description: "The no-code platform to build, manage, and monetize niche directory websites.",
+		name: "SaaSify",
+		description: "The modern platform for growing teams. Streamline workflows and boost productivity.",
 		url: siteUrl,
 		logo: `${siteUrl}/logo.svg`,
 		sameAs: [
-			"https://twitter.com/directoryhub",
-			"https://linkedin.com/company/directoryhub",
-			"https://github.com/directoryhub",
+			"https://twitter.com/saasify",
+			"https://linkedin.com/company/saasify",
+			"https://github.com/saasify",
 		],
 		contactPoint: {
 			"@type": "ContactPoint",
 			contactType: "customer support",
-			email: "support@directoryhub.com",
+			email: "support@saasify.com",
 		},
 		founder: {
 			"@type": "Person",
-			name: "DirectoryHub Team",
+			name: "SaaSify Team",
 		},
 		foundingDate: "2024",
 	}
@@ -47,9 +47,9 @@ export const SoftwareApplicationSchema: React.FC = () => {
 	const schema = {
 		"@context": "https://schema.org",
 		"@type": "SoftwareApplication",
-		name: "DirectoryHub",
+		name: "SaaSify",
 		description:
-			"Launch a profitable directory business in minutes. Create, monetize, and grow with DirectoryHub - the no-code directory builder.",
+			"The modern platform for growing teams. Streamline workflows, boost productivity, and scale your business.",
 		applicationCategory: "BusinessApplication",
 		operatingSystem: "Web",
 		url: siteUrl,
@@ -57,7 +57,7 @@ export const SoftwareApplicationSchema: React.FC = () => {
 			"@type": "AggregateOffer",
 			priceCurrency: "USD",
 			lowPrice: "0",
-			highPrice: "199",
+			highPrice: "99",
 			offerCount: "3",
 		},
 		aggregateRating: {
@@ -68,12 +68,12 @@ export const SoftwareApplicationSchema: React.FC = () => {
 			worstRating: "1",
 		},
 		featureList: [
-			"No-code directory builder",
-			"Built-in payment processing",
-			"SEO optimization",
-			"Custom domains",
-			"Multi-tenant architecture",
-			"Analytics dashboard",
+			"Team collaboration tools",
+			"Workflow automation",
+			"Real-time analytics",
+			"100+ integrations",
+			"Enterprise security",
+			"Custom dashboards",
 		],
 		screenshot: `${siteUrl}/website-template-OG.webp`,
 	}
@@ -94,8 +94,8 @@ export const WebSiteSchema: React.FC = () => {
 	const schema = {
 		"@context": "https://schema.org",
 		"@type": "WebSite",
-		name: "DirectoryHub",
-		description: "The no-code platform to build, manage, and monetize niche directory websites.",
+		name: "SaaSify",
+		description: "The modern platform for growing teams. Streamline workflows and boost productivity.",
 		url: siteUrl,
 		potentialAction: {
 			"@type": "SearchAction",
@@ -107,7 +107,7 @@ export const WebSiteSchema: React.FC = () => {
 		},
 		publisher: {
 			"@type": "Organization",
-			name: "DirectoryHub",
+			name: "SaaSify",
 			logo: {
 				"@type": "ImageObject",
 				url: `${siteUrl}/logo.svg`,

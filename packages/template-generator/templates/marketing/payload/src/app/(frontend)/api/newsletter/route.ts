@@ -13,9 +13,9 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const COMPANY_ADDRESS = "KrumaLabs • 102 West Main Street #501, New Albany, OH 43054"
 
 /**
- * DirectoryHub logo URL
+ * SaaSify logo URL
  */
-const LOGO_URL = "https://directoryhub.app/logo.png"
+const LOGO_URL = "/logo.png"
 
 /**
  * Generate newsletter confirmation email HTML with logo and branding
@@ -120,9 +120,9 @@ function renderNewsletterConfirmationEmail(unsubscribeUrl?: string): string {
   <div style="${emailStyles.container}">
     <!-- Header with Logo -->
     <div style="${emailStyles.header}">
-      <a href="https://directoryhub.app" style="display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: inherit;">
-        <img src="${LOGO_URL}" alt="DirectoryHub" width="32" height="32" style="display: block; width: 32px; height: 32px;">
-        <span style="${emailStyles.logoText}">DirectoryHub</span>
+      <a href="/" style="display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: inherit;">
+        <img src="${LOGO_URL}" alt="SaaSify" width="32" height="32" style="display: block; width: 32px; height: 32px;">
+        <span style="${emailStyles.logoText}">SaaSify</span>
       </a>
     </div>
     
@@ -130,14 +130,14 @@ function renderNewsletterConfirmationEmail(unsubscribeUrl?: string): string {
     <div style="padding: 32px 32px 0;"><h1 style="${emailStyles.heading}">Welcome to the Newsletter!</h1></div>
     <div style="${emailStyles.content}">
       <p style="${emailStyles.paragraph}">
-        Thanks for subscribing to the DirectoryHub newsletter! 🎉
+        Thanks for subscribing to the SaaSify newsletter! 🎉
       </p>
       <p style="${emailStyles.paragraph}">
         You'll now receive updates about:
       </p>
       <ul style="${emailStyles.paragraph}">
         <li>New features and product updates</li>
-        <li>Tips for building better directories</li>
+        <li>Tips for boosting team productivity</li>
         <li>Industry insights and best practices</li>
         <li>Special announcements and offers</li>
       </ul>
@@ -145,11 +145,11 @@ function renderNewsletterConfirmationEmail(unsubscribeUrl?: string): string {
         We respect your inbox and only send emails when we have something valuable to share.
       </p>
       <div style="margin: 32px 0; text-align: center;">
-        <a href="https://directoryhub.app" style="${emailStyles.button}">Visit DirectoryHub</a>
+        <a href="/" style="${emailStyles.button}">Visit SaaSify</a>
       </div>
       <p style="${emailStyles.paragraphSmall}">
         If you didn't subscribe to this newsletter, you can safely ignore this email or
-        <a href="${unsubscribeUrl || "https://directoryhub.app/unsubscribe"}" style="${emailStyles.link}">unsubscribe here</a>.
+        <a href="${unsubscribeUrl || "/unsubscribe"}" style="${emailStyles.link}">unsubscribe here</a>.
       </p>
     </div>
     
@@ -158,14 +158,14 @@ function renderNewsletterConfirmationEmail(unsubscribeUrl?: string): string {
     
     <!-- Footer -->
     <div style="${emailStyles.footer}">
-      <p style="${emailStyles.footerText}">DirectoryHub - Build beautiful directory websites</p>
+      <p style="${emailStyles.footerText}">SaaSify - The modern platform for growing teams</p>
       <p style="${emailStyles.footerText}">
-        <a href="https://directoryhub.app" style="${emailStyles.link}">Visit our website</a>
+        <a href="/" style="${emailStyles.link}">Visit our website</a>
         <span style="color: #999999;"> • </span>
-        <a href="https://directoryhub.app/support" style="${emailStyles.link}">Support</a>
+        <a href="/support" style="${emailStyles.link}">Support</a>
         ${unsubscribeUrl ? `<span style="color: #999999;"> • </span><a href="${unsubscribeUrl}" style="${emailStyles.link}">Unsubscribe</a>` : ""}
       </p>
-      <p style="${emailStyles.footerTextSmall}">You're receiving this email because you signed up for the DirectoryHub newsletter.</p>
+      <p style="${emailStyles.footerTextSmall}">You're receiving this email because you signed up for the SaaSify newsletter.</p>
       <p style="${emailStyles.footerAddress}">${COMPANY_ADDRESS}</p>
     </div>
   </div>
@@ -193,8 +193,8 @@ export async function POST(request: Request) {
 
 		const apiKey = process.env.RESEND_API_KEY
 		const audienceId = process.env.RESEND_AUDIENCE_NEWSLETTER
-		// Marketing emails use "Theo from DirectoryHub" as sender
-		const fromEmail = "Theo from DirectoryHub <theo@notifications.directoryhub.app>"
+		// Marketing emails sender - update with your domain
+		const fromEmail = "SaaSify Team <hello@notifications.saasify.com>"
 
 		// In development without API key, just return success
 		if (!apiKey) {

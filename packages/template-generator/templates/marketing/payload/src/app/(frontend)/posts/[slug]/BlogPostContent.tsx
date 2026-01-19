@@ -39,12 +39,12 @@ export function BlogPostContent({ content, headings }: BlogPostContentProps) {
 						<TableOfContents
 							headings={headings}
 							signUpCta={{
-								title: "Experience DirectoryHub",
-								description: "Start building your directory today",
-								buttonText: "Sign up for free",
-								buttonLink: "https://app.directoryhub.app/sign-up",
+								title: "Experience SaaSify",
+								description: "Start boosting your team's productivity today",
+								buttonText: "Start free trial",
+								buttonLink: "/pricing",
 								imageSrc: "/media/hero-dashboard-500x500.webp",
-								imageAlt: "DirectoryHub dashboard feature",
+								imageAlt: "SaaSify dashboard feature",
 							}}
 						/>
 					</div>

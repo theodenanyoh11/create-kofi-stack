@@ -48,7 +48,7 @@ export default async function Page({ params }: DocsPageProps) {
 		return (
 			<DocsPage>
 				<DocsTitle>Documentation</DocsTitle>
-				<DocsDescription>Welcome to DirectoryHub documentation</DocsDescription>
+				<DocsDescription>Welcome to SaaSify documentation</DocsDescription>
 				<DocsBody>
 					<div className="flex flex-col items-center justify-center py-12 text-center">
 						<h2 className="text-xl font-semibold mb-4">No documentation yet</h2>
@@ -101,16 +101,16 @@ export async function generateMetadata({ params }: DocsPageProps): Promise<Metad
 
 	if (!doc) {
 		return {
-			title: "Documentation | DirectoryHub",
+			title: "Documentation | SaaSify",
 		}
 	}
 
 	return {
-		title: `${doc.title} | DirectoryHub Docs`,
-		description: doc.description || `Learn about ${doc.title} in DirectoryHub documentation.`,
+		title: `${doc.title} | SaaSify Docs`,
+		description: doc.description || `Learn about ${doc.title} in SaaSify documentation.`,
 		openGraph: {
-			title: `${doc.title} | DirectoryHub Docs`,
-			description: doc.description || `Learn about ${doc.title} in DirectoryHub documentation.`,
+			title: `${doc.title} | SaaSify Docs`,
+			description: doc.description || `Learn about ${doc.title} in SaaSify documentation.`,
 			type: "article",
 		},
 	}

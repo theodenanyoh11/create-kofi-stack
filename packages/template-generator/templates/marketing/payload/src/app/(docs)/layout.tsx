@@ -37,8 +37,8 @@ export default function DocsRootLayout({ children }: { children: ReactNode }) {
 export const metadata: Metadata = {
 	metadataBase: new URL(getServerSideURL()),
 	title: {
-		default: "Documentation | DirectoryHub",
-		template: "%s | DirectoryHub Docs",
+		default: "Documentation | SaaSify",
+		template: "%s | SaaSify Docs",
 	},
-	description: "DirectoryHub documentation - learn how to build and manage directory websites.",
+	description: "SaaSify documentation - learn how to use the platform and boost your team productivity.",
 }

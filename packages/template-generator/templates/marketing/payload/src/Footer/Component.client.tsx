@@ -277,7 +277,7 @@ export const FooterClient: React.FC<FooterClientProps> = ({ data }) => {
 							<Logo variant="auto" className="h-6 w-6" />
 						</Link>
 						<p className="text-sm text-muted-foreground">
-							© {currentYear} {copyrightText || "DirectoryHub"}
+							© {currentYear} {copyrightText || "SaaSify"}
 						</p>
 					</div>
 

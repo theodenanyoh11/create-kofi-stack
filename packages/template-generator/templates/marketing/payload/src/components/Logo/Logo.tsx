@@ -33,7 +33,7 @@ export const Logo = (props: Props) => {
 	return (
 		/* eslint-disable @next/next/no-img-element */
 		<img
-			alt="DirectoryHub Logo"
+			alt="SaaSify Logo"
 			width={34}
 			height={34}
 			loading={loading}

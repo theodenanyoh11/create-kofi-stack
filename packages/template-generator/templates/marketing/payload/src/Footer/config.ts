@@ -151,7 +151,7 @@ export const Footer: GlobalConfig = {
 			name: "copyrightText",
 			type: "text",
 			label: "Copyright Text",
-			defaultValue: "DirectoryHub",
+			defaultValue: "SaaSify",
 			admin: {
 				description: "Company name for copyright (year is added automatically)",
 			},

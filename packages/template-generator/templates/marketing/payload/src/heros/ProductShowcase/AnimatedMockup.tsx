@@ -87,7 +87,7 @@ export const AnimatedMockup: React.FC = () => {
 					<span className="dot dot-yellow" />
 					<span className="dot dot-green" />
 				</div>
-				<div className="mockup-chrome-title">DirectoryHub</div>
+				<div className="mockup-chrome-title">SaaSify</div>
 				<div className="mockup-chrome-actions" />
 			</div>
 
@@ -131,7 +131,7 @@ export const AnimatedMockup: React.FC = () => {
 					<div className="main-header">
 						<div className="header-title">
 							<h2>{state.label}</h2>
-							<span className="header-breadcrumb">DirectoryHub / {state.previewTitle}</span>
+							<span className="header-breadcrumb">SaaSify / {state.previewTitle}</span>
 						</div>
 						<div className="header-actions">
 							<button
@@ -181,7 +181,7 @@ export const AnimatedMockup: React.FC = () => {
 						<div className="preview-panel">
 							<div className="preview-header">
 								<span className="preview-label">Live Preview</span>
-								<span className="preview-url">{state.previewUrl ?? "directoryhub.app/live"}</span>
+								<span className="preview-url">{state.previewUrl ?? "saasify.app/live"}</span>
 							</div>
 							<div className="preview-card">
 								{state.previewStatus === "featured" && (

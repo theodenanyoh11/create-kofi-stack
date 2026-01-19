@@ -148,7 +148,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ data }) => {
 					{/* Header with close button */}
 					<div className="flex items-center justify-between p-4 border-b border-border">
 						<Link href="/" onClick={closeMenu} className="text-xl font-semibold">
-							DirectoryHub
+							SaaSify
 						</Link>
 						<HamburgerIcon isOpen={isOpen} onClick={closeMenu} className="lg:block" />
 					</div>

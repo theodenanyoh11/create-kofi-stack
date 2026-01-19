@@ -25,7 +25,7 @@ export default async function DocsLayoutWrapper({
 			<DocsLayout
 				tree={pageTree}
 				nav={{
-					title: "DirectoryHub Docs",
+					title: "SaaSify Docs",
 					url: "/docs",
 				}}
 				sidebar={{

@@ -21,16 +21,16 @@ const getImageURL = (image?: Media | Config["db"]["defaultIDType"] | null) => {
 
 // Default keywords for SEO
 const defaultKeywords = [
-	"directory builder",
-	"no-code directory",
-	"directory website",
-	"niche directory",
-	"business directory software",
-	"directory platform",
-	"monetize directory",
-	"SEO directory",
-	"directory SaaS",
-	"create directory website",
+	"SaaS platform",
+	"team productivity",
+	"workflow automation",
+	"business software",
+	"collaboration tools",
+	"project management",
+	"team collaboration",
+	"business automation",
+	"startup tools",
+	"productivity software",
 ]
 
 export const generateMeta = async (args: {
@@ -42,12 +42,12 @@ export const generateMeta = async (args: {
 	const ogImage = getImageURL(doc?.meta?.image)
 
 	const title = doc?.meta?.title
-		? `${doc?.meta?.title} | DirectoryHub`
-		: "DirectoryHub - Build Directories That Generate Real Business"
+		? `${doc?.meta?.title} | SaaSify`
+		: "SaaSify - The Modern Platform for Growing Teams"
 
 	const description =
 		doc?.meta?.description ||
-		"Launch a profitable directory business in minutes. The no-code platform to build, manage, and monetize niche directory websites with built-in payments, SEO, and multi-tenant scalability."
+		"Streamline workflows, boost productivity, and scale your business with one powerful platform. The modern solution for teams that want to work smarter."
 
 	// Generate canonical URL
 	const slug = Array.isArray(doc?.slug) ? doc?.slug.join("/") : doc?.slug || ""
@@ -57,9 +57,9 @@ export const generateMeta = async (args: {
 		title,
 		description,
 		keywords: defaultKeywords,
-		authors: [{ name: "DirectoryHub", url: serverUrl }],
-		creator: "DirectoryHub",
-		publisher: "DirectoryHub",
+		authors: [{ name: "SaaSify", url: serverUrl }],
+		creator: "SaaSify",
+		publisher: "SaaSify",
 		robots: {
 			index: true,
 			follow: true,

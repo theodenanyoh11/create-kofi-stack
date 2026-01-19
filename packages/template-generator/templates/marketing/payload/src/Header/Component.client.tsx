@@ -83,7 +83,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
 				<div className="flex items-center gap-8">
 					<Link href="/" className="flex items-center gap-2">
 						<Logo loading="eager" priority="high" variant="auto" />
-						<span className="text-xl font-semibold hidden sm:inline">DirectoryHub</span>
+						<span className="text-xl font-semibold hidden sm:inline">SaaSify</span>
 					</Link>
 					{/* Left nav - hidden on tablet and below, visible on desktop */}
 					<HeaderNav data={data} position="left" className="hidden lg:flex gap-6 items-center" />

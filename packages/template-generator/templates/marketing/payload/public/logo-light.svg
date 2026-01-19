@@ -1,0 +1,6 @@
+<svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="34" height="34" rx="8" fill="#3DA9A3"/>
+  <path d="M17 7C12.029 7 8 11.029 8 16C8 17.5 8.4 18.9 9.1 20.1L17 27L24.9 20.1C25.6 18.9 26 17.5 26 16C26 11.029 21.971 7 17 7Z" fill="white"/>
+  <path d="M17 10C13.686 10 11 12.686 11 16C11 17.1 11.3 18.1 11.8 19L17 24L22.2 19C22.7 18.1 23 17.1 23 16C23 12.686 20.314 10 17 10Z" fill="#3DA9A3"/>
+  <text x="17" y="19" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#0F1F3D" text-anchor="middle">S</text>
+</svg>

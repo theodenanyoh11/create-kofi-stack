@@ -1,6 +1,6 @@
 {
   "name": "kofi-stack-types",
-  "version": "2.1.49",
+  "version": "2.1.50",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

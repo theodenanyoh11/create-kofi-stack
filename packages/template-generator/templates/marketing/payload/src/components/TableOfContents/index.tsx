@@ -95,7 +95,7 @@ export function TableOfContents({ headings, signUpCta }: TableOfContentsProps) {
 							<div className="w-full aspect-square rounded-lg overflow-hidden bg-white dark:bg-[#0F1F3D] border border-[#E1E6EF] dark:border-[#0F1F3D]">
 								<Image
 									src={signUpCta.imageSrc}
-									alt={signUpCta.imageAlt || "DirectoryHub app feature"}
+									alt={signUpCta.imageAlt || "SaaSify app feature"}
 									width={200}
 									height={200}
 									className="w-full h-full object-cover"
@@ -106,7 +106,7 @@ export function TableOfContents({ headings, signUpCta }: TableOfContentsProps) {
 						{/* Text */}
 						<div>
 							<p className="text-sm font-semibold text-foreground">
-								{signUpCta.title || "Experience DirectoryHub"}
+								{signUpCta.title || "Experience SaaSify"}
 							</p>
 							<p className="text-xs text-muted-foreground mt-1">
 								{signUpCta.description || "Start building your directory today"}
@@ -115,7 +115,7 @@ export function TableOfContents({ headings, signUpCta }: TableOfContentsProps) {
 
 						{/* CTA Button */}
 						<Link
-							href={signUpCta.buttonLink || "https://app.directoryhub.app/sign-up"}
+							href={signUpCta.buttonLink || "/pricing"}
 							className="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-[#0F1F3D] hover:bg-[#0B162C] dark:bg-[#3DA9A3] dark:hover:bg-[#3DA9A3]/90 rounded-lg transition-colors"
 						>
 							{signUpCta.buttonText || "Sign up for free"}
