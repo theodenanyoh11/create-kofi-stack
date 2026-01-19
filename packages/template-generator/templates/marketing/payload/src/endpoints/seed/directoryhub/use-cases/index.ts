@@ -1,4 +1,4 @@
-export { localServicesPage } from "./local-services"
-export { b2bVendorHubsPage } from "./b2b-vendor-hubs"
-export { communitiesPage } from "./communities"
-export { marketplacesPage } from "./marketplaces"
+export { salesPage } from "./local-services"
+export { marketingPage } from "./b2b-vendor-hubs"
+export { productPage } from "./communities"
+export { operationsPage } from "./marketplaces"

@@ -20,7 +20,7 @@ export const directoryHubPricing = (): Partial<Page> => {
 									format: 0,
 									mode: "normal",
 									style: "",
-									text: "Simple, Transparent Pricing",
+									text: "Plans that grow with you",
 									version: 1,
 								},
 							],
@@ -39,7 +39,7 @@ export const directoryHubPricing = (): Partial<Page> => {
 									format: 0,
 									mode: "normal",
 									style: "",
-									text: "Start free, scale as you grow. No hidden fees, no surprises.",
+									text: "Start free. Upgrade as your team scales. No hidden fees, no surprises.",
 									version: 1,
 								},
 							],
@@ -73,7 +73,7 @@ export const directoryHubPricing = (): Partial<Page> => {
 					{
 						name: "Free",
 						price: "$0/mo", // Fallback only
-						description: "Perfect for testing your directory idea",
+						description: "Perfect for trying SaaSify",
 						featured: false,
 						features: [], // Features come from Stripe Entitlements
 						link: {
@@ -85,7 +85,7 @@ export const directoryHubPricing = (): Partial<Page> => {
 					{
 						name: "Pro",
 						price: "$29/mo", // Fallback only
-						description: "For launching your first directory",
+						description: "For small teams getting started",
 						featured: false,
 						features: [], // Features come from Stripe Entitlements
 						link: {
@@ -97,7 +97,7 @@ export const directoryHubPricing = (): Partial<Page> => {
 					{
 						name: "Business",
 						price: "$79/mo", // Fallback only
-						description: "For growing directory businesses",
+						description: "For teams ready to scale",
 						featured: true,
 						features: [], // Features come from Stripe Entitlements
 						link: {
@@ -113,9 +113,9 @@ export const directoryHubPricing = (): Partial<Page> => {
 				blockType: "proofBanner",
 				blockName: "Trust Section",
 				style: "withBackground",
-				headline: "Trusted by 500+ directory builders worldwide",
+				headline: "Trusted by 10,000+ teams worldwide",
 				subtext:
-					"Join thousands of entrepreneurs building successful directories with DirectoryHub",
+					"Join thousands of teams who have transformed how they work with SaaSify",
 			},
 			// Features Comparison
 			{
@@ -128,43 +128,43 @@ export const directoryHubPricing = (): Partial<Page> => {
 						size: "small",
 						style: "default",
 						icon: "layout",
-						title: "Beautiful Templates",
-						description: createParagraph("Professionally designed, mobile-first templates."),
-					},
-					{
-						size: "small",
-						style: "default",
-						icon: "search",
-						title: "SEO Optimization",
-						description: createParagraph("Schema markup, sitemaps, and meta tags."),
-					},
-					{
-						size: "small",
-						style: "default",
-						icon: "shield",
-						title: "SSL Security",
-						description: createParagraph("Free SSL certificates for all directories."),
+						title: "Intuitive Interface",
+						description: createParagraph("Clean, modern design that's easy to use."),
 					},
 					{
 						size: "small",
 						style: "default",
 						icon: "zap",
 						title: "Fast Performance",
-						description: createParagraph("CDN-powered for global speed."),
+						description: createParagraph("Lightning-fast load times, globally."),
+					},
+					{
+						size: "small",
+						style: "default",
+						icon: "shield",
+						title: "Enterprise Security",
+						description: createParagraph("SOC 2 compliant with encryption."),
 					},
 					{
 						size: "small",
 						style: "default",
 						icon: "globe",
-						title: "Reliable Hosting",
-						description: createParagraph("99.9% uptime with automatic scaling."),
+						title: "99.9% Uptime",
+						description: createParagraph("Reliable infrastructure you can count on."),
 					},
 					{
 						size: "small",
 						style: "default",
 						icon: "layers",
-						title: "Easy Management",
-						description: createParagraph("Intuitive dashboard for all your directories."),
+						title: "Integrations",
+						description: createParagraph("Connect with 100+ tools you use."),
+					},
+					{
+						size: "small",
+						style: "default",
+						icon: "users",
+						title: "Collaboration",
+						description: createParagraph("Real-time teamwork made simple."),
 					},
 				],
 			},
@@ -177,7 +177,7 @@ export const directoryHubPricing = (): Partial<Page> => {
 						link: {
 							type: "custom",
 							appearance: "default",
-							label: "Start Building Free",
+							label: "Start Free Trial",
 							url: "/sign-up",
 						},
 					},
@@ -203,7 +203,7 @@ export const directoryHubPricing = (): Partial<Page> => {
 										format: 0,
 										mode: "normal",
 										style: "",
-										text: "Ready to build your directory?",
+										text: "Ready to get started?",
 										version: 1,
 									},
 								],
@@ -243,8 +243,8 @@ export const directoryHubPricing = (): Partial<Page> => {
 		],
 		meta: {
 			description:
-				"Simple, transparent pricing for DirectoryHub. Start free, scale as you grow. Plans from $0 to enterprise.",
-			title: "Pricing — DirectoryHub Directory Builder",
+				"Simple, transparent pricing for SaaSify. Start free, scale as your team grows. Plans from $0 to enterprise.",
+			title: "Pricing — SaaSify",
 		},
 		title: "Pricing",
 	}

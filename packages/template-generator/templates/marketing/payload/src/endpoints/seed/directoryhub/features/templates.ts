@@ -1,11 +1,11 @@
 import type { Page } from "@/payload-types"
 import { createParagraph } from "../richtext-helper"
 
-export const templatesPage = (): Partial<Page> => {
+export const integrationsPage = (): Partial<Page> => {
 	return {
-		slug: "features/templates",
+		slug: "features/integrations",
 		_status: "published",
-		title: "Directory Templates",
+		title: "Integrations",
 		hero: {
 			type: "lowImpact",
 			richText: {
@@ -21,7 +21,7 @@ export const templatesPage = (): Partial<Page> => {
 									format: 0,
 									mode: "normal",
 									style: "",
-									text: "Launch your directory in days, not months",
+									text: "Connect all your tools in one place",
 									version: 1,
 								},
 							],
@@ -40,7 +40,7 @@ export const templatesPage = (): Partial<Page> => {
 									format: 0,
 									mode: "normal",
 									style: "",
-									text: "Choose from professionally designed directory templates, customize to match your brand, and go live instantly. No coding required.",
+									text: "One-click connections to 100+ apps your team already uses. Sync data, automate workflows, and eliminate context switching.",
 									version: 1,
 								},
 							],
@@ -62,7 +62,7 @@ export const templatesPage = (): Partial<Page> => {
 					link: {
 						type: "custom",
 						appearance: "default",
-						label: "Get started free",
+						label: "Start free trial",
 						url: "/sign-up",
 					},
 				},
@@ -70,131 +70,128 @@ export const templatesPage = (): Partial<Page> => {
 					link: {
 						type: "custom",
 						appearance: "outline",
-						label: "View all templates",
-						url: "/templates",
+						label: "View all integrations",
+						url: "/integrations",
 					},
 				},
 			],
 		},
 		layout: [
-			// Feature showcase blocks
 			{
 				blockType: "featureShowcase",
-				blockName: "Template Gallery",
-				label: "Ready-Made Templates",
-				headline: "Pick a template, customize, launch",
+				blockName: "Native Integrations",
+				label: "100+ Integrations",
+				headline: "Connect your favorite tools instantly",
 				description: createParagraph(
-					"Our template library covers every niche from local services to B2B vendor directories. Each template is designed for conversions with optimized layouts, smart filtering, and mobile-first responsive design.",
+					"Native integrations with Slack, Salesforce, HubSpot, Jira, Notion, Google Workspace, Microsoft 365, and more. Set up in minutes, not days.",
 				),
 				link: {
 					type: "custom",
-					label: "Browse templates",
-					url: "/templates",
+					label: "Browse integrations",
+					url: "/integrations",
 					appearance: "default",
 				},
 				imagePosition: "right",
 				features: [
-					{ text: "10+ professionally designed templates" },
-					{ text: "Niche-specific layouts and fields" },
-					{ text: "Mobile-first responsive design" },
-					{ text: "One-click preview and deploy" },
+					{ text: "100+ native integrations" },
+					{ text: "Two-way data sync" },
+					{ text: "Real-time updates" },
+					{ text: "No coding required" },
 				],
 			},
 			{
 				blockType: "featureShowcase",
-				blockName: "Customization",
-				label: "Brand Customization",
-				headline: "Make it yours in minutes",
+				blockName: "Custom Integrations",
+				label: "Developer Tools",
+				headline: "Build custom integrations with our API",
 				description: createParagraph(
-					"Every template is fully customizable. Change colors, fonts, layouts, and content without touching a line of code. Our visual editor makes it simple to match your brand identity perfectly.",
+					"REST API and webhooks let you connect any tool or build custom integrations. Comprehensive documentation and SDKs for popular languages.",
 				),
 				link: {
 					type: "custom",
-					label: "See customization options",
-					url: "/features",
+					label: "View API docs",
+					url: "/developers",
 					appearance: "default",
 				},
 				imagePosition: "left",
 				features: [
-					{ text: "Visual drag-and-drop editor" },
-					{ text: "Custom color schemes and fonts" },
-					{ text: "Logo and branding integration" },
-					{ text: "Custom domain support" },
+					{ text: "RESTful API access" },
+					{ text: "Custom webhooks" },
+					{ text: "SDKs for popular languages" },
+					{ text: "Detailed documentation" },
 				],
 			},
-			// Bento features for specific capabilities
 			{
 				blockType: "bentoFeatures",
-				blockName: "Template Features",
-				heading: "Built for every directory type",
+				blockName: "Integration Categories",
+				heading: "Integrations for every workflow",
 				subheading:
-					"Templates designed for specific use cases with pre-configured schemas and optimized layouts",
+					"Connect your entire tech stack and keep data flowing seamlessly",
 				features: [
 					{
 						size: "small",
 						style: "gradient",
-						icon: "layout",
-						title: "Local Services",
+						icon: "messageSquare",
+						title: "Communication",
 						description: createParagraph(
-							"Plumbers, photographers, restaurants with map integration.",
+							"Slack, Microsoft Teams, Discord, and email integrations.",
 						),
 					},
 					{
 						size: "small",
 						style: "accent",
-						icon: "building",
-						title: "B2B Directories",
+						icon: "users",
+						title: "CRM & Sales",
 						description: createParagraph(
-							"Software vendors, agencies, consultants with comparison views.",
+							"Salesforce, HubSpot, Pipedrive, and more.",
 						),
 					},
 					{
 						size: "small",
 						style: "default",
-						icon: "users",
-						title: "Community Directories",
+						icon: "folder",
+						title: "Project Management",
 						description: createParagraph(
-							"Member directories, alumni networks, professional groups.",
+							"Jira, Asana, Monday.com, Trello integrations.",
 						),
 					},
 					{
 						size: "small",
 						style: "primary",
-						icon: "building",
-						title: "Marketplaces",
+						icon: "database",
+						title: "Data & Storage",
 						description: createParagraph(
-							"Multi-vendor platforms with seller profiles and products.",
+							"Google Drive, Dropbox, AWS S3, and databases.",
 						),
 					},
 					{
 						size: "small",
 						style: "default",
-						icon: "globe",
-						title: "Global Ready",
-						description: createParagraph("Multi-language support and localization built-in."),
+						icon: "barChart",
+						title: "Analytics",
+						description: createParagraph("Google Analytics, Mixpanel, Amplitude."),
 					},
 					{
 						size: "small",
 						style: "default",
 						icon: "zap",
-						title: "Fast Loading",
-						description: createParagraph("Optimized for speed with edge caching."),
+						title: "Automation",
+						description: createParagraph("Zapier, Make, n8n for custom workflows."),
 					},
 				],
 			},
-			// Proof banner
 			{
 				blockType: "proofBanner",
 				blockName: "CTA Section",
 				style: "centered",
-				headline: "Ready to launch your directory?",
-				subtext: "Pick a template and go live today. Free to start, upgrade as you grow.",
+				headline: "Connect your tools today",
+				subtext: "One-click integrations with 100+ apps. Set up in minutes, not days.",
 				links: [
 					{
 						link: {
 							type: "custom",
 							appearance: "default",
-							label: "Start for free",
+							label: "Start free trial",
 							url: "/sign-up",
 						},
 					},
@@ -202,8 +199,8 @@ export const templatesPage = (): Partial<Page> => {
 						link: {
 							type: "custom",
 							appearance: "outline",
-							label: "Book a demo",
-							url: "/contact",
+							label: "View all integrations",
+							url: "/integrations",
 						},
 					},
 				],
@@ -211,8 +208,8 @@ export const templatesPage = (): Partial<Page> => {
 		],
 		meta: {
 			description:
-				"Launch your directory website in days with professionally designed templates. Customize colors, layouts, and content without coding. Start free today.",
-			title: "Directory Templates — Launch Fast with DirectoryHub",
+				"Connect SaaSify with 100+ tools including Slack, Salesforce, HubSpot, and more. Native integrations, custom webhooks, and REST API access.",
+			title: "Integrations — Connect Your Tools with SaaSify",
 		},
 	}
 }

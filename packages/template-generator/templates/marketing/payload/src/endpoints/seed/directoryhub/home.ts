@@ -30,7 +30,7 @@ export const directoryHubHome = ({
 									format: 0,
 									mode: "normal",
 									style: "",
-									text: "Launch, monetize, and scale directories fast",
+									text: "The modern platform for growing teams",
 									version: 1,
 								},
 							],
@@ -49,7 +49,7 @@ export const directoryHubHome = ({
 									format: 0,
 									mode: "normal",
 									style: "",
-									text: "The platform that accelerates directory launches, automates operations, and grows revenue.",
+									text: "Streamline workflows, boost productivity, and scale your business with one powerful platform.",
 									version: 1,
 								},
 							],
@@ -71,7 +71,7 @@ export const directoryHubHome = ({
 					link: {
 						type: "custom",
 						appearance: "default",
-						label: "Get started",
+						label: "Start free trial",
 						url: "/sign-up",
 					},
 				},
@@ -79,26 +79,26 @@ export const directoryHubHome = ({
 					link: {
 						type: "custom",
 						appearance: "outline",
-						label: "View templates",
-						url: "/templates",
+						label: "Watch demo",
+						url: "/demo",
 					},
 				},
 			],
 		},
 		layout: [
-			// 1. Logo Banner - Social proof strip (KEEP)
+			// 1. Logo Banner - Social proof strip
 			{
 				blockType: "logoBanner",
 				blockName: "Trusted By",
-				heading: "Built for businesses where directories matter",
+				heading: "Trusted by fast-growing companies everywhere",
 				style: "scroll",
 				logos: [
-					{ name: "Northwind Market" },
-					{ name: "Acme Listings" },
+					{ name: "TechFlow Inc" },
+					{ name: "Acme Corp" },
 					{ name: "Evergreen HQ" },
 					{ name: "Atlas Network" },
-					{ name: "Beacon Partners" },
-					{ name: "Cascade Labs" },
+					{ name: "Beacon Digital" },
+					{ name: "Cascade Systems" },
 				],
 			},
 
@@ -107,15 +107,15 @@ export const directoryHubHome = ({
 				blockType: "proofBanner",
 				blockName: "Value Proposition",
 				style: "centered",
-				headline: "Turn your niche expertise into a revenue-generating directory",
+				headline: "Transform how your team works, collaborates, and grows",
 				subtext:
-					"Every interaction feeds into a powerful platform that powers personalized experiences, targeted discovery, and intelligent automation across every touchpoint.",
+					"Every interaction feeds into a powerful platform that powers personalized experiences, seamless collaboration, and intelligent automation across every touchpoint.",
 				links: [
 					{
 						link: {
 							type: "custom",
 							appearance: "default",
-							label: "Start for free",
+							label: "Start free trial",
 							url: "/sign-up",
 						},
 					},
@@ -133,9 +133,9 @@ export const directoryHubHome = ({
 			// 3. Bento Features - Asymmetric bento grid with 8 cards
 			{
 				blockType: "bentoFeatures",
-				blockName: "Get to know DirectoryHub",
-				heading: "Get to know DirectoryHub",
-				subheading: "Everything you need to launch and monetize directories",
+				blockName: "Get to know SaaSify",
+				heading: "Discover what SaaSify can do",
+				subheading: "Everything you need to work smarter and scale faster",
 				features: [
 					// Position 1: Small (1x1) - top left
 					{
@@ -143,24 +143,24 @@ export const directoryHubHome = ({
 						style: "gradient",
 						icon: "zap",
 						stat: "5x",
-						title: "Faster launches",
-						description: createParagraph("Launch your directory in days, not months."),
+						title: "Faster onboarding",
+						description: createParagraph("Get your team up and running in hours, not weeks."),
 					},
 					// Position 2: Small (1x1) - top middle
 					{
 						size: "small",
 						style: "accent",
 						icon: "rocket",
-						title: "Go live quickly",
-						description: createParagraph("Pick a template, customize your brand, and publish."),
+						title: "Quick setup",
+						description: createParagraph("Configure your workspace, invite your team, and start collaborating."),
 					},
 					// Position 3: Small (1x1) - top right
 					{
 						size: "small",
 						style: "default",
-						icon: "dollarSign",
-						title: "Monetize instantly",
-						description: createParagraph("Stripe payments and subscription tiers built-in."),
+						icon: "layers",
+						title: "Powerful integrations",
+						description: createParagraph("Connect with 100+ tools you already use."),
 					},
 					// Position 4: Tall (1x2) - left side spanning 2 rows
 					{
@@ -169,17 +169,17 @@ export const directoryHubHome = ({
 						icon: "shield",
 						title: "Enterprise security",
 						description: createParagraph(
-							"Per-tenant isolation, encrypted data, and complete audit trails for peace of mind.",
+							"SOC 2 compliant with end-to-end encryption and complete audit trails for peace of mind.",
 						),
 					},
 					// Position 5: Small (1x1) - row 2, middle
 					{
 						size: "small",
 						style: "default",
-						icon: "search",
-						stat: "100%",
-						title: "SEO ready",
-						description: createParagraph("Schema markup and sitemaps generated automatically."),
+						icon: "globe",
+						stat: "99.9%",
+						title: "Uptime",
+						description: createParagraph("Reliable infrastructure you can count on."),
 					},
 					// Position 6: Small (1x1) - row 2, right
 					{
@@ -187,7 +187,7 @@ export const directoryHubHome = ({
 						style: "default",
 						icon: "globe",
 						title: "Global scale",
-						description: createParagraph("Multi-tenant with custom domains."),
+						description: createParagraph("Multi-region with custom domains."),
 					},
 					// Position 7: Small (1x1) - row 3, middle
 					{
@@ -195,172 +195,172 @@ export const directoryHubHome = ({
 						style: "default",
 						icon: "settings",
 						title: "Smart automation",
-						description: createParagraph("Automated workflows and moderation."),
+						description: createParagraph("Automate repetitive tasks and workflows."),
 					},
 					// Position 8: Small (1x1) - row 3, right
 					{
 						size: "small",
 						style: "default",
 						icon: "layers",
-						title: "Custom fields",
-						description: createParagraph("Flexible schemas for any directory type."),
+						title: "Flexible workflows",
+						description: createParagraph("Build custom processes for any use case."),
 					},
 				],
 			},
 
-			// 4. Feature Showcase: Templates (image right)
+			// 4. Feature Showcase: Integrations (image right)
 			{
 				blockType: "featureShowcase",
-				blockName: "Feature: Templates",
-				label: "Directory Templates",
-				headline: "Go from idea to live directory in a weekend",
+				blockName: "Feature: Integrations",
+				label: "Seamless Integrations",
+				headline: "Connect everything your team uses in one place",
 				description: createParagraph(
-					"High-converting directory templates designed for every niche. Benefit from schema pre-fills, dynamic UI, smart search, and intelligent optimizations that drive engagement.",
+					"Integrate with 100+ popular tools including Slack, Salesforce, HubSpot, and more. Two-way sync keeps everything up to date automatically.",
 				),
 				link: {
 					type: "custom",
-					label: "Explore templates",
-					url: "/templates",
+					label: "Explore integrations",
+					url: "/features/integrations",
 					appearance: "default",
 				},
 				imagePosition: "right",
 				features: [
-					{ text: "10+ ready-to-use templates" },
-					{ text: "Custom domain in minutes" },
-					{ text: "Mobile-first responsive design" },
-					{ text: "Deep localization support" },
+					{ text: "100+ native integrations" },
+					{ text: "Two-way data sync" },
+					{ text: "Custom webhooks" },
+					{ text: "API access included" },
 				],
 			},
 
-			// 5. Feature Showcase: Monetization (image left)
+			// 5. Feature Showcase: Analytics (image left)
 			{
 				blockType: "featureShowcase",
-				blockName: "Feature: Monetization",
-				label: "Revenue Engine",
-				headline: "Drive revenue with built-in monetization",
+				blockName: "Feature: Analytics",
+				label: "Actionable Analytics",
+				headline: "Make decisions backed by real-time data",
 				description: createParagraph(
-					"Stop leaving money on the table. Charge for listings, offer premium placements, and run subscription tiers without writing a line of payment code. Automated invoicing and tax handling included.",
+					"Track every metric that matters. From team performance to customer insights, get the visibility you need to drive growth.",
 				),
 				link: {
 					type: "custom",
-					label: "Learn about monetization",
-					url: "/pricing",
+					label: "Learn about analytics",
+					url: "/features/analytics",
 					appearance: "default",
 				},
 				imagePosition: "left",
 				features: [
-					{ text: "Subscription tiers" },
-					{ text: "Featured placements" },
-					{ text: "Pay-per-listing options" },
-					{ text: "Automated payouts" },
+					{ text: "Real-time dashboards" },
+					{ text: "Custom reports" },
+					{ text: "Team performance metrics" },
+					{ text: "Automated insights" },
 				],
 			},
 
-			// 6. Feature Showcase: SEO (image right)
+			// 6. Feature Showcase: Automation (image right)
 			{
 				blockType: "featureShowcase",
-				blockName: "Feature: SEO",
-				label: "Search Optimization",
-				headline: "Rank on page one without the technical overhead",
+				blockName: "Feature: Automation",
+				label: "Workflow Automation",
+				headline: "Eliminate busywork with smart automation",
 				description: createParagraph(
-					"Every directory comes with enterprise-grade SEO built-in. Structured data, dynamic sitemaps, and optimized meta tags ensure your listings get discovered by the right audience.",
+					"Build powerful workflows without code. Automate approvals, notifications, data entry, and more to focus on what matters.",
 				),
 				link: {
 					type: "custom",
-					label: "See SEO features",
-					url: "/features",
+					label: "See automation features",
+					url: "/features/automation",
 					appearance: "default",
 				},
 				imagePosition: "right",
 				features: [
-					{ text: "Automatic schema markup" },
-					{ text: "Dynamic XML sitemaps" },
-					{ text: "SEO-friendly URLs" },
-					{ text: "Social sharing optimization" },
+					{ text: "Visual workflow builder" },
+					{ text: "Conditional logic" },
+					{ text: "Scheduled triggers" },
+					{ text: "Cross-app automation" },
 				],
 			},
 
-			// 7. Feature Showcase: Management (image left)
+			// 7. Feature Showcase: Collaboration (image left)
 			{
 				blockType: "featureShowcase",
-				blockName: "Feature: Management",
-				label: "Admin Dashboard",
-				headline: "Manage everything from one powerful dashboard",
+				blockName: "Feature: Collaboration",
+				label: "Team Collaboration",
+				headline: "Work together seamlessly, from anywhere",
 				description: createParagraph(
-					"Review submissions, moderate content, track analytics, and manage payments all in one place. Built-in tools help you maintain quality while scaling your directory business.",
+					"Real-time collaboration features keep everyone aligned. Share workspaces, leave comments, and track activity across your entire team.",
 				),
 				link: {
 					type: "custom",
-					label: "Explore dashboard",
+					label: "Explore collaboration",
 					url: "/features",
 					appearance: "default",
 				},
 				imagePosition: "left",
 				features: [
-					{ text: "Submission review queues" },
-					{ text: "Bulk moderation tools" },
-					{ text: "Real-time analytics" },
-					{ text: "User management" },
+					{ text: "Real-time collaboration" },
+					{ text: "Shared workspaces" },
+					{ text: "Comments and mentions" },
+					{ text: "Activity tracking" },
 				],
 			},
 
-			// 8. Industry Tabs - Bird-style tabbed use cases
+			// 8. Industry Tabs - Team solutions
 			{
 				blockType: "industryTabs",
-				blockName: "Use Cases",
-				heading: "Directories that turn data into intelligent experiences",
+				blockName: "Team Solutions",
+				heading: "Solutions that deliver real results",
 				subheading:
-					"Whether you are building for local services or global marketplaces, DirectoryHub adapts to your model.",
+					"Whether you're in sales, marketing, or product, SaaSify adapts to how your team works.",
 				tabs: [
 					{
-						name: "Local Services",
-						stat: "340%",
-						statLabel: "Higher conversion with location-based discovery",
+						name: "Sales Teams",
+						stat: "40%",
+						statLabel: "Faster deal cycles with smart pipeline tools",
 						description:
-							"Plumbers, photographers, restaurants. Card grids with reviews, maps, and geo-filtering that help customers find exactly what they need.",
+							"Close deals faster with intelligent pipeline management, automated follow-ups, and real-time insights that help your team hit quota every quarter.",
 						link: {
 							type: "custom",
-							label: "Local directory solutions",
-							url: "/templates",
+							label: "Solutions for sales",
+							url: "/use-cases/sales",
 							appearance: "default",
 						},
 					},
 					{
-						name: "B2B Vendor Hubs",
-						stat: "94%",
-						statLabel: "Faster vendor onboarding with smart filters",
+						name: "Marketing Teams",
+						stat: "3x",
+						statLabel: "Campaign velocity with streamlined workflows",
 						description:
-							"SaaS tools, agencies, consultants. Advanced filters, comparison views, and lead capture that convert browsers into buyers.",
+							"Launch campaigns that convert with collaborative planning, asset management, and performance analytics all in one place.",
 						link: {
 							type: "custom",
-							label: "B2B directory solutions",
-							url: "/templates",
+							label: "Solutions for marketing",
+							url: "/use-cases/marketing",
 							appearance: "default",
 						},
 					},
 					{
-						name: "Communities",
-						stat: "+12K",
-						statLabel: "Members connected through curated networks",
+						name: "Product Teams",
+						stat: "50%",
+						statLabel: "Faster shipping with better prioritization",
 						description:
-							"Member directories, alumni networks, professional associations with gated access and rich member profiles.",
+							"Ship features users love with roadmap planning, feedback collection, and release management that keeps everyone aligned.",
 						link: {
 							type: "custom",
-							label: "Community solutions",
-							url: "/templates",
+							label: "Solutions for product",
+							url: "/use-cases/product",
 							appearance: "default",
 						},
 					},
 					{
-						name: "Marketplaces",
-						stat: "$2M+",
-						statLabel: "Revenue processed through integrated payments",
+						name: "Operations",
+						stat: "60%",
+						statLabel: "Time saved with process automation",
 						description:
-							"Multi-vendor search, featured slots, automated payouts to sellers. Everything you need to run a thriving marketplace.",
+							"Scale your operations without the chaos. Automate processes, manage resources, and get visibility across your entire organization.",
 						link: {
 							type: "custom",
-							label: "Marketplace solutions",
-							url: "/templates",
+							label: "Solutions for ops",
+							url: "/use-cases/operations",
 							appearance: "default",
 						},
 					},
@@ -371,36 +371,36 @@ export const directoryHubHome = ({
 			{
 				blockType: "testimonialsGrid",
 				blockName: "Customer Stories",
-				heading: "Trusted by founders who depend on their directories",
+				heading: "Loved by teams at companies of all sizes",
 				subheading:
-					"See how leading directory builders use DirectoryHub to drive intelligent growth.",
+					"See how leading teams use SaaSify to drive growth and productivity.",
 				testimonials: [
 					{
 						...(testimonialImages[0] && { image: testimonialImages[0].id }),
 						stat: "94%",
-						statLabel: "Faster launch time",
+						statLabel: "Faster onboarding",
 						quote:
-							"We went from idea to collecting payments in 3 days. The templates and Stripe integration saved us months of development time.",
+							"We got our entire team onboarded in under a day. The intuitive interface and powerful integrations saved us weeks of setup time.",
 						author: "Sarah Chen",
-						company: "Northwind Market",
+						company: "TechFlow Inc",
 					},
 					{
 						...(testimonialImages[1] && { image: testimonialImages[1].id }),
-						stat: "+300%",
-						statLabel: "Traffic growth",
+						stat: "3x",
+						statLabel: "Productivity",
 						quote:
-							"Our niche directory started ranking on page 1 within weeks. The structured data and sitemaps are handled automatically.",
+							"Our team is shipping features faster than ever. The automation tools eliminated hours of manual work every week.",
 						author: "Marcus Rivera",
-						company: "Beacon Partners",
+						company: "Beacon Digital",
 					},
 					{
 						...(testimonialImages[2] && { image: testimonialImages[2].id }),
-						stat: "161%",
-						statLabel: "Revenue increase",
+						stat: "40%",
+						statLabel: "Cost reduction",
 						quote:
-							"Featured placements and premium tiers covered our costs in the first month. The monetization tools just work.",
+							"We consolidated five different tools into SaaSify. The ROI was immediate and our team loves having everything in one place.",
 						author: "David Kim",
-						company: "Cascade Labs",
+						company: "Cascade Systems",
 					},
 				],
 			},
@@ -426,39 +426,39 @@ export const directoryHubHome = ({
 						label: "Security & Compliance",
 						heading: "Enterprise-level security",
 						description:
-							"Keep your data private with encryption, granular access control, and compliance-ready infrastructure.",
+							"Keep your data safe with encryption, granular access control, and compliance-ready infrastructure.",
 						items: [
-							{ icon: "shield", text: "SOC 2-minded controls" },
-							{ icon: "lock", text: "Per-tenant data isolation" },
+							{ icon: "shield", text: "SOC 2 Type II certified" },
+							{ icon: "lock", text: "End-to-end encryption" },
 							{ icon: "award", text: "Complete audit trails" },
-							{ icon: "globe", text: "GDPR-ready infrastructure" },
+							{ icon: "globe", text: "GDPR compliant" },
 						],
 					},
 				],
 			},
 
-			// 11. Integrations Banner (KEEP)
+			// 11. Integrations Banner
 			{
 				blockType: "logoBanner",
 				blockName: "Integrations",
-				heading: "Powered by industry-leading technology",
+				heading: "Integrates with your favorite tools",
 				style: "grid",
 				logos: [
-					{ name: "Stripe" },
-					{ name: "Vercel" },
-					{ name: "AWS" },
-					{ name: "Google Analytics" },
+					{ name: "Slack" },
+					{ name: "Salesforce" },
+					{ name: "HubSpot" },
+					{ name: "Google Workspace" },
 					{ name: "Zapier" },
-					{ name: "Convex" },
+					{ name: "Jira" },
 				],
 			},
 
-			// 12. Pricing (KEEP)
+			// 12. Pricing
 			{
 				blockType: "pricingTable",
 				blockName: "Pricing",
 				heading: "Simple, transparent pricing",
-				subheading: "Start free, upgrade as you grow. No hidden fees.",
+				subheading: "Start free, upgrade as your team grows. No hidden fees.",
 				showComparisonTable: false,
 				showViewAllLink: true,
 				maxFeaturesOnCard: 4,
@@ -466,10 +466,10 @@ export const directoryHubHome = ({
 					{
 						name: "Free",
 						price: "$0/mo",
-						description: "Perfect for getting started.",
+						description: "Perfect for trying SaaSify.",
 						features: [
-							{ feature: "1 directory site", included: true },
-							{ feature: "Basic customization", included: true },
+							{ feature: "Up to 3 users", included: true },
+							{ feature: "Basic features", included: true },
 							{ feature: "Community support", included: true },
 						],
 						link: {
@@ -482,12 +482,12 @@ export const directoryHubHome = ({
 					{
 						name: "Pro",
 						price: "$29/mo",
-						description: "For growing businesses.",
+						description: "For small teams getting started.",
 						featured: true,
 						features: [
-							{ feature: "5 directory sites", included: true },
-							{ feature: "Advanced customization", included: true },
-							{ feature: "Custom domains", included: true },
+							{ feature: "Up to 10 users", included: true },
+							{ feature: "Advanced features", included: true },
+							{ feature: "Integrations", included: true },
 							{ feature: "Priority support", included: true },
 						],
 						link: {
@@ -500,10 +500,10 @@ export const directoryHubHome = ({
 					{
 						name: "Business",
 						price: "$99/mo",
-						description: "For teams and agencies.",
+						description: "For teams ready to scale.",
 						features: [
-							{ feature: "Unlimited directory sites", included: true },
-							{ feature: "White-label branding", included: true },
+							{ feature: "Unlimited users", included: true },
+							{ feature: "All features", included: true },
 							{ feature: "API access", included: true },
 							{ feature: "Dedicated support", included: true },
 						],
@@ -521,16 +521,16 @@ export const directoryHubHome = ({
 			{
 				blockType: "finalCta",
 				blockName: "Final CTA",
-				headline: "The complete platform that scales with your directory business",
+				headline: "Ready to transform how your team works?",
 				subheading:
-					"Join hundreds of founders who chose the faster path to a profitable directory business. Start free, upgrade as you grow.",
+					"Join thousands of teams who chose the smarter way to work. Start free, upgrade as you grow.",
 				style: "dark",
 				links: [
 					{
 						link: {
 							type: "custom",
 							appearance: "outline",
-							label: "Get started",
+							label: "Start free trial",
 							url: "/sign-up",
 						},
 					},
@@ -547,8 +547,8 @@ export const directoryHubHome = ({
 		],
 		meta: {
 			description:
-				"Launch a profitable directory business in minutes with built-in payments, SEO, and automation. Free to start.",
-			title: "DirectoryHub — Launch revenue-first directories fast",
+				"Streamline workflows, boost productivity, and scale your business with SaaSify. The modern platform for growing teams. Free to start.",
+			title: "SaaSify — The Modern Platform for Growing Teams",
 		},
 		title: "Home",
 	}

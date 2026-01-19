@@ -24,7 +24,7 @@ export const directoryHubAbout = ({ contactForm }: AboutArgs): Partial<Page> => 
 									format: 0,
 									mode: "normal",
 									style: "",
-									text: "We help entrepreneurs build directory businesses",
+									text: "We're building the future of team productivity",
 									version: 1,
 								},
 							],
@@ -43,7 +43,7 @@ export const directoryHubAbout = ({ contactForm }: AboutArgs): Partial<Page> => 
 									format: 0,
 									mode: "normal",
 									style: "",
-									text: "DirectoryHub makes it easy for anyone to launch, monetize, and grow niche directory websites — without writing code.",
+									text: "SaaSify makes it easy for teams to collaborate, automate workflows, and scale their operations — all in one powerful platform.",
 									version: 1,
 								},
 							],
@@ -67,9 +67,9 @@ export const directoryHubAbout = ({ contactForm }: AboutArgs): Partial<Page> => 
 				blockType: "featureShowcase",
 				blockName: "Our Mission",
 				label: "Our Mission",
-				headline: "Democratizing the directory business model",
+				headline: "Making powerful tools accessible to every team",
 				description: createParagraph(
-					"Directory websites remain one of the most sustainable online business models, yet building one traditionally requires significant technical expertise. We believe anyone with niche knowledge should be able to turn that expertise into a profitable directory business. DirectoryHub handles the technical complexity so you can focus on what matters: curating great content and growing your community.",
+					"Great software shouldn't require a huge budget or dedicated IT team. We believe every organization deserves access to the tools that help them do their best work. SaaSify brings together the best of project management, collaboration, and automation in one intuitive platform that grows with your team.",
 				),
 				link: {
 					type: "custom",
@@ -79,9 +79,9 @@ export const directoryHubAbout = ({ contactForm }: AboutArgs): Partial<Page> => 
 				},
 				imagePosition: "right",
 				features: [
-					{ text: "No coding required" },
-					{ text: "Built-in monetization" },
-					{ text: "Enterprise-grade SEO" },
+					{ text: "No technical skills required" },
+					{ text: "100+ integrations built-in" },
+					{ text: "Enterprise-grade security" },
 					{ text: "Scale as you grow" },
 				],
 			},
@@ -90,9 +90,9 @@ export const directoryHubAbout = ({ contactForm }: AboutArgs): Partial<Page> => 
 				blockType: "proofBanner",
 				blockName: "Impact Stats",
 				style: "withBackground",
-				headline: "Trusted by directory builders worldwide",
+				headline: "Trusted by teams worldwide",
 				subtext:
-					"Join hundreds of entrepreneurs who have launched successful directories with DirectoryHub",
+					"Join thousands of teams who have transformed how they work with SaaSify",
 			},
 			// Values Grid
 			{
@@ -107,7 +107,7 @@ export const directoryHubAbout = ({ contactForm }: AboutArgs): Partial<Page> => 
 						icon: "zap",
 						title: "Simplicity First",
 						description: createParagraph(
-							"We remove complexity so you can focus on building your business.",
+							"We remove complexity so you can focus on what matters most.",
 						),
 					},
 					{
@@ -116,7 +116,7 @@ export const directoryHubAbout = ({ contactForm }: AboutArgs): Partial<Page> => 
 						icon: "rocket",
 						title: "Built for Growth",
 						description: createParagraph(
-							"Every feature is designed to help you scale sustainably.",
+							"Every feature is designed to help your team scale sustainably.",
 						),
 					},
 					{
@@ -141,7 +141,7 @@ export const directoryHubAbout = ({ contactForm }: AboutArgs): Partial<Page> => 
 						icon: "globe",
 						title: "Quality Matters",
 						description: createParagraph(
-							"We build tools that help you maintain high-quality directories.",
+							"We build tools that are reliable, fast, and delightful to use.",
 						),
 					},
 					{
@@ -160,19 +160,19 @@ export const directoryHubAbout = ({ contactForm }: AboutArgs): Partial<Page> => 
 				blockType: "featureShowcase",
 				blockName: "Our Story",
 				label: "Our Story",
-				headline: "From frustration to solution",
+				headline: "Born from real frustrations",
 				description: createParagraph(
-					"DirectoryHub was born when our founders tried to build a niche directory and discovered how much technical overhead was involved. After months of custom development for what seemed like a simple project, we realized there had to be a better way. We built DirectoryHub to be the platform we wished existed — one that handles all the technical complexity while giving directory builders complete control over their business.",
+					"SaaSify started when our founders experienced firsthand how fragmented and frustrating work tools had become. Juggling dozens of apps, losing context between tools, and spending more time managing work than doing it. We built the platform we wished we had — one that brings everything together and just works.",
 				),
 				link: {
 					type: "custom",
 					url: "/sign-up",
-					label: "Start building free",
+					label: "Start free trial",
 					appearance: "default",
 				},
 				imagePosition: "left",
 				features: [
-					{ text: "Founded by directory builders" },
+					{ text: "Founded by operators, for operators" },
 					{ text: "Bootstrapped and profitable" },
 					{ text: "Customer-funded development" },
 					{ text: "Global remote team" },
@@ -216,7 +216,7 @@ export const directoryHubAbout = ({ contactForm }: AboutArgs): Partial<Page> => 
 												format: 0,
 												mode: "normal",
 												style: "",
-												text: "Have questions about DirectoryHub? We'd love to hear from you. Send us a message and our team will respond within 24 hours.",
+												text: "Have questions about SaaSify? We'd love to hear from you. Send us a message and our team will respond within 24 hours.",
 												version: 1,
 											},
 										],
@@ -249,14 +249,14 @@ export const directoryHubAbout = ({ contactForm }: AboutArgs): Partial<Page> => 
 				blockType: "proofBanner",
 				blockName: "Footer CTA",
 				style: "centered",
-				headline: "Ready to build your directory?",
-				subtext: "Join hundreds of entrepreneurs building successful directory businesses.",
+				headline: "Ready to transform how your team works?",
+				subtext: "Join thousands of teams building their future with SaaSify.",
 				links: [
 					{
 						link: {
 							type: "custom",
 							appearance: "default",
-							label: "Start for free",
+							label: "Start free trial",
 							url: "/sign-up",
 						},
 					},
@@ -273,8 +273,8 @@ export const directoryHubAbout = ({ contactForm }: AboutArgs): Partial<Page> => 
 		],
 		meta: {
 			description:
-				"Learn about DirectoryHub — the platform that makes it easy to build, monetize, and grow directory websites. Founded by directory builders, for directory builders.",
-			title: "About DirectoryHub — Our Mission & Story",
+				"Learn about SaaSify — the platform that makes it easy to collaborate, automate, and scale. Built by operators, for operators.",
+			title: "About SaaSify — Our Mission & Story",
 		},
 		title: "About",
 	}

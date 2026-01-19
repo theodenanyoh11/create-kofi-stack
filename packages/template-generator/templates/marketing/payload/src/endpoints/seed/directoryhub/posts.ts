@@ -20,601 +20,611 @@ export const blogPosts = (categories: Category[]): Partial<Post>[] => {
 	const findCategory = (slug: string) => categories.find((c) => c.slug === slug)?.id
 
 	const posts: Partial<Post>[] = [
-		// Directory Business Strategies (5 posts)
+		// Product & Growth (5 posts)
 		{
-			title: "How to Launch a Profitable Directory Website in 2024",
-			slug: "how-to-launch-profitable-directory-website-2024",
+			title: "How to Build a Product-Led Growth Strategy in 2024",
+			slug: "how-to-build-product-led-growth-strategy-2024",
 			_status: "published",
 			publishedAt: new Date("2024-01-15").toISOString(),
 			categories: findCategory("business") ? [findCategory("business")!] : [],
 			content: generatePostContent([
 				{
-					heading: "The Directory Business Opportunity",
+					heading: "The Rise of Product-Led Growth",
 					content:
-						"Directory websites remain one of the most viable online business models in 2024. Unlike content sites that require constant updates, directories generate recurring revenue through listings and subscriptions. This guide walks you through everything you need to know to launch your first directory successfully.",
+						"Product-led growth (PLG) has become the dominant go-to-market strategy for modern SaaS companies. By letting the product drive acquisition, conversion, and expansion, companies like Slack, Dropbox, and Notion have achieved explosive growth with efficient unit economics.",
 				},
 				{
-					heading: "Choosing Your Niche",
+					heading: "Core PLG Principles",
 					content:
-						"The key to a successful directory is finding a niche with demand but limited competition. Look for industries where businesses actively seek customers online but generic directories like Yelp or Google Maps don't serve well. Professional services, B2B vendors, and specialized local services are excellent starting points.",
+						"At its heart, PLG is about removing friction. Users should be able to experience value from your product without talking to sales, attending demos, or jumping through hoops. The product itself becomes your best salesperson.",
 				},
 				{
-					heading: "Building Your MVP",
+					heading: "Designing for Self-Service",
 					content:
-						"Don't spend months building the perfect directory. Launch with a minimum viable product featuring 50-100 quality listings, basic search and filtering, and a simple submission form. You can always add features later based on user feedback.",
+						"Build onboarding flows that get users to their 'aha moment' as quickly as possible. Use progressive disclosure to avoid overwhelming new users. Implement in-app guidance that teaches by doing, not by reading documentation.",
 				},
 				{
-					heading: "Acquiring Your First Listings",
+					heading: "Freemium vs Free Trial",
 					content:
-						"Start by manually adding listings from public sources like business registrations and industry associations. Then reach out to businesses directly with free listings to build your initial database. Quality matters more than quantity in the early stages.",
+						"Freemium works best for products with low marginal costs and strong network effects. Free trials work better for complex products where full functionality is needed to demonstrate value. Some companies combine both approaches.",
 				},
 				{
-					heading: "Monetization Strategies",
+					heading: "Measuring PLG Success",
 					content:
-						"The most successful directories use multiple revenue streams: premium listings, featured placements, subscription tiers, and lead generation fees. Start with one model and expand as you understand what your audience and listed businesses value most.",
+						"Track activation rate, time-to-value, expansion revenue, and product-qualified leads. The ratio of self-serve to sales-assisted conversions shows how effectively your product sells itself.",
 				},
 			]),
 			meta: {
-				title: "How to Launch a Profitable Directory Website in 2024",
+				title: "How to Build a Product-Led Growth Strategy in 2024",
 				description:
-					"Complete guide to starting a directory business. Learn niche selection, MVP building, listing acquisition, and monetization strategies.",
+					"Learn the principles of product-led growth and how to implement a PLG strategy. From freemium models to activation metrics.",
 			},
 		},
 		{
-			title: "10 Directory Business Models That Actually Make Money",
-			slug: "10-directory-business-models-that-make-money",
+			title: "10 SaaS Metrics Every Founder Should Track",
+			slug: "10-saas-metrics-every-founder-should-track",
 			_status: "published",
 			publishedAt: new Date("2024-01-22").toISOString(),
 			categories: findCategory("business") ? [findCategory("business")!] : [],
 			content: generatePostContent([
 				{
-					heading: "Introduction to Directory Monetization",
+					heading: "Why Metrics Matter",
 					content:
-						"Not all directories are created equal when it comes to making money. Some niches and business models consistently outperform others. Here are 10 proven directory business models that generate real revenue.",
+						"SaaS businesses run on metrics. The right numbers help you make better decisions, raise capital, and identify problems before they become crises. Here are the 10 metrics every SaaS founder needs to understand and track.",
 				},
 				{
-					heading: "1. Local Service Directories",
+					heading: "1. Monthly Recurring Revenue (MRR)",
 					content:
-						"Directories connecting homeowners with plumbers, electricians, and contractors generate revenue through lead fees and featured placements. HomeAdvisor built a billion-dollar business on this model.",
+						"The foundation of SaaS metrics. Track new MRR, expansion MRR, contraction MRR, and churned MRR separately to understand the components of your growth.",
 				},
 				{
-					heading: "2. B2B Software Directories",
+					heading: "2. Annual Recurring Revenue (ARR)",
 					content:
-						"Think G2 or Capterra. These directories charge software vendors for premium profiles, lead capture, and verified reviews. High ticket items mean high willingness to pay for visibility.",
+						"MRR × 12, but only if your MRR is relatively stable. ARR is the standard metric for SaaS valuations and helps with long-term planning and forecasting.",
 				},
 				{
-					heading: "3. Professional Service Directories",
+					heading: "3. Customer Acquisition Cost (CAC)",
 					content:
-						"Lawyers, accountants, and consultants pay premium prices for qualified leads. Directories in these niches can charge $50-500 per lead depending on the practice area.",
+						"Total sales and marketing spend divided by new customers acquired. Include all costs: salaries, tools, ads, content, events. Measure by channel for optimization.",
 				},
 				{
-					heading: "4. Wedding Vendor Directories",
+					heading: "4. Customer Lifetime Value (LTV)",
 					content:
-						"The wedding industry spends heavily on advertising. Directories connecting couples with photographers, venues, and caterers can charge $200-2000/year for premium vendor listings.",
+						"Average revenue per customer divided by churn rate. LTV:CAC ratio should be 3:1 or higher for a healthy business. Below 3:1 means you're spending too much to acquire customers.",
 				},
 				{
-					heading: "5. Real Estate Directories",
+					heading: "5. Churn Rate",
 					content:
-						"Agent directories, property listings, and real estate service directories generate revenue through subscriptions and featured placements. High commission values support premium pricing.",
+						"Percentage of customers or revenue lost in a period. Track both logo churn (customer count) and revenue churn. Negative revenue churn (expansion > losses) is the goal.",
 				},
 			]),
 			meta: {
-				title: "10 Directory Business Models That Actually Make Money",
+				title: "10 SaaS Metrics Every Founder Should Track",
 				description:
-					"Discover the most profitable directory niches and business models. From local services to B2B software, learn which directories generate real revenue.",
+					"Essential SaaS metrics explained: MRR, ARR, CAC, LTV, churn, and more. Learn what to track and why it matters.",
 			},
 		},
 		{
-			title: "The Complete Guide to Niche Directory Market Research",
-			slug: "complete-guide-niche-directory-market-research",
+			title: "The Complete Guide to SaaS Pricing Strategies",
+			slug: "complete-guide-saas-pricing-strategies",
 			_status: "published",
 			publishedAt: new Date("2024-02-01").toISOString(),
 			categories: findCategory("business") ? [findCategory("business")!] : [],
 			content: generatePostContent([
 				{
-					heading: "Why Market Research Matters",
+					heading: "Pricing Is Your Most Important Decision",
 					content:
-						"The difference between a successful directory and a failed one often comes down to niche selection. Proper market research helps you find opportunities with real demand, identify your competition, and understand what businesses will pay for visibility.",
+						"Pricing affects every part of your business: which customers you attract, how you position against competitors, and your path to profitability. Yet most SaaS companies spend more time on their logo than their pricing.",
 				},
 				{
-					heading: "Evaluating Market Demand",
+					heading: "Value-Based Pricing",
 					content:
-						'Use Google Keyword Planner to find search volume for terms like "[industry] directory" or "find [service] near me". Look for niches with at least 1,000 monthly searches for relevant terms. Also check if businesses in the space are actively advertising on Google.',
+						"Price based on the value you deliver, not your costs. A tool that saves customers $10,000/month can command $1,000/month, regardless of what it costs you to deliver.",
 				},
 				{
-					heading: "Analyzing Competition",
+					heading: "Per-Seat vs Usage-Based",
 					content:
-						"Search for existing directories in your target niche. Analyze their listings count, monetization model, and user experience. A niche with 2-3 mediocre competitors is often better than one with no competition (which might mean no demand).",
+						"Per-seat pricing is predictable but can limit adoption. Usage-based pricing aligns costs with value but is harder to forecast. Many companies are moving to hybrid models.",
 				},
 				{
-					heading: "Validating Willingness to Pay",
+					heading: "Designing Your Pricing Tiers",
 					content:
-						"Before building, reach out to 20-30 businesses in your target niche. Ask if they'd pay $50-200/month for premium visibility in a directory. If you can't get at least 5 \"yes\" responses, reconsider your niche.",
+						"Three tiers is the sweet spot for most SaaS companies. Each tier should target a distinct customer segment with features they specifically value. Make the middle tier your target.",
 				},
 				{
-					heading: "Sizing Your Market",
+					heading: "Testing and Iteration",
 					content:
-						"Estimate the total number of businesses that could list in your directory and realistic conversion rates. A niche with 10,000 potential listings and 5% premium conversion at $100/month is a $500K annual opportunity.",
+						"Pricing is never 'done.' Run price tests, survey customers about willingness to pay, and adjust as you learn. Companies that actively manage pricing grow 2-4x faster.",
 				},
 			]),
 			meta: {
-				title: "The Complete Guide to Niche Directory Market Research",
+				title: "The Complete Guide to SaaS Pricing Strategies",
 				description:
-					"Learn how to research and validate directory niches before building. Evaluate demand, competition, and monetization potential.",
+					"Master SaaS pricing with this comprehensive guide. Value-based pricing, tiering strategies, and testing approaches.",
 			},
 		},
 		{
-			title: "Building a Directory Website Without Code: Tools and Platforms",
-			slug: "building-directory-website-without-code",
+			title: "Building Your First SaaS MVP: A Step-by-Step Guide",
+			slug: "building-first-saas-mvp-step-by-step-guide",
 			_status: "published",
 			publishedAt: new Date("2024-02-10").toISOString(),
 			categories: findCategory("technology") ? [findCategory("technology")!] : [],
 			content: generatePostContent([
 				{
-					heading: "The No-Code Directory Revolution",
+					heading: "What is an MVP Really?",
 					content:
-						"Building a directory website no longer requires months of development or a technical background. Modern platforms let you launch professional directories in days. Here's how to choose the right tool for your needs.",
+						"An MVP is not a half-baked product. It's the smallest thing you can build that delivers real value and tests your core assumptions. The goal is learning, not launching.",
 				},
 				{
-					heading: "Key Features to Look For",
+					heading: "Defining Your Core Value Proposition",
 					content:
-						"Any directory platform should offer: customizable listing fields, search and filtering, user submissions, payment processing, and SEO optimization. Bonus features include reviews, maps integration, and email notifications.",
+						"Before writing code, articulate the one thing your product does better than anything else. Your MVP should nail that one thing perfectly. Everything else can wait.",
 				},
 				{
-					heading: "Dedicated Directory Platforms",
+					heading: "Feature Prioritization",
 					content:
-						"Platforms like DirectoryHub, Jetkicks, and Publishizer are purpose-built for directories. They offer the fastest path to launch with pre-built features specifically for directory use cases.",
+						"List every feature you think you need, then ruthlessly cut. Ask: does this directly support the core value proposition? If not, cut it. You can always add features later.",
 				},
 				{
-					heading: "WordPress with Directory Plugins",
+					heading: "Building vs Buying",
 					content:
-						"WordPress plugins like GeoDirectory and Business Directory Plugin offer flexibility but require more setup. Best for those comfortable with WordPress who want full customization control.",
+						"Don't build what you can buy or integrate. Use Stripe for payments, Auth0 for authentication, SendGrid for email. Focus your engineering time on what makes you unique.",
 				},
 				{
-					heading: "Making Your Decision",
+					heading: "Launch and Learn",
 					content:
-						"For most people starting out, a dedicated directory platform is the best choice. You'll launch faster, avoid technical headaches, and can focus on growing your directory instead of managing code.",
+						"Ship before you're comfortable. Your first users will tell you what's really important. Their feedback is more valuable than any amount of planning.",
 				},
 			]),
 			meta: {
-				title: "Building a Directory Website Without Code: Tools and Platforms",
+				title: "Building Your First SaaS MVP: A Step-by-Step Guide",
 				description:
-					"Compare no-code directory platforms and tools. Launch your directory website in days without writing a single line of code.",
+					"Learn how to build a minimum viable SaaS product. From defining your value proposition to launching and learning.",
 			},
 		},
 		{
-			title: "How to Price Directory Listings for Maximum Revenue",
-			slug: "how-to-price-directory-listings-maximum-revenue",
+			title: "Customer Onboarding Best Practices for SaaS Companies",
+			slug: "customer-onboarding-best-practices-saas",
 			_status: "published",
 			publishedAt: new Date("2024-02-18").toISOString(),
 			categories: findCategory("business") ? [findCategory("business")!] : [],
 			content: generatePostContent([
 				{
-					heading: "The Psychology of Directory Pricing",
+					heading: "The Critical First Week",
 					content:
-						"Pricing directory listings is both art and science. Price too low and you leave money on the table. Price too high and no one signs up. Here's how to find the sweet spot that maximizes revenue.",
+						"Users who don't activate within the first week rarely come back. Your onboarding flow must get users to their first success as quickly as possible. This is where retention is won or lost.",
 				},
 				{
-					heading: "Understanding Business Value",
+					heading: "Define Your Activation Moment",
 					content:
-						"The right price depends on the value your directory delivers. A lead worth $500 justifies higher listing fees than a lead worth $50. Start by understanding the lifetime value of customers your listings generate.",
+						"What action indicates a user 'gets it'? For Slack, it's sending 2,000 team messages. For Dropbox, it's adding a file. Identify your activation metric and optimize everything to drive it.",
 				},
 				{
-					heading: "Creating Pricing Tiers",
+					heading: "Progressive Disclosure",
 					content:
-						"Offer 3-4 tiers: Free (basic visibility), Starter ($29-49/mo), Professional ($99-149/mo), and Premium ($249-499/mo). Each tier should add clear value through better placement, more features, or enhanced visibility.",
+						"Don't overwhelm new users with every feature. Show them one thing at a time, building complexity as they master basics. Use contextual triggers to introduce features when relevant.",
 				},
 				{
-					heading: "Annual vs Monthly Billing",
+					heading: "Personalized Onboarding",
 					content:
-						"Offer 20-30% discounts for annual billing to improve cash flow and reduce churn. Most businesses that commit annually stay for multiple years, dramatically increasing lifetime value.",
+						"Different users have different goals. Ask about use cases during signup and customize the onboarding flow accordingly. A marketer and a developer should see different paths.",
 				},
 				{
-					heading: "Testing and Optimization",
+					heading: "Measuring and Improving",
 					content:
-						"Start with prices in the middle of your estimated range and adjust based on conversion rates. If everyone is buying, you're priced too low. If no one is buying, you're priced too high or not communicating value effectively.",
+						"Track completion rates for each onboarding step. Identify where users drop off and run experiments to improve. Small improvements in activation compound into major retention gains.",
 				},
 			]),
 			meta: {
-				title: "How to Price Directory Listings for Maximum Revenue",
+				title: "Customer Onboarding Best Practices for SaaS Companies",
 				description:
-					"Learn directory pricing strategies that maximize revenue. Create pricing tiers, understand business value, and optimize conversions.",
+					"Design onboarding flows that drive activation and retention. Progressive disclosure, personalization, and metrics.",
 			},
 		},
 
-		// Monetization Guides (4 posts)
+		// Team Productivity (4 posts)
 		{
-			title: "Stripe Integration for Directory Payments: Complete Guide",
-			slug: "stripe-integration-directory-payments-guide",
+			title: "Remote Team Collaboration: Tools and Best Practices",
+			slug: "remote-team-collaboration-tools-best-practices",
 			_status: "published",
 			publishedAt: new Date("2024-02-25").toISOString(),
 			categories: findCategory("technology") ? [findCategory("technology")!] : [],
 			content: generatePostContent([
 				{
-					heading: "Why Stripe for Directories",
+					heading: "The Remote Work Toolkit",
 					content:
-						"Stripe is the gold standard for directory payments. It handles subscriptions, one-time payments, invoicing, and even marketplace-style payouts. This guide covers everything you need to know to integrate Stripe with your directory.",
+						"Effective remote collaboration requires the right tools for the right jobs. Communication, project management, documentation, and async work each need dedicated solutions that integrate well together.",
 				},
 				{
-					heading: "Setting Up Stripe Connect",
+					heading: "Synchronous vs Asynchronous",
 					content:
-						"For directories that pay out to listed businesses (like marketplaces), Stripe Connect handles split payments automatically. Connect your Stripe account, configure payout schedules, and let Stripe handle tax reporting.",
+						"Not everything needs a meeting. Use async communication (documented decisions, recorded videos, written updates) as your default. Reserve synchronous time for complex discussions and relationship building.",
 				},
 				{
-					heading: "Subscription Management",
+					heading: "Documentation Culture",
 					content:
-						"Use Stripe Billing to manage directory subscriptions. Create products for each tier, configure billing cycles, and let Stripe handle upgrades, downgrades, and cancellations automatically.",
+						"Remote teams that document well operate faster than those that don't. Write things down: decisions, processes, context. Future you (and your teammates) will thank you.",
 				},
 				{
-					heading: "Handling Failed Payments",
+					heading: "Building Connection Remotely",
 					content:
-						"Stripe's Smart Retries automatically attempt to collect failed payments at optimal times. Configure dunning emails to notify customers and give them a chance to update payment methods before cancellation.",
+						"Remote work can be isolating. Create intentional spaces for non-work interaction. Virtual coffee chats, team channels for hobbies, and periodic in-person gatherings build the trust that makes collaboration work.",
 				},
 				{
-					heading: "Reporting and Analytics",
+					heading: "Managing Across Time Zones",
 					content:
-						"Stripe Dashboard provides comprehensive revenue reporting. Track MRR, churn, ARPU, and customer lifetime value. Export data for deeper analysis or integrate with business intelligence tools.",
+						"Distributed teams require intentional overlap. Establish core hours where everyone is available, and use async tools for everything else. Rotate meeting times to share the burden fairly.",
 				},
 			]),
 			meta: {
-				title: "Stripe Integration for Directory Payments: Complete Guide",
+				title: "Remote Team Collaboration: Tools and Best Practices",
 				description:
-					"Learn how to integrate Stripe with your directory for subscriptions, one-time payments, and marketplace payouts.",
+					"Build effective remote collaboration with the right tools and practices. Async communication, documentation, and connection.",
 			},
 		},
 		{
-			title: "Premium Listing Features That Businesses Will Pay For",
-			slug: "premium-listing-features-businesses-will-pay-for",
+			title: "How to Build Effective Workflows Without Code",
+			slug: "build-effective-workflows-without-code",
 			_status: "published",
 			publishedAt: new Date("2024-03-05").toISOString(),
-			categories: findCategory("business") ? [findCategory("business")!] : [],
+			categories: findCategory("technology") ? [findCategory("technology")!] : [],
 			content: generatePostContent([
 				{
-					heading: "What Makes Premium Worth It",
+					heading: "The No-Code Automation Revolution",
 					content:
-						"The key to selling premium listings is offering features that directly impact business results. Vanity features don't sell. Features that generate leads, build credibility, and drive traffic do.",
+						"You don't need to be a developer to automate your work. Modern no-code tools let anyone build sophisticated workflows that save hours every week. Here's how to get started.",
 				},
 				{
-					heading: "Featured Placement",
+					heading: "Identifying Automation Opportunities",
 					content:
-						"The most valuable premium feature is visibility. Featured spots on the homepage, category pages, and search results generate significantly more views and clicks. This alone can justify $100-500/month premium pricing.",
+						"Start by documenting repetitive tasks. Data entry, status updates, notifications, and report generation are all automation candidates. If you do it the same way every time, it can probably be automated.",
 				},
 				{
-					heading: "Enhanced Profiles",
+					heading: "Choosing the Right Tools",
 					content:
-						"Allow premium listings to add more photos, videos, service details, and portfolio examples. Rich profiles convert browsers into customers at higher rates.",
+						"Tools like Zapier, Make, and Workato connect your existing apps. More specialized tools handle specific use cases. Start simple and add complexity as you learn.",
 				},
 				{
-					heading: "Lead Capture Tools",
+					heading: "Building Your First Workflow",
 					content:
-						"Give premium listings direct lead capture with contact forms, click-to-call buttons, and quote request features. Track leads in a dashboard so businesses can see the ROI of their listing.",
+						"Start with a simple two-step automation: when X happens, do Y. Master the basics before adding conditions, loops, and branching logic. Complexity should be added incrementally.",
 				},
 				{
-					heading: "Verification Badges",
+					heading: "Maintenance and Monitoring",
 					content:
-						"Verified, licensed, or certified badges build trust. Offer verification as a premium feature or require premium subscriptions to display existing credentials prominently.",
+						"Automations need maintenance. Set up error notifications, review runs regularly, and update workflows as your processes change. Broken automations are worse than no automation.",
 				},
 			]),
 			meta: {
-				title: "Premium Listing Features That Businesses Will Pay For",
+				title: "How to Build Effective Workflows Without Code",
 				description:
-					"Discover which premium directory features generate the most revenue. Featured placements, enhanced profiles, lead capture, and more.",
+					"Automate repetitive tasks with no-code tools. Identify opportunities, choose tools, and build your first workflows.",
 			},
 		},
 		{
-			title: "Lead Generation Revenue: How Directories Charge Per Lead",
-			slug: "lead-generation-revenue-directories-charge-per-lead",
+			title: "Automating Repetitive Tasks: A Practical Guide",
+			slug: "automating-repetitive-tasks-practical-guide",
 			_status: "published",
 			publishedAt: new Date("2024-03-12").toISOString(),
-			categories: findCategory("business") ? [findCategory("business")!] : [],
+			categories: findCategory("technology") ? [findCategory("technology")!] : [],
 			content: generatePostContent([
 				{
-					heading: "The Lead Gen Model",
+					heading: "The Real Cost of Repetitive Work",
 					content:
-						"Instead of subscription fees, some directories charge businesses for each lead they receive. This model works especially well in high-value service industries where a single customer is worth hundreds or thousands of dollars.",
+						"Knowledge workers spend an average of 4.5 hours per week on tasks that could be automated. That's 10+ weeks per year. Automation isn't just about efficiency—it's about reclaiming your time for meaningful work.",
 				},
 				{
-					heading: "Pricing Your Leads",
+					heading: "Quick Wins: Personal Productivity",
 					content:
-						"Lead pricing depends on industry and lead quality. Home service leads typically sell for $15-75, legal leads for $50-500, and B2B software leads for $100-1000. Price based on the value of closed deals.",
+						"Start with your own workflow. Text expansion, email templates, keyboard shortcuts, and personal automations add up. Small improvements compound into major time savings.",
 				},
 				{
-					heading: "Qualifying Leads",
+					heading: "Team-Level Automation",
 					content:
-						"Not all leads are created equal. Use qualification forms to capture budget, timeline, and specific needs. Better qualified leads command higher prices and lead to happier customers.",
+						"Scale from personal to team. Automated status updates, recurring reports, and notification routing reduce coordination overhead. The goal is information flow without manual intervention.",
 				},
 				{
-					heading: "Distributing Leads",
+					heading: "Business Process Automation",
 					content:
-						"Exclusive leads go to one business and command premium prices. Shared leads go to 3-5 businesses at lower prices. Match your model to industry norms and business preferences.",
+						"At the business level, automate onboarding, billing, support triage, and reporting. These automations scale with the company and free up people for higher-value work.",
 				},
 				{
-					heading: "Tracking and Reporting",
+					heading: "Knowing What Not to Automate",
 					content:
-						"Provide businesses with lead dashboards showing volume, sources, and conversion tracking. Transparency builds trust and helps businesses see the value of your directory.",
+						"Not everything should be automated. Creative work, relationship building, and judgment calls benefit from human touch. Automate the routine to make space for the meaningful.",
 				},
 			]),
 			meta: {
-				title: "Lead Generation Revenue: How Directories Charge Per Lead",
+				title: "Automating Repetitive Tasks: A Practical Guide",
 				description:
-					"Learn the lead generation business model for directories. Price leads, qualify inquiries, and build sustainable revenue.",
+					"Reclaim hours every week by automating repetitive tasks. Personal productivity, team automation, and business processes.",
 			},
 		},
 		{
-			title: "Affiliate Revenue Strategies for Directory Websites",
-			slug: "affiliate-revenue-strategies-directory-websites",
+			title: "Scaling Your Team Operations from 10 to 100 People",
+			slug: "scaling-team-operations-10-to-100-people",
 			_status: "published",
 			publishedAt: new Date("2024-03-20").toISOString(),
 			categories: findCategory("business") ? [findCategory("business")!] : [],
 			content: generatePostContent([
 				{
-					heading: "Directories and Affiliate Marketing",
+					heading: "The Scaling Challenge",
 					content:
-						"Directories are natural fits for affiliate revenue. You're already connecting buyers with sellers. Adding affiliate links to relevant products and services creates an additional revenue stream without charging listed businesses more.",
+						"What works at 10 people breaks at 50 and completely fails at 100. Communication, decision-making, and coordination all need to evolve as you grow. Here's how to scale intentionally.",
 				},
 				{
-					heading: "Choosing Affiliate Programs",
+					heading: "Communication at Scale",
 					content:
-						"Select programs relevant to your directory's audience. A B2B software directory might partner with SaaS tools. A local service directory might partner with insurance or financing companies.",
+						"Move from all-hands to structured communication. Team-level updates, written announcements, and recorded videos replace ad-hoc conversations. Documentation becomes critical.",
 				},
 				{
-					heading: "Integration Strategies",
+					heading: "Decision-Making Frameworks",
 					content:
-						'Add affiliate recommendations to comparison pages, resource sections, and even listing profiles (with permission). Create "tools we recommend" sections that add value while generating commissions.',
+						"You can't be in every decision. Create clear frameworks for who decides what. DRI (Directly Responsible Individual) models, RACI matrices, and documented authority levels enable distributed decision-making.",
 				},
 				{
-					heading: "Disclosure and Trust",
+					heading: "Process Without Bureaucracy",
 					content:
-						"Always disclose affiliate relationships clearly. Trust is your most valuable asset. Transparent disclosure maintains credibility while still generating affiliate revenue.",
+						"Add just enough process. Too little creates chaos; too much creates bureaucracy. Focus on processes that enable autonomy rather than those that enforce control.",
 				},
 				{
-					heading: "Measuring Performance",
+					heading: "Maintaining Culture",
 					content:
-						"Track clicks, conversions, and revenue by placement. A/B test different affiliate partners and placements. Focus efforts on high-converting, high-commission opportunities.",
+						"Culture that isn't documented and actively maintained will drift. Articulate your values, hire for them, and create rituals that reinforce them. Culture is what you do, not what you say.",
 				},
 			]),
 			meta: {
-				title: "Affiliate Revenue Strategies for Directory Websites",
+				title: "Scaling Your Team Operations from 10 to 100 People",
 				description:
-					"Add affiliate revenue to your directory without charging businesses more. Learn integration strategies and program selection.",
+					"Navigate the operational challenges of hypergrowth. Communication, decision-making, and culture at scale.",
 			},
 		},
 
-		// SEO Optimization (3 posts)
+		// Integrations & Tools (3 posts)
 		{
-			title: "Directory SEO: Ranking Your Listings on Google",
-			slug: "directory-seo-ranking-listings-google",
+			title: "The Ultimate Guide to SaaS Integrations",
+			slug: "ultimate-guide-saas-integrations",
 			_status: "published",
 			publishedAt: new Date("2024-03-28").toISOString(),
 			categories: findCategory("technology") ? [findCategory("technology")!] : [],
 			content: generatePostContent([
 				{
-					heading: "Why SEO Matters for Directories",
+					heading: "Why Integrations Matter",
 					content:
-						'Organic search drives the majority of traffic to successful directories. Ranking for "[industry] + [location]" and similar queries brings highly qualified visitors ready to find what you list. Here\'s how to optimize your directory for search engines.',
+						"The average company uses 110 SaaS applications. Without integrations, data lives in silos, work requires manual transfer between systems, and teams lose hours to copy-paste. Integrations turn disconnected tools into a unified workflow.",
 				},
 				{
-					heading: "Unique Listing Content",
+					heading: "Native vs Third-Party Integrations",
 					content:
-						"The biggest SEO challenge for directories is thin or duplicate content. Encourage listed businesses to write unique descriptions. Add schema markup, categories, and attributes to make each listing page substantive and unique.",
+						"Native integrations (built by the vendors) typically offer deeper functionality. Third-party tools (Zapier, Make) provide breadth and flexibility. Most teams need both approaches.",
 				},
 				{
-					heading: "Category Page Optimization",
+					heading: "Planning Your Integration Stack",
 					content:
-						"Category pages often rank better than individual listings. Optimize category titles, descriptions, and URLs. Add introductory content explaining what users will find in each category.",
+						"Map your workflows before choosing integrations. What data needs to flow where? What triggers should create what actions? Start with critical paths and expand systematically.",
 				},
 				{
-					heading: "Technical SEO Essentials",
+					heading: "Implementation Best Practices",
 					content:
-						"Ensure fast load times, mobile responsiveness, and clean URL structures. Implement proper canonical tags to handle pagination and filtering without creating duplicate content issues.",
+						"Test integrations thoroughly before deploying. Set up error handling and monitoring. Document what's connected to what. Integration sprawl can become its own maintenance burden.",
 				},
 				{
-					heading: "Building Directory Authority",
+					heading: "Security and Compliance",
 					content:
-						"Earn backlinks through guest posts, industry partnerships, and creating linkable resources. As your domain authority grows, individual listing pages will rank better for long-tail queries.",
+						"Every integration is a potential security surface. Review OAuth permissions carefully. Audit regularly. Ensure integrations comply with your data handling requirements.",
 				},
 			]),
 			meta: {
-				title: "Directory SEO: Ranking Your Listings on Google",
+				title: "The Ultimate Guide to SaaS Integrations",
 				description:
-					"Complete guide to directory SEO. Optimize listings, category pages, and technical elements to rank on Google.",
+					"Connect your tools into a unified workflow. Native vs third-party integrations, planning, implementation, and security.",
 			},
 		},
 		{
-			title: "Schema Markup for Directory Websites Explained",
-			slug: "schema-markup-directory-websites-explained",
+			title: "API Best Practices for Non-Technical Teams",
+			slug: "api-best-practices-non-technical-teams",
 			_status: "published",
 			publishedAt: new Date("2024-04-05").toISOString(),
 			categories: findCategory("technology") ? [findCategory("technology")!] : [],
 			content: generatePostContent([
 				{
-					heading: "What is Schema Markup",
+					heading: "APIs Aren't Just for Developers",
 					content:
-						"Schema markup is structured data that helps search engines understand your content. For directories, proper schema markup can result in rich snippets showing ratings, prices, and other details directly in search results.",
+						"APIs power most of the integrations you already use. Understanding the basics helps you evaluate tools, communicate with technical teams, and unlock powerful automations.",
 				},
 				{
-					heading: "LocalBusiness Schema",
+					heading: "What Is an API?",
 					content:
-						"For local service directories, LocalBusiness schema is essential. Include name, address, phone, hours, and aggregate ratings. Google uses this data for local pack results and knowledge panels.",
+						"An API (Application Programming Interface) is how software talks to other software. When you connect Slack to your calendar, APIs make that possible. Think of it as a translator between applications.",
 				},
 				{
-					heading: "Product and Service Schema",
+					heading: "Working with API Documentation",
 					content:
-						"For directories listing products or services, use appropriate Product or Service schema. Include pricing, availability, and reviews to enable rich snippets in search results.",
+						"Good API documentation tells you what's possible. You don't need to understand every technical detail—focus on endpoints (what actions are available) and authentication (how to connect securely).",
 				},
 				{
-					heading: "AggregateRating Schema",
+					heading: "Common API Patterns",
 					content:
-						"If your directory includes reviews, implement AggregateRating schema. This can display star ratings in search results, significantly improving click-through rates.",
+						"Most business APIs follow similar patterns: creating records, reading data, updating information, and deleting things. Once you understand CRUD operations in one API, others become easier.",
 				},
 				{
-					heading: "Testing Your Schema",
+					heading: "Evaluating API Quality",
 					content:
-						"Use Google's Rich Results Test and Schema Validator to verify your implementation. Monitor Search Console for schema errors and fix them promptly to maintain rich result eligibility.",
+						"Before choosing a tool, check its API. Is it well-documented? Are there rate limits? What support is available? A poor API can limit what you can build, regardless of the product's features.",
 				},
 			]),
 			meta: {
-				title: "Schema Markup for Directory Websites Explained",
+				title: "API Best Practices for Non-Technical Teams",
 				description:
-					"Learn how to implement schema markup for directory websites. LocalBusiness, Product, and review schema for rich snippets.",
+					"Demystify APIs for non-technical users. Understand what's possible and evaluate tools based on integration capabilities.",
 			},
 		},
 		{
-			title: "Creating SEO-Optimized Category Pages for Directories",
-			slug: "seo-optimized-category-pages-directories",
+			title: "Choosing the Right Tech Stack for Your Startup",
+			slug: "choosing-right-tech-stack-startup",
 			_status: "published",
 			publishedAt: new Date("2024-04-12").toISOString(),
 			categories: findCategory("technology") ? [findCategory("technology")!] : [],
 			content: generatePostContent([
 				{
-					heading: "The Power of Category Pages",
+					heading: "Tech Stack Decisions Matter",
 					content:
-						"Category pages are often the highest-traffic pages on directory websites. They rank for broad industry terms and serve as hubs that pass authority to individual listings. Optimizing these pages is critical for directory SEO success.",
+						"Your tech stack affects development speed, hiring, scalability, and costs. But perfect is the enemy of good. The best stack is one that lets you ship and iterate quickly.",
 				},
 				{
-					heading: "Category Page Structure",
+					heading: "Optimize for Velocity",
 					content:
-						"Each category page needs a unique title, meta description, and H1 tag. Include 200-500 words of introductory content explaining what the category contains and why visitors should browse it.",
+						"Early-stage startups should optimize for development speed. Choose technologies your team knows well, with strong ecosystems and available talent. You can always migrate later.",
 				},
 				{
-					heading: "Internal Linking Strategy",
+					heading: "The Boring Technology Thesis",
 					content:
-						"Link to category pages from your homepage, navigation, and footer. Cross-link related categories. This internal link structure helps search engines understand your site hierarchy and passes authority effectively.",
+						"Exciting new technologies come with unknown failure modes. Boring, established technologies have solved problems and documented solutions. Save your innovation tokens for your actual product.",
 				},
 				{
-					heading: "Faceted Navigation SEO",
+					heading: "Build vs Buy Decisions",
 					content:
-						"Filters and facets create multiple URL variations that can cause duplicate content issues. Use canonical tags, parameter handling in Search Console, or AJAX filtering to maintain clean indexation.",
+						"Default to buying (or using open source) for non-core functionality. Authentication, payments, email, and monitoring are solved problems. Focus engineering time on what makes you unique.",
 				},
 				{
-					heading: "User Experience Signals",
+					heading: "Planning for Scale",
 					content:
-						"Google considers user experience signals like bounce rate and time on page. Make category pages genuinely useful with good filtering, sorting, and preview information to keep users engaged.",
+						"Don't over-engineer for scale you don't have. That said, choose technologies that can scale when needed. Horizontal scaling, managed databases, and stateless architectures make growth easier.",
 				},
 			]),
 			meta: {
-				title: "Creating SEO-Optimized Category Pages for Directories",
+				title: "Choosing the Right Tech Stack for Your Startup",
 				description:
-					"Optimize directory category pages for search engines. Structure, content, internal linking, and faceted navigation best practices.",
+					"Make smart tech stack decisions. Optimize for velocity, embrace boring technology, and plan for scale.",
 			},
 		},
 
-		// Success Stories/Case Studies (3 posts)
+		// Success Stories (3 posts)
 		{
-			title: "From Side Project to $50K MRR: A Directory Success Story",
-			slug: "side-project-to-50k-mrr-directory-success-story",
+			title: "From Startup to Scale: How One Team 10x'd Productivity",
+			slug: "startup-to-scale-team-10x-productivity",
 			_status: "published",
 			publishedAt: new Date("2024-04-20").toISOString(),
-			categories: findCategory("news") ? [findCategory("news")!] : [],
+			categories: findCategory("business") ? [findCategory("business")!] : [],
 			content: generatePostContent([
 				{
-					heading: "The Beginning",
+					heading: "The Challenge",
 					content:
-						"What started as a weekend project to solve a personal problem turned into a six-figure business. This is the story of how one entrepreneur built a niche directory from zero to $50,000 in monthly recurring revenue.",
+						"When TechFlow Inc hit 50 employees, everything started breaking. Communication was chaotic, tasks fell through cracks, and the team spent more time coordinating than executing. Sound familiar?",
 				},
 				{
-					heading: "Finding the Niche",
+					heading: "The Diagnosis",
 					content:
-						"The founder noticed that finding specialized contractors in their industry was frustrating. Generic directories didn't have the specific information buyers needed. That gap became the opportunity.",
+						"An audit revealed the problem: tools sprawl. The team was using 15 different apps that didn't talk to each other. Information was siloed, context was lost, and everyone was doing manual work that software could handle.",
 				},
 				{
-					heading: "The MVP Launch",
+					heading: "The Transformation",
 					content:
-						"Instead of building perfect technology, the founder launched with a simple WordPress site and 100 manually-researched listings. The focus was on quality data and user experience, not fancy features.",
+						"They consolidated to a unified platform. Project management, communication, and documentation in one place. Automations replaced manual handoffs. Integrations connected what couldn't be consolidated.",
 				},
 				{
-					heading: "Growth Strategies That Worked",
+					heading: "The Results",
 					content:
-						"SEO was the primary growth driver. By creating comprehensive category pages and optimizing for long-tail keywords, organic traffic grew steadily. Paid acquisition was tested but proved less efficient than SEO.",
+						"Within six months: 94% faster onboarding, 3x project throughput, and a 40% reduction in meetings. The team grew to 150 without proportional growth in coordination overhead.",
 				},
 				{
-					heading: "Lessons Learned",
+					heading: "Key Lessons",
 					content:
-						"The founder's biggest lessons: start smaller than you think, focus on a specific niche, prioritize SEO from day one, and don't underestimate the power of quality over quantity.",
+						"Tool consolidation alone isn't enough. Success required process redesign, change management, and leadership commitment. The tools enabled transformation, but the team made it happen.",
 				},
 			]),
 			meta: {
-				title: "From Side Project to $50K MRR: A Directory Success Story",
+				title: "From Startup to Scale: How One Team 10x'd Productivity",
 				description:
-					"How one entrepreneur built a niche directory from weekend project to $50K monthly recurring revenue. Strategies and lessons learned.",
+					"A real story of operational transformation. How TechFlow Inc conquered tool sprawl and 10x'd team productivity.",
 			},
 		},
 		{
-			title: "How Local Directories Compete with Google and Win",
-			slug: "local-directories-compete-with-google-and-win",
+			title: "5 Founders Share Their Biggest Operational Mistakes",
+			slug: "5-founders-share-biggest-operational-mistakes",
 			_status: "published",
 			publishedAt: new Date("2024-04-28").toISOString(),
-			categories: findCategory("news") ? [findCategory("news")!] : [],
+			categories: findCategory("business") ? [findCategory("business")!] : [],
 			content: generatePostContent([
 				{
-					heading: "The Google Challenge",
+					heading: "Learning from Others' Mistakes",
 					content:
-						"Many assume Google has won local search. But specialized local directories continue to thrive by offering what Google can't: deep niche expertise, curated quality, and features tailored to specific industries.",
+						"Every founder makes operational mistakes. The smart ones learn from others before making their own. Here are five founders sharing the mistakes that cost them the most—and what they'd do differently.",
 				},
 				{
-					heading: "Niche Expertise Wins",
+					heading: "Mistake 1: Hiring Too Fast",
 					content:
-						"Google treats all businesses the same. A specialized directory can require industry-specific information, verify credentials, and ensure listings meet quality standards. This curation creates genuine value.",
+						'"We doubled the team in 6 months and it nearly killed us. Communication broke down, culture diluted, and productivity actually decreased. I wish we\'d hired half as many people twice as carefully." - Sarah, Series A founder',
 				},
 				{
-					heading: "Community Building",
+					heading: "Mistake 2: No Documentation Culture",
 					content:
-						"Successful local directories build communities around their niches. User reviews, Q&A forums, and resource content create engagement that generic platforms can't match.",
+						'"Everything lived in people\'s heads. When key people left, institutional knowledge walked out the door. Building a documentation culture feels slow, but it\'s the only way to scale." - Marcus, bootstrapped to $5M ARR',
 				},
 				{
-					heading: "Better Lead Quality",
+					heading: "Mistake 3: Over-Engineering Processes",
 					content:
-						"Businesses report that leads from niche directories convert better than generic sources. Users who find businesses through specialized directories are further along in their buying journey.",
+						'"We created elaborate processes for everything. Teams spent more time following processes than doing work. Now we ask: what\'s the minimum process that prevents chaos?" - David, second-time founder',
 				},
 				{
-					heading: "The Trust Factor",
+					heading: "Mistake 4: Ignoring Technical Debt",
 					content:
-						"A curated, specialized directory builds trust that an algorithm can't. When a directory stakes its reputation on listing quality, users trust those recommendations more than generic search results.",
+						'"We shipped fast and worried about quality later. But later never came—we were always shipping something new. The accumulated debt eventually paralyzed us. Pay it down continuously." - Amy, CTO turned CEO',
+				},
+				{
+					heading: "Mistake 5: Not Investing in Tooling",
+					content:
+						'"We were cheap about software. Manual processes that could have been automated stayed manual. The false economy cost us far more in engineering time and errors." - James, enterprise SaaS founder',
 				},
 			]),
 			meta: {
-				title: "How Local Directories Compete with Google and Win",
+				title: "5 Founders Share Their Biggest Operational Mistakes",
 				description:
-					"Why specialized local directories still thrive despite Google. Niche expertise, curation, and community building strategies.",
+					"Learn from founders who've been there. Hiring, documentation, processes, technical debt, and tooling mistakes to avoid.",
 			},
 		},
 		{
-			title: "5 Directory Founders Share Their Biggest Mistakes",
-			slug: "5-directory-founders-share-biggest-mistakes",
+			title: "How Fast-Growing Teams Stay Organized at Scale",
+			slug: "fast-growing-teams-stay-organized-at-scale",
 			_status: "published",
 			publishedAt: new Date("2024-05-05").toISOString(),
-			categories: findCategory("news") ? [findCategory("news")!] : [],
+			categories: findCategory("business") ? [findCategory("business")!] : [],
 			content: generatePostContent([
 				{
-					heading: "Learning from Failure",
+					heading: "Organization Is a Competitive Advantage",
 					content:
-						"Success leaves clues, but so does failure. We talked to five directory founders about the mistakes that cost them time, money, and momentum. Here's what they wish they'd known from the start.",
+						"The fastest-growing teams aren't disorganized—they're extremely organized. Good organization enables speed. Here's how high-growth teams maintain order amid chaos.",
 				},
 				{
-					heading: "Mistake 1: Building Too Much Before Launching",
+					heading: "Single Source of Truth",
 					content:
-						'"I spent 6 months building features no one asked for. By the time I launched, a competitor had already captured the market." - Founder of a defunct legal directory. Launch early, iterate based on feedback.',
+						"Pick one place for each type of information and stick to it. Tasks in one system, documents in another, communication in a third. Cross-linking creates the connections; duplication creates confusion.",
 				},
 				{
-					heading: "Mistake 2: Ignoring SEO Until Too Late",
+					heading: "Clear Ownership",
 					content:
-						'"I thought paid advertising would be enough. When I finally focused on SEO, I was 18 months behind competitors." - Founder of a home services directory. SEO is a long game; start day one.',
+						"Everything has an owner. Projects, documents, processes, decisions—someone is explicitly responsible. Ownership without authority is frustrating; ownership with authority enables action.",
 				},
 				{
-					heading: "Mistake 3: Pricing Too Low",
+					heading: "Ruthless Prioritization",
 					content:
-						'"I was afraid to charge what the listings were worth. It took two years to raise prices, and I left hundreds of thousands on the table." - Founder of a B2B directory. Know your value and charge accordingly.',
+						"Growing teams face infinite demands on finite attention. Explicit priorities, regularly reviewed and communicated, help everyone focus on what matters most. Everything can't be priority one.",
 				},
 				{
-					heading: "Mistake 4: Trying to Serve Everyone",
+					heading: "Async by Default",
 					content:
-						"\"My directory covered too many industries. I couldn't go deep on any of them and couldn't compete with specialists.\" - Founder of a general business directory. Niche down ruthlessly.",
+						"Synchronous communication doesn't scale. The best teams default to async (documented, accessible to all) and use sync time for what truly requires it: complex discussions, relationship building, rapid iteration.",
+				},
+				{
+					heading: "Regular Retrospectives",
+					content:
+						"What's working? What isn't? What should we try? Regular reflection and adjustment keeps processes serving the team rather than the other way around. Evolve continuously.",
 				},
 			]),
 			meta: {
-				title: "5 Directory Founders Share Their Biggest Mistakes",
+				title: "How Fast-Growing Teams Stay Organized at Scale",
 				description:
-					"Learn from directory founders who share their costliest mistakes. Building too much, ignoring SEO, underpricing, and more.",
+					"Organizational practices for hypergrowth. Single source of truth, clear ownership, prioritization, and async communication.",
 			},
 		},
 	]

@@ -4,33 +4,33 @@ import { createParagraph } from "./richtext-helper"
 export const faqData: Partial<Faq>[] = [
 	// Getting Started FAQs
 	{
-		question: "How quickly can I launch my directory?",
+		question: "How quickly can I get my team started?",
 		answer: createParagraph(
-			"Most customers launch their first directory within 1-2 days. Pick a template, customize your branding, add your first listings, and you're live. No coding required.",
+			"Most teams are up and running within hours. Invite your team members, configure your workspace, and start collaborating immediately. No lengthy setup or technical expertise required.",
 		),
 		category: "getting-started",
 		order: 1,
 	},
 	{
-		question: "Do I need technical skills to use DirectoryHub?",
+		question: "Do I need technical skills to use SaaSify?",
 		answer: createParagraph(
-			"No technical skills required. DirectoryHub is designed for non-technical users. Our visual editor lets you customize everything from colors to layouts without writing any code.",
+			"No technical skills required. Our intuitive interface lets anyone configure workflows, set up integrations, and manage their workspace without writing any code.",
 		),
 		category: "getting-started",
 		order: 2,
 	},
 	{
-		question: "Can I import existing listings from another platform?",
+		question: "Can I import data from other tools?",
 		answer: createParagraph(
-			"Yes! You can import listings via CSV upload. We also offer migration assistance for larger directories moving from other platforms. Contact our support team for help with migrations.",
+			"Yes! Import data via CSV or use our native integrations to sync data from tools like Salesforce, HubSpot, Notion, and more. We also offer migration assistance for larger accounts.",
 		),
 		category: "getting-started",
 		order: 3,
 	},
 	{
-		question: "What kind of directories can I build?",
+		question: "What teams and use cases is SaaSify best for?",
 		answer: createParagraph(
-			"DirectoryHub works for any type of directory: local services, B2B vendors, community directories, marketplaces, job boards, real estate, and more. Our templates cover the most popular use cases, and custom fields let you build any schema.",
+			"SaaSify works for any team that needs to collaborate and get work done: sales, marketing, product, operations, customer success, and more. Our flexible platform adapts to your workflows.",
 		),
 		category: "getting-started",
 		order: 4,
@@ -40,7 +40,7 @@ export const faqData: Partial<Faq>[] = [
 	{
 		question: "Is there a free plan?",
 		answer: createParagraph(
-			"Yes! Start with our Free plan to explore the platform. You can launch a basic directory with up to 50 listings. Upgrade anytime to unlock premium features and higher limits.",
+			"Yes! Start with our Free plan for up to 3 users. Explore the platform, set up your workspace, and upgrade anytime to unlock more users and advanced features.",
 		),
 		category: "pricing",
 		order: 1,
@@ -48,7 +48,7 @@ export const faqData: Partial<Faq>[] = [
 	{
 		question: "What payment methods do you accept?",
 		answer: createParagraph(
-			"We accept all major credit cards (Visa, Mastercard, American Express) and debit cards through Stripe. Annual plans can also be paid via invoice for qualifying accounts.",
+			"We accept all major credit cards (Visa, Mastercard, American Express) through Stripe. Annual plans can also be paid via invoice for qualifying accounts.",
 		),
 		category: "pricing",
 		order: 2,
@@ -70,9 +70,9 @@ export const faqData: Partial<Faq>[] = [
 		order: 4,
 	},
 	{
-		question: "What happens if I exceed my listing limit?",
+		question: "What happens if my team grows beyond my plan limits?",
 		answer: createParagraph(
-			"You'll receive a notification when approaching your limit. You can upgrade your plan to increase limits, or we'll help you identify which listings to archive if you prefer to stay on your current plan.",
+			"We'll notify you when approaching your user limit. You can upgrade your plan to increase limits, or we'll help you optimize your current plan to get the most value.",
 		),
 		category: "pricing",
 		order: 5,
@@ -80,7 +80,7 @@ export const faqData: Partial<Faq>[] = [
 	{
 		question: "Is there a refund policy?",
 		answer: createParagraph(
-			"We offer a 14-day money-back guarantee for all paid plans. If you're not satisfied within the first 14 days, contact support for a full refund, no questions asked.",
+			"We offer a 14-day money-back guarantee on all paid plans. If you're not satisfied within the first 14 days, contact support for a full refund, no questions asked.",
 		),
 		category: "pricing",
 		order: 6,
@@ -88,49 +88,49 @@ export const faqData: Partial<Faq>[] = [
 
 	// Features FAQs
 	{
-		question: "Can I accept payments through my directory?",
+		question: "What integrations does SaaSify support?",
 		answer: createParagraph(
-			"Yes! Connect your Stripe account to accept payments for premium listings, subscriptions, and featured placements. We handle the payment flow; you keep the revenue minus Stripe's standard fees.",
+			"We integrate with 100+ tools including Slack, Salesforce, HubSpot, Jira, Notion, Google Workspace, Microsoft 365, and more. New integrations are added regularly based on customer requests.",
 		),
 		category: "features",
 		order: 1,
 	},
 	{
-		question: "How does SEO work with DirectoryHub?",
+		question: "How does reporting and analytics work?",
 		answer: createParagraph(
-			"Every directory includes automatic SEO optimization: schema markup, dynamic sitemaps, meta tags, and clean URLs. Your listings are structured for Google's rich results and local pack rankings.",
+			"Real-time dashboards show key metrics for your team and projects. Create custom reports, schedule automated delivery to stakeholders, and export data anytime for deeper analysis.",
 		),
 		category: "features",
 		order: 2,
 	},
 	{
-		question: "Can I use my own domain name?",
+		question: "Can team members manage their own workspaces?",
 		answer: createParagraph(
-			"Yes! Custom domains are supported on all paid plans. Point your domain to DirectoryHub, and we'll handle SSL certificates and domain configuration automatically.",
+			"Yes! Team members can customize their workspace, set personal preferences, and manage their own workflows within your organization's guidelines. Admins maintain control over permissions.",
 		),
 		category: "features",
 		order: 3,
 	},
 	{
-		question: "Do you support reviews and ratings?",
+		question: "Is there an API available?",
 		answer: createParagraph(
-			"Yes! Enable user reviews and ratings for your listings. You can moderate reviews, require verification, and display aggregate ratings. Review schema is automatically added for rich snippets.",
+			"Yes! Our REST API is available on Pro and Business plans. Use it to build custom integrations, automate workflows programmatically, or connect SaaSify to your internal tools.",
 		),
 		category: "features",
 		order: 4,
 	},
 	{
-		question: "Can businesses manage their own listings?",
+		question: "Can I automate workflows?",
 		answer: createParagraph(
-			"Absolutely. Business owners can claim and manage their listings through dedicated dashboards. They can update information, respond to reviews, track analytics, and manage their subscription.",
+			"Absolutely. Our visual workflow builder lets you automate approvals, notifications, data syncing, and more without writing code. Set triggers, conditions, and actions in minutes.",
 		),
 		category: "features",
 		order: 5,
 	},
 	{
-		question: "Is there an API available?",
+		question: "Do you support custom fields and data types?",
 		answer: createParagraph(
-			"Yes! Our REST API is available on Professional and Enterprise plans. Use it to integrate your directory with other tools, import data programmatically, or build custom applications.",
+			"Yes! Create custom fields to capture any data your team needs. We support text, numbers, dates, dropdowns, checkboxes, file attachments, and more.",
 		),
 		category: "features",
 		order: 6,
@@ -140,15 +140,15 @@ export const faqData: Partial<Faq>[] = [
 	{
 		question: "Where is my data hosted?",
 		answer: createParagraph(
-			"All data is hosted on secure servers in the United States and Europe. We use enterprise-grade infrastructure with automatic backups, redundancy, and 99.9% uptime SLA.",
+			"All data is hosted on secure AWS infrastructure in US and EU regions. We maintain a 99.9% uptime SLA with automatic failover and regular backups.",
 		),
 		category: "technical",
 		order: 1,
 	},
 	{
-		question: "Is DirectoryHub GDPR compliant?",
+		question: "Is SaaSify GDPR compliant?",
 		answer: createParagraph(
-			"Yes. We are fully GDPR compliant. We provide data processing agreements, respect user consent preferences, and offer data export/deletion tools for you to fulfill user requests.",
+			"Yes. We're fully GDPR and CCPA compliant. We provide data processing agreements, consent management tools, and data export/deletion capabilities to help you meet your obligations.",
 		),
 		category: "technical",
 		order: 2,
@@ -156,15 +156,15 @@ export const faqData: Partial<Faq>[] = [
 	{
 		question: "Can I export my data?",
 		answer: createParagraph(
-			"Yes! Export your listings, users, and analytics data at any time. We provide CSV exports for all data types. You own your data and can take it with you if you ever decide to leave.",
+			"Yes! Export all your data anytime via CSV or API. You own your data and can take it with you if you ever decide to leave. No lock-in, no hassle.",
 		),
 		category: "technical",
 		order: 3,
 	},
 	{
-		question: "How secure is my directory?",
+		question: "How secure is SaaSify?",
 		answer: createParagraph(
-			"Security is a top priority. We use SSL encryption, secure payment processing via Stripe, regular security audits, and follow OWASP best practices. Enterprise plans include SOC 2 compliance.",
+			"We're SOC 2 Type II certified with end-to-end encryption, SSO/SAML support, and regular third-party security audits. Your data security is our top priority.",
 		),
 		category: "technical",
 		order: 4,
@@ -174,7 +174,7 @@ export const faqData: Partial<Faq>[] = [
 	{
 		question: "What support options are available?",
 		answer: createParagraph(
-			"All plans include email support with 24-hour response times. Professional plans add live chat support. Enterprise plans include dedicated account managers and phone support.",
+			"All plans include email support with 24-hour response times. Pro plans add live chat support. Business plans include a dedicated customer success manager and phone support.",
 		),
 		category: "support",
 		order: 1,
@@ -182,7 +182,7 @@ export const faqData: Partial<Faq>[] = [
 	{
 		question: "Do you offer onboarding assistance?",
 		answer: createParagraph(
-			"Yes! All paid plans include onboarding guides and video tutorials. Professional and Enterprise plans include personalized onboarding calls to help you get set up for success.",
+			"Yes! All paid plans include onboarding guides and video tutorials. Pro and Business plans include personalized onboarding calls to help you get set up for success.",
 		),
 		category: "support",
 		order: 2,
@@ -190,7 +190,7 @@ export const faqData: Partial<Faq>[] = [
 	{
 		question: "Can I request new features?",
 		answer: createParagraph(
-			"Absolutely! We love hearing from customers. Submit feature requests through our feedback portal. Many of our most popular features came directly from customer suggestions.",
+			"Absolutely! Submit feature requests through our feedback portal. Many of our most popular features came directly from customer suggestions. We prioritize based on demand.",
 		),
 		category: "support",
 		order: 3,
@@ -198,17 +198,17 @@ export const faqData: Partial<Faq>[] = [
 
 	// General FAQs
 	{
-		question: "What makes DirectoryHub different from other platforms?",
+		question: "What makes SaaSify different from other platforms?",
 		answer: createParagraph(
-			"DirectoryHub is purpose-built for directories. Unlike general website builders or generic CMS platforms, every feature is designed specifically for the directory use case—from listing schemas to monetization tools.",
+			"SaaSify brings together the best of project management, CRM, and collaboration tools in one unified platform designed for how modern teams actually work. No more app switching or lost context.",
 		),
 		category: "general",
 		order: 1,
 	},
 	{
-		question: "Can I use DirectoryHub for multiple directories?",
+		question: "Can I use SaaSify for multiple teams?",
 		answer: createParagraph(
-			"Yes! Our Professional and Enterprise plans support multiple directories under one account. Manage all your directories from a single dashboard with unified billing and analytics.",
+			"Yes! Our Business plan supports unlimited teams and workspaces with unified billing and cross-team visibility. Perfect for organizations with multiple departments.",
 		),
 		category: "general",
 		order: 2,
@@ -216,7 +216,7 @@ export const faqData: Partial<Faq>[] = [
 	{
 		question: "How do I contact sales?",
 		answer: createParagraph(
-			"For sales inquiries, contact us at sales@directoryhub.com or book a demo through our website. Our team will help you understand which plan and features are right for your needs.",
+			"For sales inquiries, contact us at sales@saasify.com or book a demo through our website. Our team will help you understand which plan and features are right for your needs.",
 		),
 		category: "general",
 		order: 3,

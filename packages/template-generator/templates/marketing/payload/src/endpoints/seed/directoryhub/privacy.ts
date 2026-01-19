@@ -96,7 +96,7 @@ export const directoryHubPrivacy = (): Partial<Page> => {
 												format: 0,
 												mode: "normal",
 												style: "",
-												text: 'DirectoryHub ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our platform and services.',
+												text: 'SaaSify ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our platform and services.',
 												version: 1,
 											},
 										],
@@ -426,7 +426,7 @@ export const directoryHubPrivacy = (): Partial<Page> => {
 												format: 0,
 												mode: "normal",
 												style: "",
-												text: "If you have any questions about this Privacy Policy, please contact us at privacy@directoryhub.com.",
+												text: "If you have any questions about this Privacy Policy, please contact us at privacy@saasify.com.",
 												version: 1,
 											},
 										],
@@ -449,7 +449,7 @@ export const directoryHubPrivacy = (): Partial<Page> => {
 		],
 		meta: {
 			description:
-				"Read DirectoryHub's Privacy Policy to understand how we collect, use, and protect your personal information.",
+				"Read SaaSify's Privacy Policy to understand how we collect, use, and protect your personal information.",
 			title: "Privacy Policy",
 		},
 		title: "Privacy Policy",

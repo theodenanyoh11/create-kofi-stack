@@ -5,12 +5,12 @@ import type { CollectionSlug, File, Payload, PayloadRequest } from "payload"
 import { directoryHubAbout } from "./about"
 import { faqData } from "./faqs"
 import {
+	analyticsPage,
 	automationPage,
-	customFieldsPage,
 	dashboardPage,
-	monetizationPage,
-	seoPage,
-	templatesPage,
+	integrationsPage,
+	securityPage,
+	workflowsPage,
 } from "./features"
 import { directoryHubHome } from "./home"
 import { blogPosts } from "./posts"
@@ -18,10 +18,10 @@ import { directoryHubPricing } from "./pricing"
 import { directoryHubPrivacy } from "./privacy"
 import { directoryHubTerms } from "./terms"
 import {
-	b2bVendorHubsPage,
-	communitiesPage,
-	localServicesPage,
-	marketplacesPage,
+	marketingPage,
+	operationsPage,
+	productPage,
+	salesPage,
 } from "./use-cases"
 
 const collections: CollectionSlug[] = [
@@ -112,7 +112,7 @@ export const seedDirectoryHub = async ({
 	payload: Payload
 	req: PayloadRequest
 }): Promise<void> => {
-	payload.logger.info("Seeding DirectoryHub database...")
+	payload.logger.info("Seeding SaaSify database...")
 
 	// Clear collections and globals
 	payload.logger.info("— Clearing collections and globals...")
@@ -182,7 +182,7 @@ export const seedDirectoryHub = async ({
 	const _demoAuthor = await payload.create({
 		collection: "users",
 		data: {
-			name: "DirectoryHub Team",
+			name: "SaaSify Team",
 			email: "demo-author@example.com",
 			password: "password",
 		},
@@ -235,7 +235,7 @@ export const seedDirectoryHub = async ({
 			heroImageDoc = await payload.create({
 				collection: "media",
 				data: {
-					alt: "DirectoryHub Dashboard - Manage directories, track usage, and configure settings",
+					alt: "SaaSify Dashboard - Manage projects, track metrics, and configure settings",
 				},
 				file: heroImageFile,
 			})
@@ -351,21 +351,21 @@ export const seedDirectoryHub = async ({
 			depth: 0,
 			context: { disableRevalidate: true },
 			// biome-ignore lint/suspicious/noExplicitAny: Payload seed data type mismatch
-			data: templatesPage() as any,
+			data: integrationsPage() as any,
 		}),
 		payload.create({
 			collection: "pages",
 			depth: 0,
 			context: { disableRevalidate: true },
 			// biome-ignore lint/suspicious/noExplicitAny: Payload seed data type mismatch
-			data: monetizationPage() as any,
+			data: analyticsPage() as any,
 		}),
 		payload.create({
 			collection: "pages",
 			depth: 0,
 			context: { disableRevalidate: true },
 			// biome-ignore lint/suspicious/noExplicitAny: Payload seed data type mismatch
-			data: seoPage() as any,
+			data: securityPage() as any,
 		}),
 		payload.create({
 			collection: "pages",
@@ -386,7 +386,7 @@ export const seedDirectoryHub = async ({
 			depth: 0,
 			context: { disableRevalidate: true },
 			// biome-ignore lint/suspicious/noExplicitAny: Payload seed data type mismatch
-			data: customFieldsPage() as any,
+			data: workflowsPage() as any,
 		}),
 	])
 
@@ -401,28 +401,28 @@ export const seedDirectoryHub = async ({
 			depth: 0,
 			context: { disableRevalidate: true },
 			// biome-ignore lint/suspicious/noExplicitAny: Payload seed data type mismatch
-			data: localServicesPage() as any,
+			data: salesPage() as any,
 		}),
 		payload.create({
 			collection: "pages",
 			depth: 0,
 			context: { disableRevalidate: true },
 			// biome-ignore lint/suspicious/noExplicitAny: Payload seed data type mismatch
-			data: b2bVendorHubsPage() as any,
+			data: marketingPage() as any,
 		}),
 		payload.create({
 			collection: "pages",
 			depth: 0,
 			context: { disableRevalidate: true },
 			// biome-ignore lint/suspicious/noExplicitAny: Payload seed data type mismatch
-			data: communitiesPage() as any,
+			data: productPage() as any,
 		}),
 		payload.create({
 			collection: "pages",
 			depth: 0,
 			context: { disableRevalidate: true },
 			// biome-ignore lint/suspicious/noExplicitAny: Payload seed data type mismatch
-			data: marketplacesPage() as any,
+			data: operationsPage() as any,
 		}),
 	])
 
@@ -461,11 +461,11 @@ export const seedDirectoryHub = async ({
 						label: "Product",
 						megaMenuColumns: [
 							{
-								columnLabel: "Features",
+								columnLabel: "Core Features",
 								items: [
 									{
-										label: "Templates",
-										description: "Beautiful, ready-to-use directory templates",
+										label: "Integrations",
+										description: "Connect with 100+ tools you already use",
 										icon: "layout",
 										link: {
 											type: "reference",
@@ -476,9 +476,9 @@ export const seedDirectoryHub = async ({
 										},
 									},
 									{
-										label: "Monetization",
-										description: "Built-in payments and subscriptions",
-										icon: "dollarSign",
+										label: "Analytics",
+										description: "Real-time insights and reporting dashboards",
+										icon: "barChart",
 										link: {
 											type: "reference",
 											reference: {
@@ -488,9 +488,9 @@ export const seedDirectoryHub = async ({
 										},
 									},
 									{
-										label: "SEO",
-										description: "Schema markup and optimizations",
-										icon: "search",
+										label: "Security",
+										description: "Enterprise-grade protection and compliance",
+										icon: "shield",
 										link: {
 											type: "reference",
 											reference: {
@@ -502,12 +502,12 @@ export const seedDirectoryHub = async ({
 								],
 							},
 							{
-								columnLabel: "Tools",
+								columnLabel: "Productivity",
 								items: [
 									{
 										label: "Dashboard",
-										description: "Powerful admin and analytics",
-										icon: "barChart",
+										description: "Unified command center for your team",
+										icon: "layout",
 										link: {
 											type: "reference",
 											reference: {
@@ -518,7 +518,7 @@ export const seedDirectoryHub = async ({
 									},
 									{
 										label: "Automation",
-										description: "Smart workflows and actions",
+										description: "Streamline repetitive tasks instantly",
 										icon: "zap",
 										link: {
 											type: "reference",
@@ -529,8 +529,8 @@ export const seedDirectoryHub = async ({
 										},
 									},
 									{
-										label: "Custom Fields",
-										description: "Flexible schemas for any niche",
+										label: "Workflows",
+										description: "Build custom processes without code",
 										icon: "layers",
 										link: {
 											type: "reference",
@@ -546,15 +546,15 @@ export const seedDirectoryHub = async ({
 					},
 					{
 						type: "megaMenu",
-						label: "Use Cases",
+						label: "Solutions",
 						megaMenuColumns: [
 							{
-								columnLabel: "Directory Types",
+								columnLabel: "By Team",
 								items: [
 									{
-										label: "Local Services",
-										description: "Plumbers, restaurants, photographers",
-										icon: "globe",
+										label: "Sales Teams",
+										description: "Close deals faster with smart tools",
+										icon: "target",
 										link: {
 											type: "reference",
 											reference: {
@@ -564,9 +564,9 @@ export const seedDirectoryHub = async ({
 										},
 									},
 									{
-										label: "B2B Vendor Hubs",
-										description: "SaaS tools, agencies, consultants",
-										icon: "building",
+										label: "Marketing Teams",
+										description: "Launch campaigns that convert",
+										icon: "rocket",
 										link: {
 											type: "reference",
 											reference: {
@@ -576,9 +576,9 @@ export const seedDirectoryHub = async ({
 										},
 									},
 									{
-										label: "Communities",
-										description: "Member directories, alumni networks",
-										icon: "users",
+										label: "Product Teams",
+										description: "Ship features users love",
+										icon: "layers",
 										link: {
 											type: "reference",
 											reference: {
@@ -588,9 +588,9 @@ export const seedDirectoryHub = async ({
 										},
 									},
 									{
-										label: "Marketplaces",
-										description: "Multi-vendor platforms",
-										icon: "store",
+										label: "Operations",
+										description: "Scale without the growing pains",
+										icon: "settings",
 										link: {
 											type: "reference",
 											reference: {
@@ -674,7 +674,7 @@ export const seedDirectoryHub = async ({
 							{
 								link: {
 									type: "reference",
-									label: "Templates",
+									label: "Integrations",
 									reference: {
 										relationTo: "pages",
 										value: featurePages[0].id,
@@ -744,18 +744,18 @@ export const seedDirectoryHub = async ({
 					},
 				],
 				socialLinks: {
-					twitter: "https://x.com/directoryhub",
-					linkedin: "https://linkedin.com/company/directoryhub",
-					github: "https://github.com/directoryhub",
+					twitter: "https://x.com/saasify",
+					linkedin: "https://linkedin.com/company/saasify",
+					github: "https://github.com/saasify",
 				},
 				newsletter: {
 					enabled: true,
 					title: "Newsletter",
-					description: "Stay up to date with DirectoryHub through weekly updates to your inbox.",
+					description: "Get product updates, tips, and insights delivered weekly.",
 					buttonText: "Subscribe",
 					placeholder: "Enter your email",
 				},
-				copyrightText: "DirectoryHub",
+				copyrightText: "SaaSify",
 				bottomLinks: [
 					{
 						link: {
@@ -769,5 +769,5 @@ export const seedDirectoryHub = async ({
 		}),
 	])
 
-	payload.logger.info("DirectoryHub database seeded successfully!")
+	payload.logger.info("SaaSify database seeded successfully!")
 }
