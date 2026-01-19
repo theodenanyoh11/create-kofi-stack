@@ -6,9 +6,9 @@
   "types": "./src/index.ts",
   "exports": {
     ".": "./src/index.ts",
-    "./styles.css": {
-      "style": "./src/styles.css",
-      "default": "./src/styles.css"
+    "./globals.css": {
+      "style": "./src/globals.css",
+      "default": "./src/globals.css"
     },
     "./components/*": "./src/components/*.tsx",
     "./lib/*": "./src/lib/*.ts"
@@ -25,7 +25,8 @@
     {{#if (eq shadcn.iconLibrary "phosphor")}}"@phosphor-icons/react": "^2.1.7",{{/if}}
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
-    "tailwind-merge": "^2.5.0"
+    "tailwind-merge": "^2.5.0",
+    "tw-animate-css": "^1.3.0"
   },
   "devDependencies": {
     "@repo/config-typescript": "workspace:*",

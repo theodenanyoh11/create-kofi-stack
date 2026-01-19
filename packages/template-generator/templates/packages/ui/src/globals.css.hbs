@@ -1,13 +1,3 @@
-{{#if (eq structure 'monorepo')}}
-/* Import shared design tokens from @repo/ui */
-@import "@repo/ui/globals.css";
-
-/* Web app specific overrides */
-@theme inline {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-{{else}}
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -576,4 +566,3 @@
     @apply bg-background text-foreground;
   }
 }
-{{/if}}

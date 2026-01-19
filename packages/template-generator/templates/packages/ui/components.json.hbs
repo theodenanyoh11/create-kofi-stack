@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+{{#if (eq shadcn.style "nova")}}
+  "style": "new-york",
+{{else if (eq shadcn.style "vega")}}
+  "style": "default",
+{{else}}
+  "style": "new-york",
+{{/if}}
+  "rsc": true,
+  "tsx": true,
+  "tailwind": {
+    "config": "",
+    "css": "src/globals.css",
+    "baseColor": "{{shadcn.baseColor}}",
+    "cssVariables": true,
+    "prefix": ""
+  },
+  "aliases": {
+    "components": "@/components",
+    "utils": "@/lib/utils",
+    "ui": "@/components/ui",
+    "lib": "@/lib",
+    "hooks": "@/hooks"
+  },
+  "iconLibrary": "{{shadcn.iconLibrary}}"
+}
