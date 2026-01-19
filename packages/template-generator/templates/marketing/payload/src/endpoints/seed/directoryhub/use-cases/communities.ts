@@ -188,7 +188,7 @@ export const productPage = (): Partial<Page> => {
 					{
 						size: "small",
 						style: "default",
-						icon: "messageSquare",
+						icon: "users",
 						title: "Stakeholder Updates",
 						description: createParagraph("Keep leadership informed automatically."),
 					},

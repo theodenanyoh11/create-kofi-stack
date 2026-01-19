@@ -160,7 +160,7 @@ export const securityPage = (): Partial<Page> => {
 					{
 						size: "small",
 						style: "accent",
-						icon: "lock",
+						icon: "shield",
 						title: "Zero Trust",
 						description: createParagraph("Verify every request, every time."),
 					},

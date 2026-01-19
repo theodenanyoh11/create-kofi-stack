@@ -131,7 +131,7 @@ export const integrationsPage = (): Partial<Page> => {
 					{
 						size: "small",
 						style: "gradient",
-						icon: "messageSquare",
+						icon: "globe",
 						title: "Communication",
 						description: createParagraph(
 							"Slack, Microsoft Teams, Discord, and email integrations.",
@@ -149,7 +149,7 @@ export const integrationsPage = (): Partial<Page> => {
 					{
 						size: "small",
 						style: "default",
-						icon: "folder",
+						icon: "layers",
 						title: "Project Management",
 						description: createParagraph(
 							"Jira, Asana, Monday.com, Trello integrations.",

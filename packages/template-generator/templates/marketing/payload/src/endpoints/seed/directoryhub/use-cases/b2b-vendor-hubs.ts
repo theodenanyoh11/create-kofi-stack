@@ -160,7 +160,7 @@ export const marketingPage = (): Partial<Page> => {
 					{
 						size: "small",
 						style: "accent",
-						icon: "folder",
+						icon: "layers",
 						title: "Project Templates",
 						description: createParagraph("Pre-built templates for common campaigns."),
 					},
@@ -188,7 +188,7 @@ export const marketingPage = (): Partial<Page> => {
 					{
 						size: "small",
 						style: "default",
-						icon: "messageSquare",
+						icon: "globe",
 						title: "Collaboration",
 						description: createParagraph("Comments, feedback, and approvals in context."),
 					},
