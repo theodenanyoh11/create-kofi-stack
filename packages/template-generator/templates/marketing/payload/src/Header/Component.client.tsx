@@ -12,7 +12,7 @@ import { MobileMenu } from "./MobileMenu"
 import { HeaderNav } from "./Nav"
 
 interface HeaderClientProps {
-	data: Header
+	data: Header | null
 }
 
 // Helper to get href from link data
@@ -56,6 +56,22 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
 		)
 		return rightButtonItems?.[0]
 	}, [data?.navItems])
+
+	// Show setup header when database isn't initialized yet
+	if (!data) {
+		return (
+			<header className="sticky top-0 z-20 border-b border-border bg-background">
+				<div className="container mx-auto px-4 h-16 flex justify-between items-center">
+					<div className="flex items-center gap-2">
+						<span className="text-xl font-semibold">Welcome</span>
+					</div>
+					<Button asChild size="sm">
+						<Link href="/admin">Setup Site →</Link>
+					</Button>
+				</div>
+			</header>
+		)
+	}
 
 	return (
 		<header

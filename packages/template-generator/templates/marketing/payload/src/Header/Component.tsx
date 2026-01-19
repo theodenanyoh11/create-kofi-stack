@@ -4,7 +4,7 @@ import { HeaderClient } from "./Component.client"
 import type { Header as HeaderType } from "@/payload-types"
 
 export async function Header() {
-	const headerData: HeaderType = await getCachedGlobal("header", 1)()
+	const headerData = (await getCachedGlobal("header", 1)()) as HeaderType | null
 
 	return <HeaderClient data={headerData} />
 }

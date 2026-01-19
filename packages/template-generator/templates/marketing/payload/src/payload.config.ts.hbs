@@ -64,9 +64,9 @@ export default buildConfig({
 		pool: {
 			connectionString: process.env.DATABASE_URL || "",
 		},
-		// Disable auto-push in dev mode to prevent constraint name truncation issues
-		// Use migrations instead: pnpm payload migrate
-		push: false,
+		// Auto-sync schema in development for better DX (first launch works immediately)
+		// In production, use explicit migrations: pnpm payload migrate
+		push: process.env.NODE_ENV !== "production",
 	}),
 	collections: [Pages, Posts, Media, Categories, FAQs, Users],
 	cors: [getServerSideURL()].filter(Boolean),

@@ -13,7 +13,7 @@ import { ThemeSelector } from "@/providers/Theme/ThemeSelector"
 import { cn } from "@/utilities/ui"
 
 interface FooterClientProps {
-	data: Footer
+	data: Footer | null
 }
 
 // Social icons as inline SVGs for flexibility
@@ -81,6 +81,20 @@ export const FooterClient: React.FC<FooterClientProps> = ({ data }) => {
 	const [email, setEmail] = useState("")
 	const [isSubmitting, setIsSubmitting] = useState(false)
 	const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null)
+
+	// Show minimal footer when database isn't initialized yet
+	if (!data) {
+		return (
+			<footer className="mt-auto border-t border-border bg-background">
+				<div className="container mx-auto flex flex-col items-center justify-between gap-4 px-4 py-6 sm:flex-row">
+					<p className="text-sm text-muted-foreground">
+						Site not configured yet. Visit <Link href="/admin" className="underline hover:text-foreground">/admin</Link> to set up.
+					</p>
+					<ThemeSelector />
+				</div>
+			</footer>
+		)
+	}
 
 	const { columns, socialLinks, newsletter, copyrightText, bottomLinks } = data
 
