@@ -99,13 +99,16 @@ function processTemplatesFromPrefix(
     if (isBinaryFile(filename)) {
       // For binary files, we store the source path for later copying
       vfs.writeFile(finalPath, Buffer.from(content, 'base64'))
-    } else {
-      // Process as template
+    } else if (filename.endsWith('.hbs')) {
+      // Only process .hbs files through Handlebars
       const processedContent = processTemplateString(content, config)
       // Skip writing empty files (can happen with conditional templates)
       if (processedContent.trim()) {
         vfs.writeFile(finalPath, processedContent)
       }
+    } else {
+      // For non-template files, copy content directly without Handlebars processing
+      vfs.writeFile(finalPath, content)
     }
   }
 }
