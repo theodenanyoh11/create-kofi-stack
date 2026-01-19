@@ -1,0 +1,711 @@
+---
+interface MockupState {
+  id: number
+  label: string
+  sidebarActive: string
+  previewTitle: string
+  previewDescription: string
+  previewCategory: string
+  previewStatus: "draft" | "published" | "featured"
+  previewUrl?: string
+}
+
+const mockupStates: MockupState[] = [
+  {
+    id: 1,
+    label: "Setup & styling",
+    sidebarActive: "templates",
+    previewTitle: "Atlas Directory",
+    previewDescription: "Apply your brand, typography, and layout in minutes.",
+    previewCategory: "Design systems",
+    previewStatus: "draft",
+    previewUrl: "atlas.directory/home",
+  },
+  {
+    id: 2,
+    label: "Plans & pricing",
+    sidebarActive: "billing",
+    previewTitle: "Pro Listing Plan",
+    previewDescription: "Recurring billing, featured placements, and add-ons configured.",
+    previewCategory: "Monetization",
+    previewStatus: "draft",
+    previewUrl: "atlas.directory/billing",
+  },
+  {
+    id: 3,
+    label: "SEO & publishing",
+    sidebarActive: "seo",
+    previewTitle: "Atlas Directory",
+    previewDescription: "Schema, sitemap, and custom domain are ready to publish.",
+    previewCategory: "SEO & domains",
+    previewStatus: "published",
+    previewUrl: "atlas.directory/launch",
+  },
+  {
+    id: 4,
+    label: "Payouts live",
+    sidebarActive: "overview",
+    previewTitle: "Atlas Directory",
+    previewDescription: "Subscribers active, payouts scheduled to Stripe, featured slots sold.",
+    previewCategory: "Revenue",
+    previewStatus: "featured",
+    previewUrl: "atlas.directory/analytics",
+  },
+]
+
+const initialState = mockupStates[0]
+---
+
+<div class="mockup-wrapper" id="animated-mockup">
+  <!-- Browser Chrome -->
+  <div class="mockup-chrome">
+    <div class="mockup-chrome-dots">
+      <span class="dot dot-red"></span>
+      <span class="dot dot-yellow"></span>
+      <span class="dot dot-green"></span>
+    </div>
+    <div class="mockup-chrome-title">SaaSify</div>
+    <div class="mockup-chrome-actions"></div>
+  </div>
+
+  <!-- App Content -->
+  <div class="mockup-content">
+    <!-- Sidebar -->
+    <div class="mockup-sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <span class="logo-icon">D</span>
+          <span class="logo-text">My Directory</span>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-item" data-nav="overview">
+          <span class="sidebar-icon">📊</span>
+          <span class="sidebar-label">Overview</span>
+        </div>
+        <div class="sidebar-item sidebar-item--active" data-nav="templates">
+          <span class="sidebar-icon">🖼️</span>
+          <span class="sidebar-label">Templates</span>
+        </div>
+        <div class="sidebar-item" data-nav="listings">
+          <span class="sidebar-icon">📋</span>
+          <span class="sidebar-label">Listings</span>
+          <span class="sidebar-badge">24</span>
+        </div>
+        <div class="sidebar-item" data-nav="billing">
+          <span class="sidebar-icon">💳</span>
+          <span class="sidebar-label">Plans & Billing</span>
+        </div>
+        <div class="sidebar-item" data-nav="automations">
+          <span class="sidebar-icon">⚡</span>
+          <span class="sidebar-label">Automations</span>
+        </div>
+        <div class="sidebar-item" data-nav="seo">
+          <span class="sidebar-icon">🔎</span>
+          <span class="sidebar-label">SEO</span>
+        </div>
+        <div class="sidebar-item" data-nav="settings">
+          <span class="sidebar-icon">⚙️</span>
+          <span class="sidebar-label">Settings</span>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="mockup-main">
+      <!-- Header -->
+      <div class="main-header">
+        <div class="header-title">
+          <h2 id="mockup-label">{initialState.label}</h2>
+          <span class="header-breadcrumb">SaaSify / <span id="mockup-breadcrumb">{initialState.previewTitle}</span></span>
+        </div>
+        <div class="header-actions">
+          <button type="button" class="action-btn" id="mockup-action-btn">
+            Save Draft
+          </button>
+        </div>
+      </div>
+
+      <!-- Split View: Editor + Preview -->
+      <div class="main-split">
+        <!-- Editor Panel -->
+        <div class="editor-panel">
+          <div class="editor-section">
+            <span class="editor-label">Listing Name</span>
+            <div class="editor-input">
+              <span class="input-text" id="mockup-title">{initialState.previewTitle}</span>
+              <span class="input-cursor"></span>
+            </div>
+          </div>
+          <div class="editor-section">
+            <span class="editor-label">Category</span>
+            <div class="editor-select">
+              <span id="mockup-category">{initialState.previewCategory}</span>
+              <span class="select-arrow">▼</span>
+            </div>
+          </div>
+          <div class="editor-section">
+            <span class="editor-label">Description</span>
+            <div class="editor-textarea">
+              <span class="textarea-text" id="mockup-description">{initialState.previewDescription}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Preview Panel -->
+        <div class="preview-panel">
+          <div class="preview-header">
+            <span class="preview-label">Live Preview</span>
+            <span class="preview-url" id="mockup-url">{initialState.previewUrl}</span>
+          </div>
+          <div class="preview-card">
+            <div class="preview-badge hidden" id="mockup-badge">⭐ Featured</div>
+            <div class="preview-image">
+              <div class="preview-image-placeholder">
+                <span>🏢</span>
+              </div>
+            </div>
+            <div class="preview-content">
+              <span class="preview-category-tag" id="mockup-preview-category">{initialState.previewCategory}</span>
+              <h3 class="preview-title" id="mockup-preview-title">{initialState.previewTitle}</h3>
+              <p class="preview-description" id="mockup-preview-description">{initialState.previewDescription}</p>
+              <div class="preview-meta">
+                <span class="meta-rating">★★★★★</span>
+                <span class="meta-reviews">24 reviews</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- State Indicator -->
+  <div class="mockup-indicators">
+    {mockupStates.map((s, i) => (
+      <button
+        type="button"
+        data-state-index={i}
+        class:list={["indicator", i === 0 && "indicator--active"]}
+      >
+        <span class="indicator-dot"></span>
+        <span class="indicator-label">{s.label}</span>
+      </button>
+    ))}
+  </div>
+</div>
+
+<script define:vars={{ mockupStates }}>
+  function initMockup() {
+    const mockup = document.getElementById('animated-mockup')
+    if (!mockup) return
+
+    let currentState = 0
+    let isPaused = false
+    let interval
+
+    const elements = {
+      label: document.getElementById('mockup-label'),
+      breadcrumb: document.getElementById('mockup-breadcrumb'),
+      title: document.getElementById('mockup-title'),
+      category: document.getElementById('mockup-category'),
+      description: document.getElementById('mockup-description'),
+      url: document.getElementById('mockup-url'),
+      badge: document.getElementById('mockup-badge'),
+      previewCategory: document.getElementById('mockup-preview-category'),
+      previewTitle: document.getElementById('mockup-preview-title'),
+      previewDescription: document.getElementById('mockup-preview-description'),
+      actionBtn: document.getElementById('mockup-action-btn'),
+    }
+
+    function updateMockup(stateIndex) {
+      const state = mockupStates[stateIndex]
+      if (!state) return
+
+      // Update content
+      if (elements.label) elements.label.textContent = state.label
+      if (elements.breadcrumb) elements.breadcrumb.textContent = state.previewTitle
+      if (elements.title) elements.title.textContent = state.previewTitle
+      if (elements.category) elements.category.textContent = state.previewCategory
+      if (elements.description) elements.description.textContent = state.previewDescription
+      if (elements.url) elements.url.textContent = state.previewUrl || 'saasify.app/live'
+      if (elements.previewCategory) elements.previewCategory.textContent = state.previewCategory
+      if (elements.previewTitle) elements.previewTitle.textContent = state.previewTitle
+      if (elements.previewDescription) elements.previewDescription.textContent = state.previewDescription
+
+      // Update badge
+      if (elements.badge) {
+        if (state.previewStatus === 'featured') {
+          elements.badge.classList.remove('hidden')
+        } else {
+          elements.badge.classList.add('hidden')
+        }
+      }
+
+      // Update action button
+      if (elements.actionBtn) {
+        elements.actionBtn.classList.remove('action-btn--success', 'action-btn--featured')
+        if (state.previewStatus === 'draft') {
+          elements.actionBtn.textContent = 'Save Draft'
+        } else if (state.previewStatus === 'published') {
+          elements.actionBtn.textContent = '✓ Published'
+          elements.actionBtn.classList.add('action-btn--success')
+        } else if (state.previewStatus === 'featured') {
+          elements.actionBtn.textContent = '⭐ Featured'
+          elements.actionBtn.classList.add('action-btn--featured')
+        }
+      }
+
+      // Update sidebar active state
+      const sidebarItems = mockup.querySelectorAll('.sidebar-item')
+      sidebarItems.forEach(item => {
+        item.classList.remove('sidebar-item--active')
+        if (item.getAttribute('data-nav') === state.sidebarActive) {
+          item.classList.add('sidebar-item--active')
+        }
+      })
+
+      // Update indicators
+      const indicators = mockup.querySelectorAll('.indicator')
+      indicators.forEach((ind, i) => {
+        ind.classList.toggle('indicator--active', i === stateIndex)
+      })
+    }
+
+    function nextState() {
+      if (isPaused) return
+      currentState = (currentState + 1) % mockupStates.length
+      updateMockup(currentState)
+    }
+
+    // Auto-advance
+    interval = setInterval(nextState, 3000)
+
+    // Pause on hover
+    mockup.addEventListener('mouseenter', () => {
+      isPaused = true
+    })
+    mockup.addEventListener('mouseleave', () => {
+      isPaused = false
+    })
+
+    // Manual state selection
+    const indicators = mockup.querySelectorAll('.indicator')
+    indicators.forEach((indicator) => {
+      indicator.addEventListener('click', () => {
+        const index = parseInt(indicator.getAttribute('data-state-index') || '0', 10)
+        currentState = index
+        updateMockup(currentState)
+      })
+    })
+  }
+
+  initMockup()
+  document.addEventListener('astro:after-swap', initMockup)
+</script>
+
+<style>
+  .mockup-wrapper {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--background);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
+
+  .mockup-chrome {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: var(--muted);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .mockup-chrome-dots {
+    display: flex;
+    gap: 0.375rem;
+  }
+
+  .dot {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+  }
+
+  .dot-red { background: #ff5f56; }
+  .dot-yellow { background: #ffbd2e; }
+  .dot-green { background: #27ca40; }
+
+  .mockup-chrome-title {
+    flex: 1;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--muted-foreground);
+  }
+
+  .mockup-chrome-actions {
+    width: 3rem;
+  }
+
+  .mockup-content {
+    display: flex;
+    min-height: 300px;
+  }
+
+  .mockup-sidebar {
+    width: 180px;
+    background: var(--card);
+    border-right: 1px solid var(--border);
+    padding: 1rem 0;
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .mockup-sidebar {
+      display: block;
+    }
+    .mockup-content {
+      min-height: 350px;
+    }
+  }
+
+  .sidebar-header {
+    padding: 0 1rem 1rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 0.5rem;
+  }
+
+  .sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .logo-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    background: var(--primary);
+    color: var(--primary-foreground);
+    border-radius: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .logo-text {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--foreground);
+  }
+
+  .sidebar-nav {
+    padding: 0 0.5rem;
+  }
+
+  .sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .sidebar-item:hover {
+    background: var(--muted);
+  }
+
+  .sidebar-item--active {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+
+  .sidebar-icon {
+    font-size: 0.875rem;
+  }
+
+  .sidebar-label {
+    font-size: 0.75rem;
+    flex: 1;
+  }
+
+  .sidebar-badge {
+    font-size: 0.625rem;
+    background: var(--muted);
+    padding: 0.125rem 0.375rem;
+    border-radius: 9999px;
+  }
+
+  .sidebar-item--active .sidebar-badge {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .mockup-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header-title h2 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--foreground);
+    margin: 0;
+  }
+
+  .header-breadcrumb {
+    font-size: 0.625rem;
+    color: var(--muted-foreground);
+  }
+
+  .action-btn {
+    font-size: 0.625rem;
+    padding: 0.375rem 0.75rem;
+    background: var(--primary);
+    color: var(--primary-foreground);
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+  }
+
+  .action-btn--success {
+    background: #22c55e;
+  }
+
+  .action-btn--featured {
+    background: #f59e0b;
+  }
+
+  .main-split {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+  }
+
+  .editor-panel {
+    flex: 1;
+    padding: 1rem;
+    border-right: 1px solid var(--border);
+    display: none;
+  }
+
+  @media (min-width: 640px) {
+    .editor-panel {
+      display: block;
+    }
+  }
+
+  .editor-section {
+    margin-bottom: 0.75rem;
+  }
+
+  .editor-label {
+    display: block;
+    font-size: 0.625rem;
+    color: var(--muted-foreground);
+    margin-bottom: 0.25rem;
+  }
+
+  .editor-input,
+  .editor-select,
+  .editor-textarea {
+    background: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--foreground);
+  }
+
+  .editor-input {
+    display: flex;
+    align-items: center;
+  }
+
+  .input-cursor {
+    width: 1px;
+    height: 1em;
+    background: var(--primary);
+    animation: blink 1s infinite;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  .editor-select {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .select-arrow {
+    font-size: 0.5rem;
+    color: var(--muted-foreground);
+  }
+
+  .editor-textarea {
+    min-height: 60px;
+  }
+
+  .preview-panel {
+    flex: 1;
+    padding: 1rem;
+    background: var(--muted);
+  }
+
+  .preview-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+  }
+
+  .preview-label {
+    font-size: 0.625rem;
+    font-weight: 500;
+    color: var(--muted-foreground);
+  }
+
+  .preview-url {
+    font-size: 0.625rem;
+    color: var(--primary);
+  }
+
+  .preview-card {
+    background: var(--background);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+
+  .preview-badge {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: #f59e0b;
+    color: white;
+    font-size: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+    font-weight: 500;
+  }
+
+  .preview-image {
+    aspect-ratio: 16/9;
+    background: var(--muted);
+  }
+
+  .preview-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+  }
+
+  .preview-content {
+    padding: 0.75rem;
+  }
+
+  .preview-category-tag {
+    display: inline-block;
+    font-size: 0.5rem;
+    color: var(--primary);
+    background: color-mix(in oklch, var(--primary) 10%, transparent);
+    padding: 0.125rem 0.375rem;
+    border-radius: 9999px;
+    margin-bottom: 0.25rem;
+  }
+
+  .preview-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--foreground);
+    margin: 0 0 0.25rem;
+  }
+
+  .preview-description {
+    font-size: 0.625rem;
+    color: var(--muted-foreground);
+    margin: 0 0 0.5rem;
+    line-height: 1.4;
+  }
+
+  .preview-meta {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 0.5rem;
+    color: var(--muted-foreground);
+  }
+
+  .meta-rating {
+    color: #f59e0b;
+  }
+
+  .mockup-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    background: var(--card);
+    border-top: 1px solid var(--border);
+  }
+
+  .indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.375rem 0.75rem;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .indicator:hover {
+    border-color: var(--primary);
+  }
+
+  .indicator--active {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: var(--primary-foreground);
+  }
+
+  .indicator-dot {
+    width: 0.375rem;
+    height: 0.375rem;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  .indicator-label {
+    font-size: 0.625rem;
+    font-weight: 500;
+    display: none;
+  }
+
+  @media (min-width: 640px) {
+    .indicator-label {
+      display: inline;
+    }
+  }
+</style>

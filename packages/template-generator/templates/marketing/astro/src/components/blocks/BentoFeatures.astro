@@ -1,0 +1,209 @@
+---
+import { Rocket, Zap, Layers, Shield, Globe, Settings, BarChart3 } from "lucide-astro"
+
+interface Feature {
+  size?: "small" | "tall"
+  style?: "default" | "primary" | "accent" | "gradient"
+  icon?: string
+  stat?: string
+  title: string
+  description: string
+}
+
+interface Props {
+  heading?: string
+  subheading?: string
+  features?: Feature[]
+}
+
+const defaultFeatures: Feature[] = [
+  {
+    size: "small",
+    style: "gradient",
+    icon: "zap",
+    stat: "5x",
+    title: "Faster onboarding",
+    description: "Get your team up and running in hours, not weeks.",
+  },
+  {
+    size: "small",
+    style: "accent",
+    icon: "rocket",
+    title: "Quick setup",
+    description: "Configure your workspace, invite your team, and start collaborating.",
+  },
+  {
+    size: "small",
+    style: "default",
+    icon: "layers",
+    title: "Powerful integrations",
+    description: "Connect with 100+ tools you already use.",
+  },
+  {
+    size: "tall",
+    style: "primary",
+    icon: "shield",
+    title: "Enterprise security",
+    description: "SOC 2 compliant with end-to-end encryption and complete audit trails for peace of mind.",
+  },
+  {
+    size: "small",
+    style: "default",
+    icon: "globe",
+    stat: "99.9%",
+    title: "Uptime",
+    description: "Reliable infrastructure you can count on.",
+  },
+  {
+    size: "small",
+    style: "default",
+    icon: "globe",
+    title: "Global scale",
+    description: "Multi-region with custom domains.",
+  },
+  {
+    size: "small",
+    style: "default",
+    icon: "settings",
+    title: "Smart automation",
+    description: "Automate repetitive tasks and workflows.",
+  },
+  {
+    size: "small",
+    style: "default",
+    icon: "layers",
+    title: "Flexible workflows",
+    description: "Build custom processes for any use case.",
+  },
+]
+
+const {
+  heading = "Discover what SaaSify can do",
+  subheading = "Everything you need to work smarter and scale faster",
+  features = defaultFeatures,
+} = Astro.props
+
+const displayFeatures = features.length > 0 ? features : defaultFeatures
+
+const gridPositions = [
+  "md:col-span-1 md:row-span-1",
+  "md:col-span-1 md:row-span-1",
+  "md:col-span-1 md:row-span-1",
+  "md:col-span-1 md:row-span-2",
+  "md:col-span-1 md:row-span-1",
+  "md:col-span-1 md:row-span-1",
+  "md:col-span-1 md:row-span-1",
+  "md:col-span-1 md:row-span-1",
+]
+
+const styleClasses = {
+  default: {
+    bg: "bg-card border border-border/50 hover:border-border",
+    text: "text-foreground",
+    icon: "bg-primary/10 text-primary",
+    statText: "text-primary",
+    descText: "text-muted-foreground",
+  },
+  primary: {
+    bg: "bg-primary hover:bg-primary/95",
+    text: "text-primary-foreground",
+    icon: "bg-white/20 text-white",
+    statText: "text-white",
+    descText: "text-white/80",
+  },
+  accent: {
+    bg: "bg-gradient-to-br from-teal-500 to-teal-600 hover:from-teal-500/95 hover:to-teal-600/95",
+    text: "text-white",
+    icon: "bg-white/20 text-white",
+    statText: "text-white",
+    descText: "text-white/80",
+  },
+  gradient: {
+    bg: "bg-gradient-to-br from-primary via-primary/90 to-secondary hover:from-primary/95",
+    text: "text-white",
+    icon: "bg-white/20 text-white",
+    statText: "text-white",
+    descText: "text-white/80",
+  },
+}
+---
+
+<section class="py-16 md:py-24">
+  <div class="container mx-auto px-4">
+    <!-- Header -->
+    {(heading || subheading) && (
+      <div class="text-center mb-12 md:mb-16 max-w-3xl mx-auto">
+        {heading && (
+          <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
+            {heading}
+          </h2>
+        )}
+        {subheading && (
+          <p class="text-xl md:text-2xl text-muted-foreground">{subheading}</p>
+        )}
+      </div>
+    )}
+
+    <!-- Bento Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 md:grid-rows-[repeat(3,minmax(140px,160px))]">
+      {displayFeatures.map((feature, index) => {
+        const style = feature.style || "default"
+        const styleConfig = styleClasses[style] || styleClasses.default
+        const gridPosition = gridPositions[index] || "md:col-span-1 md:row-span-1"
+
+        return (
+          <div
+            class:list={[
+              "relative rounded-2xl overflow-hidden p-5 md:p-6 flex flex-col transition-all duration-300 group",
+              "hover:shadow-lg hover:-translate-y-0.5",
+              "col-span-1 row-span-1",
+              gridPosition,
+              styleConfig.bg,
+            ]}
+          >
+            {/* Decorative elements */}
+            {feature.size === "tall" && (
+              <div class="absolute -right-6 -bottom-6 w-24 h-24 md:w-32 md:h-32 rounded-full bg-white/10 blur-xl" />
+            )}
+
+            {/* Content */}
+            <div class="relative z-10 flex flex-col h-full">
+              {/* Icon */}
+              {feature.icon && (
+                <div class:list={["w-10 h-10 md:w-11 md:h-11 rounded-xl flex items-center justify-center mb-auto", styleConfig.icon]}>
+                  {feature.icon === "rocket" && <Rocket class="w-5 h-5" />}
+                  {feature.icon === "zap" && <Zap class="w-5 h-5" />}
+                  {feature.icon === "layers" && <Layers class="w-5 h-5" />}
+                  {feature.icon === "shield" && <Shield class="w-5 h-5" />}
+                  {feature.icon === "globe" && <Globe class="w-5 h-5" />}
+                  {feature.icon === "settings" && <Settings class="w-5 h-5" />}
+                  {feature.icon === "barChart" && <BarChart3 class="w-5 h-5" />}
+                </div>
+              )}
+
+              {/* Spacer */}
+              <div class="flex-1 min-h-2" />
+
+              {/* Stat */}
+              {feature.stat && (
+                <div class:list={["font-bold mb-0.5 leading-none text-3xl md:text-4xl", styleConfig.statText]}>
+                  {feature.stat}
+                </div>
+              )}
+
+              {/* Title */}
+              <h3 class:list={["font-semibold mb-1 text-base md:text-lg", styleConfig.text]}>
+                {feature.title}
+              </h3>
+
+              {/* Description */}
+              <p class:list={["leading-snug text-xs md:text-sm", styleConfig.descText]}>
+                {feature.description}
+              </p>
+            </div>
+          </div>
+        )
+      })}
+    </div>
+  </div>
+</section>

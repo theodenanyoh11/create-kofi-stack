@@ -4,7 +4,7 @@ import { z } from 'zod'
 export const ProjectStructureSchema = z.enum(['standalone', 'monorepo'])
 
 // Marketing site options
-export const MarketingSiteSchema = z.enum(['none', 'nextjs', 'payload'])
+export const MarketingSiteSchema = z.enum(['none', 'nextjs', 'payload', 'astro'])
 
 // Auth providers (OAuth)
 export const AuthProviderSchema = z.enum([

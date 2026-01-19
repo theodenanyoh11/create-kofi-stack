@@ -1,0 +1,107 @@
+---
+import Layout from "../layouts/Layout.astro"
+import Header from "../components/Header.astro"
+import Footer from "../components/Footer.astro"
+import BentoFeatures from "../components/blocks/BentoFeatures.astro"
+import FeatureShowcase from "../components/blocks/FeatureShowcase.astro"
+import LogoBanner from "../components/blocks/LogoBanner.astro"
+import FinalCTA from "../components/blocks/FinalCTA.astro"
+---
+
+<Layout title="Features - SaaSify" description="Powerful features for modern teams.">
+  <div class="min-h-screen flex flex-col">
+    <Header />
+
+    <main class="flex-1">
+      <!-- Hero -->
+      <section class="py-16 md:py-24">
+        <div class="container mx-auto px-4 text-center">
+          <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-6">
+            Powerful features for modern teams
+          </h1>
+          <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Everything you need to streamline workflows, boost productivity, and scale your business.
+          </p>
+        </div>
+      </section>
+
+      <!-- Bento Features -->
+      <BentoFeatures
+        heading="Discover what SaaSify can do"
+        subheading="Everything you need to work smarter and scale faster"
+      />
+
+      <!-- Feature Showcase: Integrations -->
+      <FeatureShowcase
+        label="Seamless Integrations"
+        headline="Connect everything your team uses in one place"
+        description="Integrate with 100+ popular tools including Slack, Salesforce, HubSpot, and more. Two-way sync keeps everything up to date automatically."
+        features={[
+          { text: "100+ native integrations" },
+          { text: "Two-way data sync" },
+          { text: "Custom webhooks" },
+          { text: "API access included" },
+        ]}
+        link={{ label: "Learn more", href: "#" }}
+        imagePosition="right"
+      />
+
+      <!-- Feature Showcase: Analytics -->
+      <FeatureShowcase
+        label="Actionable Analytics"
+        headline="Make decisions backed by real-time data"
+        description="Track every metric that matters. From team performance to customer insights, get the visibility you need to drive growth."
+        features={[
+          { text: "Real-time dashboards" },
+          { text: "Custom reports" },
+          { text: "Team performance metrics" },
+          { text: "Automated insights" },
+        ]}
+        link={{ label: "Learn more", href: "#" }}
+        imagePosition="left"
+      />
+
+      <!-- Feature Showcase: Automation -->
+      <FeatureShowcase
+        label="Workflow Automation"
+        headline="Eliminate busywork with smart automation"
+        description="Build powerful workflows without code. Automate approvals, notifications, data entry, and more to focus on what matters."
+        features={[
+          { text: "Visual workflow builder" },
+          { text: "Conditional logic" },
+          { text: "Scheduled triggers" },
+          { text: "Cross-app automation" },
+        ]}
+        link={{ label: "Learn more", href: "#" }}
+        imagePosition="right"
+      />
+
+      <!-- Logo Banner -->
+      <LogoBanner
+        heading="Integrates with your favorite tools"
+        style="grid"
+        logos={[
+          { name: "Slack", initials: "SL" },
+          { name: "Salesforce", initials: "SF" },
+          { name: "HubSpot", initials: "HS" },
+          { name: "Google Workspace", initials: "GW" },
+          { name: "Zapier", initials: "ZP" },
+          { name: "Jira", initials: "JI" },
+        ]}
+      />
+
+      <!-- Final CTA -->
+      <FinalCTA
+        headline="Ready to transform how your team works?"
+        subheading="Start your free trial today. No credit card required."
+        style="dark"
+        links={[
+          { label: "Start free trial", href: "/sign-up", variant: "outline" },
+          { label: "View pricing", href: "/pricing", variant: "default" },
+        ]}
+      />
+    </main>
+
+    <Footer />
+  </div>
+</Layout>

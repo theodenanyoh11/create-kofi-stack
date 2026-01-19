@@ -127,6 +127,7 @@ export async function runPrompts(
     const marketingOptions: { value: MarketingSite; label: string; hint: string }[] = [
       { value: 'none', label: 'None', hint: 'Skip marketing site' },
       { value: 'nextjs', label: 'Next.js', hint: 'Simple marketing pages' },
+      { value: 'astro', label: 'Astro', hint: 'Fast static marketing site' },
       { value: 'payload', label: 'Payload CMS', hint: 'Full CMS for content' },
     ]
     marketingSite = (await p.select({
@@ -462,10 +463,10 @@ export async function runPrompts(
   }
 }
 
-function validateMarketingSite(value?: string): 'none' | 'nextjs' | 'payload' | undefined {
+function validateMarketingSite(value?: string): 'none' | 'nextjs' | 'payload' | 'astro' | undefined {
   if (!value) return undefined
-  if (['none', 'nextjs', 'payload'].includes(value)) {
-    return value as 'none' | 'nextjs' | 'payload'
+  if (['none', 'nextjs', 'payload', 'astro'].includes(value)) {
+    return value as 'none' | 'nextjs' | 'payload' | 'astro'
   }
   return undefined
 }

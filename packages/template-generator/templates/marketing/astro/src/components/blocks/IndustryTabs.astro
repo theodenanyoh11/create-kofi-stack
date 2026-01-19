@@ -1,0 +1,177 @@
+---
+interface Tab {
+  name: string
+  stat: string
+  statLabel: string
+  description: string
+  link?: {
+    label: string
+    href: string
+  }
+}
+
+interface Props {
+  heading?: string
+  subheading?: string
+  tabs?: Tab[]
+}
+
+const defaultTabs: Tab[] = [
+  {
+    name: "Sales Teams",
+    stat: "40%",
+    statLabel: "Faster deal cycles with smart pipeline tools",
+    description: "Close deals faster with intelligent pipeline management, automated follow-ups, and real-time insights that help your team hit quota every quarter.",
+    link: { label: "Solutions for sales", href: "/use-cases/sales" },
+  },
+  {
+    name: "Marketing Teams",
+    stat: "3x",
+    statLabel: "Campaign velocity with streamlined workflows",
+    description: "Launch campaigns that convert with collaborative planning, asset management, and performance analytics all in one place.",
+    link: { label: "Solutions for marketing", href: "/use-cases/marketing" },
+  },
+  {
+    name: "Product Teams",
+    stat: "50%",
+    statLabel: "Faster shipping with better prioritization",
+    description: "Ship features users love with roadmap planning, feedback collection, and release management that keeps everyone aligned.",
+    link: { label: "Solutions for product", href: "/use-cases/product" },
+  },
+  {
+    name: "Operations",
+    stat: "60%",
+    statLabel: "Time saved with process automation",
+    description: "Scale your operations without the chaos. Automate processes, manage resources, and get visibility across your entire organization.",
+    link: { label: "Solutions for ops", href: "/use-cases/operations" },
+  },
+]
+
+const {
+  heading = "Solutions that deliver real results",
+  subheading = "Whether you're in sales, marketing, or product, SaaSify adapts to how your team works.",
+  tabs = defaultTabs,
+} = Astro.props
+
+const displayTabs = tabs.length > 0 ? tabs : defaultTabs
+---
+
+<section class="py-16 md:py-24 bg-muted/30">
+  <div class="container mx-auto px-4">
+    <!-- Header -->
+    {(heading || subheading) && (
+      <div class="text-center mb-12 md:mb-16 max-w-3xl mx-auto">
+        {heading && (
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4">
+            {heading}
+          </h2>
+        )}
+        {subheading && (
+          <p class="text-lg md:text-xl text-muted-foreground">
+            {subheading}
+          </p>
+        )}
+      </div>
+    )}
+
+    <!-- Tabs -->
+    <div class="flex flex-wrap justify-center gap-2 mb-12" id="industry-tabs">
+      {displayTabs.map((tab, index) => (
+        <button
+          type="button"
+          data-tab-index={index}
+          class:list={[
+            "industry-tab px-4 py-2 text-sm font-medium rounded-full transition-colors",
+            index === 0
+              ? "bg-primary text-primary-foreground"
+              : "bg-background border border-border hover:bg-muted"
+          ]}
+        >
+          {tab.name}
+        </button>
+      ))}
+    </div>
+
+    <!-- Content -->
+    <div class="grid md:grid-cols-2 gap-12 lg:gap-16 items-center max-w-5xl mx-auto">
+      {displayTabs.map((tab, index) => (
+        <div
+          data-tab-content={index}
+          class:list={["tab-content text-center md:text-left", index !== 0 && "hidden"]}
+        >
+          <div class="text-7xl md:text-8xl lg:text-9xl font-bold text-primary mb-2">
+            {tab.stat}
+          </div>
+          <p class="text-xl md:text-2xl font-medium text-foreground">
+            {tab.statLabel}
+          </p>
+        </div>
+      ))}
+
+      {displayTabs.map((tab, index) => (
+        <div
+          data-tab-description={index}
+          class:list={["tab-description", index !== 0 && "hidden"]}
+        >
+          <p class="text-lg text-muted-foreground mb-6">
+            {tab.description}
+          </p>
+          {tab.link && (
+            <a
+              href={tab.link.href}
+              class="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+            >
+              {tab.link.label}
+              <span aria-hidden="true">&rarr;</span>
+            </a>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  function initIndustryTabs() {
+    const tabsContainer = document.getElementById('industry-tabs')
+    if (!tabsContainer) return
+
+    const tabs = tabsContainer.querySelectorAll('.industry-tab')
+    const contents = document.querySelectorAll('.tab-content')
+    const descriptions = document.querySelectorAll('.tab-description')
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const index = tab.getAttribute('data-tab-index')
+
+        // Update tab styles
+        tabs.forEach((t) => {
+          t.classList.remove('bg-primary', 'text-primary-foreground')
+          t.classList.add('bg-background', 'border', 'border-border', 'hover:bg-muted')
+        })
+        tab.classList.add('bg-primary', 'text-primary-foreground')
+        tab.classList.remove('bg-background', 'border', 'border-border', 'hover:bg-muted')
+
+        // Update content visibility
+        contents.forEach((content) => {
+          if (content.getAttribute('data-tab-content') === index) {
+            content.classList.remove('hidden')
+          } else {
+            content.classList.add('hidden')
+          }
+        })
+
+        descriptions.forEach((desc) => {
+          if (desc.getAttribute('data-tab-description') === index) {
+            desc.classList.remove('hidden')
+          } else {
+            desc.classList.add('hidden')
+          }
+        })
+      })
+    })
+  }
+
+  initIndustryTabs()
+  document.addEventListener('astro:after-swap', initIndustryTabs)
+</script>

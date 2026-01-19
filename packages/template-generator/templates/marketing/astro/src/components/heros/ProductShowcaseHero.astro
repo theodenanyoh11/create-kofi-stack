@@ -1,0 +1,116 @@
+---
+import AnimatedMockup from "./AnimatedMockup.astro"
+
+interface HeroLink {
+  label: string
+  href: string
+  variant: "default" | "outline"
+}
+
+interface Props {
+  headline?: string
+  description?: string
+  links?: HeroLink[]
+}
+
+const {
+  headline = "The modern platform for growing teams",
+  description = "Streamline workflows, boost productivity, and scale your business with one powerful platform.",
+  links = [
+    { label: "Start free trial", href: "/sign-up", variant: "default" },
+    { label: "Watch demo", href: "/demo", variant: "outline" },
+  ],
+} = Astro.props
+---
+
+<div class="relative overflow-hidden">
+  <!-- Hero Content - Left Aligned -->
+  <div class="container mx-auto px-4 pt-8 pb-16 md:pt-16 md:pb-24">
+    <div class="max-w-2xl">
+      <h1 class="text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl">
+        {headline}
+      </h1>
+      <p class="mt-6 text-lg text-muted-foreground md:text-xl">
+        {description}
+      </p>
+      {links && links.length > 0 && (
+        <div class="mt-8 flex flex-wrap gap-4">
+          {links.map((link) => (
+            <a
+              href={link.href}
+              class:list={[
+                "inline-flex items-center justify-center px-6 py-3 text-sm font-medium rounded-md transition-colors",
+                link.variant === "default"
+                  ? "bg-primary text-primary-foreground hover:bg-primary/90"
+                  : "border border-border bg-background hover:bg-muted"
+              ]}
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+
+  <!-- Product Mockup Section -->
+  <div class="container mx-auto px-4">
+    <div class="hero-showcase">
+      <!-- Background Image -->
+      <div class="hero-bg-image">
+        <img
+          src="/media/hero-bg.png"
+          alt=""
+          class="w-full h-full object-cover"
+        />
+      </div>
+
+      <!-- Mockup - centered within background -->
+      <div class="hero-mockup-centered">
+        <AnimatedMockup />
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .hero-showcase {
+    position: relative;
+    width: 100%;
+    border-radius: 1rem;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--primary) 0%, color-mix(in oklch, var(--primary) 70%, black) 100%);
+    height: 25rem;
+  }
+
+  .hero-bg-image {
+    position: absolute;
+    inset: 0;
+    opacity: 0.1;
+  }
+
+  .hero-mockup-centered {
+    position: relative;
+    z-index: 10;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .hero-showcase {
+      height: 31.25rem;
+    }
+    .hero-mockup-centered {
+      padding: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero-showcase {
+      height: 37.5rem;
+    }
+  }
+</style>

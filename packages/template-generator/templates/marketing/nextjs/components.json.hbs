@@ -1,0 +1,44 @@
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+{{#if (eq shadcn.style "nova")}}
+  "style": "new-york",
+{{else if (eq shadcn.style "vega")}}
+  "style": "default",
+{{else if (eq shadcn.style "maia")}}
+  "style": "new-york",
+{{else if (eq shadcn.style "lyra")}}
+  "style": "new-york",
+{{else if (eq shadcn.style "mira")}}
+  "style": "default",
+{{else}}
+  "style": "new-york",
+{{/if}}
+  "rsc": true,
+  "tsx": true,
+  "tailwind": {
+    "config": "",
+    "css": "src/app/globals.css",
+    "baseColor": "{{shadcn.baseColor}}",
+    "cssVariables": true,
+    "prefix": ""
+  },
+{{#if (eq shadcn.iconLibrary "lucide")}}
+  "iconLibrary": "lucide",
+{{else if (eq shadcn.iconLibrary "hugeicons")}}
+  "iconLibrary": "lucide",
+{{else if (eq shadcn.iconLibrary "tabler")}}
+  "iconLibrary": "lucide",
+{{else if (eq shadcn.iconLibrary "phosphor")}}
+  "iconLibrary": "lucide",
+{{else}}
+  "iconLibrary": "lucide",
+{{/if}}
+  "aliases": {
+    "components": "@/components",
+    "utils": "@/lib/utils",
+    "ui": "@/components/ui",
+    "lib": "@/lib",
+    "hooks": "@/hooks"
+  },
+  "registries": {}
+}

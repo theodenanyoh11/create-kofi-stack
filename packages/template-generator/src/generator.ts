@@ -36,6 +36,8 @@ export async function generateVirtualProject(
         await processPayloadTemplates(vfs, config)
       } else if (config.marketingSite === 'nextjs') {
         await processMarketingTemplates(vfs, config)
+      } else if (config.marketingSite === 'astro') {
+        await processAstroMarketingTemplates(vfs, config)
       }
 
       // Optional apps (monorepo only)
@@ -166,6 +168,13 @@ async function processMarketingTemplates(
   config: ProjectConfig
 ): Promise<void> {
   processTemplatesFromPrefix(vfs, 'marketing/nextjs/', '/apps/marketing', config)
+}
+
+async function processAstroMarketingTemplates(
+  vfs: VirtualFileSystem,
+  config: ProjectConfig
+): Promise<void> {
+  processTemplatesFromPrefix(vfs, 'marketing/astro/', '/apps/marketing', config)
 }
 
 async function processDesignSystemTemplates(

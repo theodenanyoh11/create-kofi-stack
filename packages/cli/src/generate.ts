@@ -235,35 +235,9 @@ export async function generateProject(config: ProjectConfig, options: GenerateOp
         }
       }
 
-      // Initialize shadcn in marketing app (Next.js or Payload frontend)
-      if (config.marketingSite === 'nextjs' || config.marketingSite === 'payload') {
-        const marketingDir = path.join(config.targetDir, 'apps/marketing')
-        spinner.start('Initializing shadcn/ui in apps/marketing...')
-        try {
-          await execa('pnpm', ['dlx', 'shadcn@latest', 'init', '--yes', '--force', '--base-color', baseColor], {
-            cwd: marketingDir,
-            stdio: 'pipe',
-          })
-          spinner.succeed('shadcn/ui initialized in marketing app')
-
-          // Fix tsconfig.json paths
-          const marketingTsconfigPath = path.join(marketingDir, 'tsconfig.json')
-          if (await fs.pathExists(marketingTsconfigPath)) {
-            const tsconfig = await fs.readJson(marketingTsconfigPath)
-            tsconfig.compilerOptions = tsconfig.compilerOptions || {}
-            tsconfig.compilerOptions.paths = {
-              '@payload-config': ['./src/payload.config.ts'],
-              '@/*': ['./src/*']
-            }
-            await fs.writeJson(marketingTsconfigPath, tsconfig, { spaces: 2 })
-          }
-        } catch (error: any) {
-          spinner.warn('Failed to initialize shadcn in marketing app. Run manually: pnpm dlx shadcn@latest init')
-          if (error.stderr) {
-            console.log(pc.dim(`  Error: ${error.stderr}`))
-          }
-        }
-      }
+      // Marketing apps (NextJS, Astro, Payload) all have complete themed CSS templates
+      // We do NOT run shadcn init because it would overwrite our themed globals.css
+      // The templates include a properly configured components.json
     }
 
     // Install all shadcn components

@@ -1,0 +1,146 @@
+---
+import Logo from "./Logo.astro"
+import { Menu, X } from "lucide-astro"
+
+// Navigation for landing page
+const navLinks = [
+  { label: "Features", href: "/features" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "Blog", href: "/blog" },
+]
+
+const ctaLinks = [
+  { label: "Sign In", href: "/sign-in", variant: "ghost" },
+  { label: "Get Started", href: "/pricing", variant: "default" },
+]
+---
+
+<header class="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+  <div class="container mx-auto px-4 h-16 flex justify-between items-center">
+    <!-- Left section: Logo + Nav -->
+    <div class="flex items-center gap-8">
+      <a href="/" class="flex items-center gap-2">
+        <Logo />
+        <span class="text-xl font-semibold hidden sm:inline">SaaSify</span>
+      </a>
+
+      <!-- Desktop navigation -->
+      <nav class="hidden lg:flex items-center gap-1">
+        {navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+          >
+            {link.label}
+          </a>
+        ))}
+      </nav>
+    </div>
+
+    <!-- Right section: CTAs -->
+    <div class="flex items-center gap-3">
+      <!-- Desktop CTAs -->
+      <div class="hidden lg:flex items-center gap-3">
+        {ctaLinks.map((link) => (
+          <a
+            href={link.href}
+            class:list={[
+              "px-4 py-2 text-sm font-medium rounded-md transition-colors",
+              link.variant === "default"
+                ? "bg-primary text-primary-foreground hover:bg-primary/90"
+                : "text-muted-foreground hover:text-foreground"
+            ]}
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+
+      <!-- Mobile: Primary CTA + Hamburger -->
+      <a
+        href="/pricing"
+        class="lg:hidden px-4 py-2 text-sm font-medium rounded-md bg-primary text-primary-foreground hover:bg-primary/90"
+      >
+        Get Started
+      </a>
+
+      <button
+        type="button"
+        id="mobile-menu-toggle"
+        class="lg:hidden p-2 text-muted-foreground hover:text-foreground"
+        aria-label="Toggle menu"
+      >
+        <Menu class="h-6 w-6 menu-open-icon" />
+        <X class="h-6 w-6 menu-close-icon hidden" />
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Menu Overlay -->
+<div id="mobile-menu" class="fixed inset-0 top-16 z-50 bg-background hidden lg:hidden">
+  <nav class="overflow-y-auto max-h-[calc(100vh-4rem)]">
+    <!-- Navigation links -->
+    {navLinks.map((link) => (
+      <a
+        href={link.href}
+        class="flex items-center px-4 py-3 text-sm font-medium border-b border-border hover:bg-muted"
+      >
+        {link.label}
+      </a>
+    ))}
+
+    <!-- CTA links -->
+    <div class="p-4 space-y-2">
+      {ctaLinks.map((link) => (
+        <a
+          href={link.href}
+          class:list={[
+            "flex items-center justify-center w-full px-4 py-3 text-sm font-medium rounded-md transition-colors",
+            link.variant === "default"
+              ? "bg-primary text-primary-foreground hover:bg-primary/90"
+              : "border border-border hover:bg-muted"
+          ]}
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+  </nav>
+</div>
+
+<script>
+  function initHeader() {
+    // Mobile menu toggle
+    const mobileToggle = document.getElementById('mobile-menu-toggle')
+    const mobileMenu = document.getElementById('mobile-menu')
+    const openIcon = mobileToggle?.querySelector('.menu-open-icon')
+    const closeIcon = mobileToggle?.querySelector('.menu-close-icon')
+
+    mobileToggle?.addEventListener('click', () => {
+      const isOpen = !mobileMenu?.classList.contains('hidden')
+      if (isOpen) {
+        mobileMenu?.classList.add('hidden')
+        openIcon?.classList.remove('hidden')
+        closeIcon?.classList.add('hidden')
+      } else {
+        mobileMenu?.classList.remove('hidden')
+        openIcon?.classList.add('hidden')
+        closeIcon?.classList.remove('hidden')
+      }
+    })
+
+    // Close mobile menu on link click
+    const mobileLinks = mobileMenu?.querySelectorAll('a')
+    mobileLinks?.forEach((link) => {
+      link.addEventListener('click', () => {
+        mobileMenu?.classList.add('hidden')
+        openIcon?.classList.remove('hidden')
+        closeIcon?.classList.add('hidden')
+      })
+    })
+  }
+
+  initHeader()
+  document.addEventListener('astro:after-swap', initHeader)
+</script>

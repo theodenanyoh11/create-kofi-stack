@@ -1,0 +1,88 @@
+---
+import { Zap, Plug, Database, Cloud, Shield, Lock, Award, Globe } from "lucide-astro"
+
+interface TrustItem {
+  icon: string
+  text: string
+}
+
+interface TrustColumn {
+  label: string
+  heading: string
+  description: string
+  items: TrustItem[]
+}
+
+interface Props {
+  columns?: TrustColumn[]
+}
+
+const defaultColumns: TrustColumn[] = [
+  {
+    label: "Integrations",
+    heading: "Connect anywhere",
+    description: "Plug in and get started immediately with pre-built connectors for every major platform.",
+    items: [
+      { icon: "zap", text: "Go live in minutes" },
+      { icon: "plug", text: "Pre-built connectors" },
+      { icon: "database", text: "Complete data sync" },
+      { icon: "cloud", text: "Cloud-native infrastructure" },
+    ],
+  },
+  {
+    label: "Security & Compliance",
+    heading: "Enterprise-level security",
+    description: "Keep your data safe with encryption, granular access control, and compliance-ready infrastructure.",
+    items: [
+      { icon: "shield", text: "SOC 2 Type II certified" },
+      { icon: "lock", text: "End-to-end encryption" },
+      { icon: "award", text: "Complete audit trails" },
+      { icon: "globe", text: "GDPR compliant" },
+    ],
+  },
+]
+
+const { columns = defaultColumns } = Astro.props
+
+const displayColumns = columns.length > 0 ? columns : defaultColumns
+---
+
+<section class="py-16 md:py-24">
+  <div class="container mx-auto px-4">
+    <div class="grid md:grid-cols-2 gap-12 lg:gap-16">
+      {displayColumns.map((column) => (
+        <div>
+          <span class="inline-block text-sm font-medium text-primary mb-4">
+            {column.label}
+          </span>
+          <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-4">
+            {column.heading}
+          </h2>
+          <p class="text-muted-foreground mb-8">
+            {column.description}
+          </p>
+
+          <ul class="space-y-4">
+            {column.items.map((item) => (
+              <li class="flex items-center gap-3">
+                <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                  {item.icon === "zap" && <Zap class="h-4 w-4 text-primary" />}
+                  {item.icon === "plug" && <Plug class="h-4 w-4 text-primary" />}
+                  {item.icon === "database" && <Database class="h-4 w-4 text-primary" />}
+                  {item.icon === "cloud" && <Cloud class="h-4 w-4 text-primary" />}
+                  {item.icon === "shield" && <Shield class="h-4 w-4 text-primary" />}
+                  {item.icon === "lock" && <Lock class="h-4 w-4 text-primary" />}
+                  {item.icon === "award" && <Award class="h-4 w-4 text-primary" />}
+                  {item.icon === "globe" && <Globe class="h-4 w-4 text-primary" />}
+                </div>
+                <span class="text-sm font-medium">
+                  {item.text}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -45,7 +45,7 @@ program
   .argument('[project-name]', 'Name of your project')
   .option('--standalone', 'Create standalone project (default)')
   .option('--monorepo', 'Create monorepo with Turborepo')
-  .option('--marketing <type>', 'Marketing site type: none, nextjs, payload')
+  .option('--marketing <type>', 'Marketing site type: none, nextjs, astro, payload')
   .option('--analytics <type>', 'Analytics: none, posthog, vercel')
   .option('--uploads <type>', 'Storage: convex-fs, r2, uploadthing, s3, vercel-blob, none')
   .option('--payments <type>', 'Payments: none, stripe, polar')
