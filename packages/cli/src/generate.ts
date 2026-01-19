@@ -207,37 +207,15 @@ export async function generateProject(config: ProjectConfig, options: GenerateOp
       ? path.join(config.targetDir, 'apps/web')
       : config.targetDir
 
-    // For monorepo, we need to init shadcn first
+    // For monorepo: Skip shadcn init entirely
+    // All apps (web, marketing) have complete themed CSS templates with:
+    // - globals.css.hbs with theme color conditionals for all 18 shadcn colors
+    // - components.json.hbs with proper style, baseColor, and iconLibrary settings
+    // Running shadcn init would overwrite these templated files with defaults
     if (config.structure === 'monorepo') {
-      spinner.start('Initializing shadcn/ui in apps/web...')
-      try {
-        await execa('pnpm', ['dlx', 'shadcn@latest', 'init', '--yes', '--force', '--base-color', baseColor], {
-          cwd: shadcnDir,
-          stdio: 'pipe',
-        })
-        spinner.succeed('shadcn/ui initialized')
-
-        // Fix tsconfig.json paths that shadcn may have modified
-        const tsconfigPath = path.join(shadcnDir, 'tsconfig.json')
-        if (await fs.pathExists(tsconfigPath)) {
-          const tsconfig = await fs.readJson(tsconfigPath)
-          // Ensure paths only has @/* -> ./src/* (no packages/ui aliases)
-          tsconfig.compilerOptions = tsconfig.compilerOptions || {}
-          tsconfig.compilerOptions.paths = {
-            '@/*': ['./src/*']
-          }
-          await fs.writeJson(tsconfigPath, tsconfig, { spaces: 2 })
-        }
-      } catch (error: any) {
-        spinner.warn('Failed to initialize shadcn. Run manually in apps/web: pnpm dlx shadcn@latest init')
-        if (error.stderr) {
-          console.log(pc.dim(`  Error: ${error.stderr}`))
-        }
-      }
-
-      // Marketing apps (NextJS, Astro, Payload) all have complete themed CSS templates
-      // We do NOT run shadcn init because it would overwrite our themed globals.css
-      // The templates include a properly configured components.json
+      // Templates already include properly configured globals.css and components.json
+      // Just log that we're using the templated configuration
+      p.log.info('Using themed shadcn/ui configuration from templates')
     }
 
     // Install all shadcn components

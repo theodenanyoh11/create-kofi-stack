@@ -1,6 +1,12 @@
 {
   "$schema": "https://ui.shadcn.com/schema.json",
+{{#if (eq shadcn.style "nova")}}
   "style": "new-york",
+{{else if (eq shadcn.style "vega")}}
+  "style": "default",
+{{else}}
+  "style": "new-york",
+{{/if}}
   "rsc": true,
   "tsx": true,
   "tailwind": {
